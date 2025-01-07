@@ -1,0 +1,35 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.TblLogin
+@{
+    ViewBag.PageTitle = "Edit User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit User</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/MyUser" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/MyUser/Edit" method="post">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        <div class="col-sm-12">@Html.GenerateField(m => m.Username, "Email ID", "email")</div>
+                        <div class="col-sm-12">@Html.GenerateField(m => m.Password, "Password", "text")</div>
+                        <div class="col-sm-12">@Html.GenerateField(m => m.Number, "Mobile No.", "number")</div>
+                        <div class="col-sm-12">@Html.GenerateField(m => m.Role, "Role", "text")</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

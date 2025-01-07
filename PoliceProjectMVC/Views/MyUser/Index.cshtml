@@ -1,0 +1,52 @@
+﻿@model  IEnumerable<PoliceProjectMVC.Models.TblLogin>
+
+@{
+    ViewBag.PageTitle = "All Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">All Users Details</h3>
+        <div class="card-tools ml-auto">
+            <a href="/MyUser/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New User</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Surname</td>
+                        <td>Mobile</td>
+                        <td>EmailId</td>
+                        <td>Image</td>
+                        <td>Role</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PoliceProjectMVC.Models.TblLogin item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td></td>
+                            <td></td>
+                            <td>@item.Number</td>
+                            <td>@item.Username</td>
+                            <td></td>
+                            <td>@item.Role</td>
+                            <td>
+                                <a href="/MyUser/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning">Edit</a>
+                                <a href="/MyUser/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

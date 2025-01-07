@@ -1,0 +1,172 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\views\\myuser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\views\\myuser\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\views\\myuser\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\views\\myuser\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\views\\myuser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\views\\myuser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\models\\tbllogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\models\\tbllogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\controllers\\myusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\controllers\\myusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|d:\\apex data projects\\policeprojectmvczip\\policeprojectmvc\\policeprojectmvc\\views\\home\\admindash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{278A49CA-E7A7-4E64-9210-51C99268591A}|PoliceProjectMVC\\PoliceProjectMVC.csproj|solutionrelative:policeprojectmvc\\views\\home\\admindash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 207,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TblLogin.cs",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Models\\TblLogin.cs",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Models\\TblLogin.cs",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Models\\TblLogin.cs",
+              "RelativeToolTip": "PoliceProjectMVC\\Models\\TblLogin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T15:23:11.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Edit.cshtml",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Views\\MyUser\\Edit.cshtml",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Edit.cshtml",
+              "RelativeToolTip": "PoliceProjectMVC\\Views\\MyUser\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T15:22:39.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Create.cshtml",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Views\\MyUser\\Create.cshtml",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Create.cshtml",
+              "RelativeToolTip": "PoliceProjectMVC\\Views\\MyUser\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T15:16:04.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "PoliceProjectMVC\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T15:13:51.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Index.cshtml",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Views\\MyUser\\Index.cshtml",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\MyUser\\Index.cshtml",
+              "RelativeToolTip": "PoliceProjectMVC\\Views\\MyUser\\Index.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACgAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T15:07:45.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MyUserController.cs",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Controllers\\MyUserController.cs",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Controllers\\MyUserController.cs",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Controllers\\MyUserController.cs",
+              "RelativeToolTip": "PoliceProjectMVC\\Controllers\\MyUserController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAowDMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T15:06:31.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminDash.cshtml",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\Home\\AdminDash.cshtml",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Views\\Home\\AdminDash.cshtml",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\Home\\AdminDash.cshtml",
+              "RelativeToolTip": "PoliceProjectMVC\\Views\\Home\\AdminDash.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T15:01:09.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "PoliceProjectMVC\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "D:\\Apex Data Projects\\PoliceProjectMVCZip\\PoliceProjectMVC\\PoliceProjectMVC\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "PoliceProjectMVC\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-07T14:57:19.613Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<PoliceProjectMVC.Models.M_Menu>
+@{
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+@foreach (PoliceProjectMVC.Models.M_Menu menu in Model)
+{
+    string menuName = currentCulture == "en" ? menu.MenuName_En : menu.MenuName_Hi;
+    if ((bool)menu.IsDropDown)
+    {
+        <li class='dropdown'>
+            <a href='javascript:void(0)'><span>@menuName</span> <i class='bi bi-chevron-down'></i></a><ul>
+                @foreach (PoliceProjectMVC.Models.M_Menu item2 in menu.SubMenus)
+                {
+                    string menuName2 = currentCulture == "en" ? item2.MenuName_En : item2.MenuName_Hi;
+                    <li><a class='nav-link' href='@item2.MenuURL'>@menuName2</a></li>
+                }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li><a class='nav-link' href='@menu.MenuURL'>@menuName</a></li>
+    }
+}

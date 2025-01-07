@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.PageTitle = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today's Registration</span>
+                <span class="info-box-number">@ViewBag.TodayReg</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-success"><i class="fas fa-list"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Coordinator</span>
+                <span class="info-box-number">@ViewBag.ToalCoor</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-warning"><i class="fas fa-graduation-cap"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Student</span>
+                <span class="info-box-number">@ViewBag.ToalSt</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-indigo"><i class="fas fa-money-bill-wave-alt"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today's Cash Payment</span>
+                @if (ViewBag.MoneyCash != null)
+                {
+                    <span class="info-box-number">@ViewBag.MoneyCash Rs.</span>
+                }
+                else
+                {
+                    <span class="info-box-number">0 Rs.</span>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-teal"><i class="fas fa-money-check-alt"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today's Online Payment</span>
+                @if (ViewBag.MoneyOnline != null)
+                {
+                    <span class="info-box-number">@ViewBag.MoneyOnline Rs.</span>
+                }
+                else
+                {
+                    <span class="info-box-number">0 Rs.</span>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="fas fa-money-bill-alt"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today's Total Payment</span>
+                @if (ViewBag.MoneyRec != null)
+                {
+                    <span class="info-box-number">@ViewBag.MoneyRec Rs.</span>
+                }
+                else
+                {
+                    <span class="info-box-number">0 Rs.</span>
+
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-primary"><i class="fas fa-money-bill-wave"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today's Expense</span>
+                @if (ViewBag.Expenses != null)
+                {
+                    <span class="info-box-number">@ViewBag.Expenses Rs.</span>
+                }
+                else
+                {
+                    <span class="info-box-number">0 Rs.</span>
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

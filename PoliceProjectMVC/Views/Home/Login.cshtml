@@ -1,0 +1,77 @@
+﻿@model PoliceProjectMVC.Models.TblLogin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khan's I.T Login Panel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/AdminLayout/css/adminlte.min.css">
+    <link href="/favicon.png" rel="icon" type="image/x-icon" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="/" class="h1"><b>KHAN'S I.T</b></a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Log in to start your session</p>
+                <form action="/Home/Login" method="post">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.Hidden("ReturnUrl", (string)ViewBag.ReturnUrl)
+                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control shadow-none", placeholder = "Enter Username" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fa fa-user-check"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Username, "", new { @class = "text-danger mt-1" })
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control shadow-none", placeholder = "Enter Password" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fa fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger mt-1" })
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-outline-success btn-block">LOGIN</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/AdminLayout/js/bootstrap.bundle.min.js"></script>
+    <script src="/AdminLayout/js/adminlte.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let a = "@TempData["response"]";
+            if (a != "") {
+                alert(a);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+﻿.error {
+    color: #dc3545;
+}
+body.dt-print-view{
+    min-height: calc(100% - 15px) !important;
+}
