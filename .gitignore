@@ -1,0 +1,48 @@
+# Ignore build outputs
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# Ignore Visual Studio specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore ReSharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+*.nuspec
+
+# Ignore temporary files
+*.tmp
+*.log
+*.temp
+*.cache
+
+# Ignore publish outputs
+*.Publish.xml
+*.PublishScripts/
+
+# Ignore Entity Framework migrations
+Migrations/
+
+# Ignore node_modules if using npm
+node_modules/
+
+# Ignore web config transformations
+*.config.transform
+
+# Ignore IDE-generated files
+launchSettings.json
+.DS_Store
+
+# Ignore custom settings
+App_Data/
