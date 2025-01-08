@@ -83,7 +83,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/MyUser/Roles" class="nav-link">
+                                    <a href="/MyUser/RoleIndex" class="nav-link">
                                         <i class="far fa-circle"></i>
                                         <p class="ml-2">All Roles</p>
                                     </a>
@@ -175,6 +175,10 @@
             let a = "@TempData["response"]";
             if (a != "") {
                 toastr.success(a);
+            }
+            let a = "@TempData["responseError"]";
+            if (a != "") {
+                toastr.error(a);
             }
             let b = `@TempData["alert"]`;
             if (b != "") {

@@ -11,5 +11,6 @@ namespace PoliceProjectMVC.Models
         public PDDBContext() : base("name=PDDBContext") { }
         public virtual DbSet<M_Menu> M_Menus { get; set; }
         public virtual DbSet<TblLogin> TblLogins { get; set; }
+        public virtual DbSet<TblRole> TblRoles { get; set; }
     }
 }

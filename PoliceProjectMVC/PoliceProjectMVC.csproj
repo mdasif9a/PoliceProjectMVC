@@ -234,6 +234,7 @@
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
     <Compile Include="Models\TblLogin.cs" />
+    <Compile Include="Models\TblRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +291,9 @@
     <Content Include="Views\MyUser\Index.cshtml" />
     <Content Include="Views\MyUser\Create.cshtml" />
     <Content Include="Views\MyUser\Edit.cshtml" />
+    <Content Include="Views\MyUser\RoleCreate.cshtml" />
+    <Content Include="Views\MyUser\RoleEdit.cshtml" />
+    <Content Include="Views\MyUser\RoleIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
