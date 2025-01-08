@@ -1,16 +1,16 @@
-﻿@model  IEnumerable<PoliceProjectMVC.Models.TblOurTeam>
+﻿@model  IEnumerable<PoliceProjectMVC.Models.SuccessionList>
 
 @{
-    ViewBag.PageTitle = "All Our Teams";
+    ViewBag.PageTitle = "Succession List";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     int b = 1;
 }
 
 <div class="card card-outline card-primary">
     <div class="card-header d-flex align-items-center">
-        <h3 class="card-title mb-0">All Our Teams</h3>
+        <h3 class="card-title mb-0">Succession List</h3>
         <div class="card-tools ml-auto">
-            <a href="/OurTeam/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+            <a href="/SuccessionList/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
         </div>
     </div>
     <div class="card-body">
@@ -22,32 +22,30 @@
                         <td>Name (En)</td>
                         <td>Name (Hi)</td>
                         <td>Designation</td>
-                        <td>Date</td>
                         <td>Image</td>
-                        <td>Description (En)</td>
-                        <td>Description (Hi)</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
                         <td>Priority</td>
                         <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PoliceProjectMVC.Models.TblOurTeam item in Model)
+                    @foreach (PoliceProjectMVC.Models.SuccessionList item in Model)
                     {
                         <tr>
                             <td>@(b++)</td>
                             <td>@item.Name_En</td>
                             <td>@item.Name_Hi</td>
                             <td>@item.DesignationId</td>
-                            <td>@item.JoiningDate.ToString("dd-MMM-yyyy")</td>
                             <td>
                                 <img src="@item.ImageUrl" width="50" height="50" />
                             </td>
-                            <td class="text-wrap">@item.Description_En</td>
-                            <td class="text-wrap">@item.Description_Hi</td>
+                            <td>@item.StartDate.ToString("dd-MMM-yyyy")</td>
+                            <td>@item.EndDate.ToString("dd-MMM-yyyy")</td>
                             <td>@item.Priority</td>
                             <td>
-                                <a href="/OurTeam/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
-                                <a href="/OurTeam/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="/SuccessionList/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/SuccessionList/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

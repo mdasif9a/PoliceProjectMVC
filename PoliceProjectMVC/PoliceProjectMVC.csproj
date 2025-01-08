@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PoliceProjectMVC</RootNamespace>
     <AssemblyName>PoliceProjectMVC</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -222,9 +222,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MWCriminalController.cs" />
+    <Compile Include="Controllers\SuccessionListController.cs" />
+    <Compile Include="Controllers\IAcheveMentController.cs" />
+    <Compile Include="Controllers\BestEmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyUserController.cs" />
     <Compile Include="Controllers\OurTeamController.cs" />
+    <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\TblHelplineNumberController.cs" />
     <Compile Include="Custome Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Custome Helpers\MyDropdownsValue.cs" />
@@ -233,9 +238,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin_Menu.cs" />
+    <Compile Include="Models\BestEmployee.cs" />
+    <Compile Include="Models\IAcheveMent.cs" />
     <Compile Include="Models\JqueryDatatableParam.cs" />
+    <Compile Include="Models\Link.cs" />
+    <Compile Include="Models\MWCriminal.cs" />
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
+    <Compile Include="Models\SuccessionList.cs" />
     <Compile Include="Models\TblLogin.cs" />
     <Compile Include="Models\TblHelplineNumber.cs" />
     <Compile Include="Models\TblOurTeam.cs" />
@@ -306,6 +316,21 @@
     <Content Include="Views\TblHelplineNumber\Edit.cshtml" />
     <Content Include="Views\TblHelplineNumber\Index.cshtml" />
     <Content Include="Views\Shared\_AdminMainMenu.cshtml" />
+    <Content Include="Views\BestEmployee\Create.cshtml" />
+    <Content Include="Views\BestEmployee\Edit.cshtml" />
+    <Content Include="Views\BestEmployee\Index.cshtml" />
+    <Content Include="Views\IAcheveMent\Create.cshtml" />
+    <Content Include="Views\IAcheveMent\Edit.cshtml" />
+    <Content Include="Views\IAcheveMent\Index.cshtml" />
+    <Content Include="Views\SuccessionList\Create.cshtml" />
+    <Content Include="Views\SuccessionList\Edit.cshtml" />
+    <Content Include="Views\SuccessionList\Index.cshtml" />
+    <Content Include="Views\Link\Create.cshtml" />
+    <Content Include="Views\Link\Edit.cshtml" />
+    <Content Include="Views\Link\Index.cshtml" />
+    <Content Include="Views\MWCriminal\Create.cshtml" />
+    <Content Include="Views\MWCriminal\Edit.cshtml" />
+    <Content Include="Views\MWCriminal\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

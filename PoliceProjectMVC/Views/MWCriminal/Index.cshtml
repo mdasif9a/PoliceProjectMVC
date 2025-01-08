@@ -1,16 +1,16 @@
-﻿@model  IEnumerable<PoliceProjectMVC.Models.TblOurTeam>
+﻿@model  IEnumerable<PoliceProjectMVC.Models.MWCriminal>
 
 @{
-    ViewBag.PageTitle = "All Our Teams";
+    ViewBag.PageTitle = "Most Wanted Criminals";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     int b = 1;
 }
 
 <div class="card card-outline card-primary">
     <div class="card-header d-flex align-items-center">
-        <h3 class="card-title mb-0">All Our Teams</h3>
+        <h3 class="card-title mb-0">Most Wanted Criminals</h3>
         <div class="card-tools ml-auto">
-            <a href="/OurTeam/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+            <a href="/MWCriminal/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
         </div>
     </div>
     <div class="card-body">
@@ -21,8 +21,6 @@
                         <td>#</td>
                         <td>Name (En)</td>
                         <td>Name (Hi)</td>
-                        <td>Designation</td>
-                        <td>Date</td>
                         <td>Image</td>
                         <td>Description (En)</td>
                         <td>Description (Hi)</td>
@@ -31,14 +29,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PoliceProjectMVC.Models.TblOurTeam item in Model)
+                    @foreach (PoliceProjectMVC.Models.MWCriminal item in Model)
                     {
                         <tr>
                             <td>@(b++)</td>
                             <td>@item.Name_En</td>
                             <td>@item.Name_Hi</td>
-                            <td>@item.DesignationId</td>
-                            <td>@item.JoiningDate.ToString("dd-MMM-yyyy")</td>
                             <td>
                                 <img src="@item.ImageUrl" width="50" height="50" />
                             </td>
@@ -46,8 +42,8 @@
                             <td class="text-wrap">@item.Description_Hi</td>
                             <td>@item.Priority</td>
                             <td>
-                                <a href="/OurTeam/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
-                                <a href="/OurTeam/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="/MWCriminal/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/MWCriminal/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

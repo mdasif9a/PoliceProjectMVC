@@ -15,5 +15,10 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<TblRole> TblRoles { get; set; }
         public virtual DbSet<TblOurTeam> TblOurTeams { get; set; }
         public virtual DbSet<TblHelplineNumber> TblHelplineNumbers { get; set; }
+        public virtual DbSet<BestEmployee> BestEmployees { get; set; }
+        public virtual DbSet<IAcheveMent> IAcheveMents { get; set; }
+        public virtual DbSet<Link> Links { get; set; }
+        public virtual DbSet<MWCriminal> MWCriminals { get; set; }
+        public virtual DbSet<SuccessionList> SuccessionLists { get; set; }
     }
 }

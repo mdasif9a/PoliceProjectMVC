@@ -1,16 +1,16 @@
-﻿@model  IEnumerable<PoliceProjectMVC.Models.TblOurTeam>
+﻿@model  IEnumerable<PoliceProjectMVC.Models.BestEmployee>
 
 @{
-    ViewBag.PageTitle = "All Our Teams";
+    ViewBag.PageTitle = "Best Employees";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     int b = 1;
 }
 
 <div class="card card-outline card-primary">
     <div class="card-header d-flex align-items-center">
-        <h3 class="card-title mb-0">All Our Teams</h3>
+        <h3 class="card-title mb-0">Best Employees</h3>
         <div class="card-tools ml-auto">
-            <a href="/OurTeam/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+            <a href="/BestEmployee/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
         </div>
     </div>
     <div class="card-body">
@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PoliceProjectMVC.Models.TblOurTeam item in Model)
+                    @foreach (PoliceProjectMVC.Models.BestEmployee item in Model)
                     {
                         <tr>
                             <td>@(b++)</td>
@@ -46,8 +46,8 @@
                             <td class="text-wrap">@item.Description_Hi</td>
                             <td>@item.Priority</td>
                             <td>
-                                <a href="/OurTeam/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
-                                <a href="/OurTeam/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="/BestEmployee/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/BestEmployee/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }
