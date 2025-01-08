@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PoliceProjectMVC.Models.Admin_Menu>
+
+@foreach (PoliceProjectMVC.Models.Admin_Menu menu in Model)
+{
+    if ((bool)menu.IsDropDown)
+    {
+        <li class="nav-item">
+            <a href="javascript:void(0);" class="nav-link">
+                <i class="@menu.IconClass"></i>
+                <p class="ml-3">
+                    @menu.MenuName_En
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                @foreach (PoliceProjectMVC.Models.Admin_Menu item2 in menu.SubMenus)
+                {
+                    <li class="nav-item">
+                        <a href="@item2.MenuURL" class="nav-link">
+                            <i class="@item2.IconClass"></i>
+                            <p class="ml-2">@item2.MenuName_En</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class='nav-link' href='@menu.MenuURL'>
+                <i class="@menu.IconClass"></i>
+                <p class="ml-3">
+                    @menu.MenuName_En
+                </p>
+            </a>
+        </li>
+    }
+}

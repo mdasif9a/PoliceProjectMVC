@@ -1,0 +1,54 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.TblOurTeam
+@{
+    ViewBag.PageTitle = "Create Our Team";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Add Our Team</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/OurTeam" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/OurTeam/Create" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JoiningDate, "Date", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='Description_En'>Description in English</label>
+                            @Html.TextAreaFor(m => m.Description_En, new { @class = "form-control form-control-sm", rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Description_En, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='Description_Hi'>Description in English</label>
+                            @Html.TextAreaFor(m => m.Description_Hi, new { @class = "form-control form-control-sm", rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Description_Hi, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

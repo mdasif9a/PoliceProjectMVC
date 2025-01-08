@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<PoliceProjectMVC.Models.TblLogin>
+﻿@model  IEnumerable<PoliceProjectMVC.Models.ViewLogin>
 
 @{
     ViewBag.PageTitle = "All Users";
@@ -29,19 +29,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PoliceProjectMVC.Models.TblLogin item in Model)
+                    @foreach (PoliceProjectMVC.Models.ViewLogin item in Model)
                     {
                         <tr>
                             <td>@(b++)</td>
-                            <td></td>
-                            <td></td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
                             <td>@item.Number</td>
-                            <td>@item.Username</td>
-                            <td></td>
+                            <td>@item.Email</td>
+                            <td>
+                                <img src="@item.ImageUrl" width="50" height="50" />
+                            </td>
                             <td>@item.Role</td>
                             <td>
-                                <a href="/MyUser/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning">Edit</a>
-                                <a href="/MyUser/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="/MyUser/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/MyUser/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

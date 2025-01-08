@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PoliceProjectMVC</RootNamespace>
     <AssemblyName>PoliceProjectMVC</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,10 +58,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -190,6 +187,7 @@
     <Content Include="Images\dgpofbihar.jpg" />
     <Content Include="Images\faviconlogo.jpg" />
     <Content Include="Images\jamuipolicelogo.jpg" />
+    <Content Include="Images\noimage.png" />
     <Content Include="Images\policelogo.png" />
     <Content Include="Images\slider1.jpg" />
     <Content Include="Images\slider2.jpeg" />
@@ -208,7 +206,9 @@
     <Content Include="Scripts\mycustom.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.hi1.designer.cs">
@@ -224,16 +224,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyUserController.cs" />
+    <Compile Include="Controllers\OurTeamController.cs" />
+    <Compile Include="Controllers\TblHelplineNumberController.cs" />
     <Compile Include="Custome Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Custome Helpers\MyDropdownsValue.cs" />
     <Compile Include="CustomRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin_Menu.cs" />
     <Compile Include="Models\JqueryDatatableParam.cs" />
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
     <Compile Include="Models\TblLogin.cs" />
+    <Compile Include="Models\TblHelplineNumber.cs" />
+    <Compile Include="Models\TblOurTeam.cs" />
     <Compile Include="Models\TblRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -294,6 +299,13 @@
     <Content Include="Views\MyUser\RoleCreate.cshtml" />
     <Content Include="Views\MyUser\RoleEdit.cshtml" />
     <Content Include="Views\MyUser\RoleIndex.cshtml" />
+    <Content Include="Views\OurTeam\Create.cshtml" />
+    <Content Include="Views\OurTeam\Edit.cshtml" />
+    <Content Include="Views\OurTeam\Index.cshtml" />
+    <Content Include="Views\TblHelplineNumber\Create.cshtml" />
+    <Content Include="Views\TblHelplineNumber\Edit.cshtml" />
+    <Content Include="Views\TblHelplineNumber\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminMainMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

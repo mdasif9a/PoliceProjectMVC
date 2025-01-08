@@ -1,0 +1,50 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.TblHelplineNumber
+@{
+    ViewBag.PageTitle = "Create Helpline Number";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Add Helpline Number</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/TblHelplineNumber" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/TblHelplineNumber/Create" method="post">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.HelplineNumbers, "Helpline No.", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyRoles)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.TypeId, "Select Type", "Select Type", (SelectList)ViewBag.MyRoles)</div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='Description_En'>Description in English</label>
+                            @Html.TextAreaFor(m => m.Description_En, new { @class = "form-control form-control-sm", rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Description_En, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='Description_Hi'>Description in English</label>
+                            @Html.TextAreaFor(m => m.Description_Hi, new { @class = "form-control form-control-sm", rows = "5" })
+                            @Html.ValidationMessageFor(m => m.Description_Hi, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

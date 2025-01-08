@@ -37,6 +37,16 @@ namespace PoliceProjectMVC.Controllers
             return mymenus;
         }
 
+        public List<Admin_Menu> AdminMenu()
+        {
+            List<Admin_Menu> mymenus = db.Admin_Menus.Where(x => x.Menu_ParentId == 0 && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
+            foreach (var item in mymenus)
+            {
+                item.SubMenus = db.Admin_Menus.Where(x => x.Menu_ParentId == item.MenuId && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
+            }
+            return mymenus;
+        }
+
         // GET: Home
         public ActionResult Index()
         {
@@ -46,6 +56,11 @@ namespace PoliceProjectMVC.Controllers
         public ActionResult MyMainMenu()
         {
             return PartialView("_MainMenu", MainMenu());
+        }
+
+        public ActionResult AdminMainMenu()
+        {
+            return PartialView("_AdminMainMenu", AdminMenu());
         }
 
         public ActionResult Login(string ReturnUrl)
@@ -60,18 +75,18 @@ namespace PoliceProjectMVC.Controllers
         [HttpPost]
         public ActionResult Login(TblLogin log, string ReturnUrl)
         {
-            TblLogin User = db.TblLogins.Where(x => x.Username == log.Username && x.Password == log.Password).FirstOrDefault();
+            TblLogin User = db.TblLogins.Where(x => x.Email == log.Email && x.Password == log.Password).FirstOrDefault();
             if (User != null)
             {
-                if (User.Role == "CoOrdinator" || User.Role == "Admin" || User.Role == "Staff")
+                //if (User.Role == "CoOrdinator" || User.Role == "Admin" || User.Role == "Staff")
+                //{
+                FormsAuthentication.SetAuthCookie(log.Email, false);
+                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                 {
-                    FormsAuthentication.SetAuthCookie(log.Username, false);
-                    if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
-                    {
-                        return Redirect(ReturnUrl);
-                    }
-                    return RedirectToAction("Index");
+                    return Redirect(ReturnUrl);
                 }
+                return RedirectToAction("Dashboard");
+                //}
             }
             TempData["response"] = "Incorrect username or password.";
             return View(log);

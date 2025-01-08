@@ -39,9 +39,10 @@ namespace PoliceProjectMVC
         public override string[] GetRolesForUser(string username)
         {
             PDDBContext dbContext = new PDDBContext();
-            string[] roles = (from role in dbContext.TblLogins
-                              where role.Username == username
-                              select role.Role).ToArray();
+            string[] roles = (from login in dbContext.TblLogins
+                              join role in dbContext.TblRoles on login.RoleId equals role.Id
+                              where login.Email == username
+                              select role.RoleName).ToArray();
             return roles;
         }
 
