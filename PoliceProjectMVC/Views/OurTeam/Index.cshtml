@@ -37,10 +37,17 @@
                             <td>@(b++)</td>
                             <td>@item.Name_En</td>
                             <td>@item.Name_Hi</td>
-                            <td>@item.DesignationId</td>
-                            <td>@item.JoiningDate.ToString("dd-MMM-yyyy")</td>
+                            <td>@item.Designation</td>
+                            <td>@item.JoiningDate.ToString("dd-MM-yyyy")</td>
                             <td>
-                                <img src="@item.ImageUrl" width="50" height="50" />
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img src="@item.ImageUrl" width="50" height="50" />
+                                }
+                                else
+                                {
+                                    <img src="/Images/noimage.png" width="50" height="50" />
+                                }
                             </td>
                             <td class="text-wrap">@item.Description_En</td>
                             <td class="text-wrap">@item.Description_Hi</td>

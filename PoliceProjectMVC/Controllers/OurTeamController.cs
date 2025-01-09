@@ -22,7 +22,7 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.MyDesignation = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -31,7 +31,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.MyDesignation = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+                ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
                 TempData["responseError"] = "Data validation failed.";
                 return View(ourteam);
             }
@@ -55,8 +55,8 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //ourteam.CreatedBy = "admin";
-                ourteam.CreatedBy = "admin";
+                ourteam.IsActive = true;
+                ourteam.CreatedBy = User.Identity.Name;
                 ourteam.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -84,7 +84,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MyDesignation = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View(ourteam);
         }
 
@@ -93,7 +93,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                ourteam.UpdatedBy = "admin";
+                ourteam.UpdatedBy = User.Identity.Name;
                 ourteam.UpdatedDate = DateTime.Now;
                 if (ourteam.MyImage != null && ourteam.MyImage.ContentLength > 0)
                 {
@@ -115,7 +115,7 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyDesignation = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(ourteam);
         }

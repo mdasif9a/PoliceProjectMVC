@@ -33,7 +33,7 @@ namespace PoliceProjectMVC.Controllers
                 designation.IsActive = true;
                 designation.CreatedDate = DateTime.Now;
                 //designation.CreatedBy = User.Identity.Name;
-                designation.CreatedBy = "admin";
+                designation.CreatedBy = User.Identity.Name;
                 db.Designations.Add(designation);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
@@ -65,7 +65,7 @@ namespace PoliceProjectMVC.Controllers
 
                 designation.UpdatedDate = DateTime.Now;
                 //designation.UpdatedBy = User.Identity.Name;
-                designation.UpdatedBy = "admin";
+                designation.UpdatedBy = User.Identity.Name;;
                 db.Entry(designation).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

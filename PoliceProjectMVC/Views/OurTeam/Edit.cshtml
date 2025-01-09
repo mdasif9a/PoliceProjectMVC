@@ -22,7 +22,7 @@
                         @Html.HiddenFor(m => m.CreatedBy)
                         @Html.HiddenFor(m => m.CreatedDate)
                         @Html.HiddenFor(m => m.ImageUrl)
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JoiningDate, "Date", "date")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
@@ -36,14 +36,21 @@
                         </div>
 
                         <div class="col-sm-6 col-md-4">
-                            <label for='Description_Hi'>Description in English</label>
+                            <label for='Description_Hi'>Description in Hindi</label>
                             @Html.TextAreaFor(m => m.Description_Hi, new { @class = "form-control form-control-sm", rows = "5" })
                             @Html.ValidationMessageFor(m => m.Description_Hi, "", new { @class = "text-danger" })
                         </div>
 
 
                         <div class="col-sm-6 col-md-4">
-                            <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                            else
+                            {
+                                <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
                         </div>
 
                     </div>

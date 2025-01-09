@@ -33,7 +33,7 @@ namespace PoliceProjectMVC.Controllers
                 section.IsActive = true;
                 section.CreatedDate = DateTime.Now;
                 //section.CreatedBy = User.Identity.Name;
-                section.CreatedBy = "admin";
+                section.CreatedBy = User.Identity.Name;
                 db.Sections.Add(section);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
@@ -65,7 +65,7 @@ namespace PoliceProjectMVC.Controllers
 
                 section.UpdatedDate = DateTime.Now;
                 //section.UpdatedBy = User.Identity.Name;
-                section.UpdatedBy = "admin";
+                section.UpdatedBy = User.Identity.Name;;
                 db.Entry(section).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

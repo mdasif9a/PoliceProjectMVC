@@ -30,7 +30,15 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.RoleId, "Select Role", "Select Role", (SelectList)ViewBag.MyRoles)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
                         <div class="col-sm-6 col-md-4">
-                            <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                            else
+                            {
+                                <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+
                         </div>
                     </div>
                     <hr />

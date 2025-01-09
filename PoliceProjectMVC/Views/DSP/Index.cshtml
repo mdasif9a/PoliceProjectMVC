@@ -44,8 +44,8 @@
                                     <img src="/Images/noimage.png" width="50" height="50" />
                                 }
                             </td>
-                            <td>@item.DesignationId</td>
-                            <td>@item.DateOfJoining.ToString("dd MMM yyyy")</td>
+                            <td>@item.Designation</td>
+                            <td>@item.DateOfJoining.ToString("dd-MM-yyyy")</td>
                             <td>
                                 <a href="/DSP/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
                                 <a href="/DSP/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>

@@ -25,10 +25,10 @@
 
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DspId, "Select DSP", "select", null, "DSP")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DesignationId, "Select Designation", "select", null, "Designation")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile Number", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AltMobileNo, "Alternate Mobile Number", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DspId, "Select DSP", "Select DSP", (SelectList)ViewBag.MyDSP)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AltMobileNo, "Alternate Mobile Number", "number")</div>
 
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfJoining, "Date of Joining", "date")</div>
 

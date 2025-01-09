@@ -53,8 +53,9 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //mWCriminal.CreatedBy = "admin";
-                mWCriminal.CreatedBy = "admin";
+                //mWCriminal.CreatedBy = User.Identity.Name;
+                mWCriminal.IsActive = true;
+                mWCriminal.CreatedBy = User.Identity.Name;
                 mWCriminal.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -89,7 +90,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                mWCriminal.UpdatedBy = "admin";
+                mWCriminal.UpdatedBy = User.Identity.Name;;
                 mWCriminal.UpdatedDate = DateTime.Now;
                 if (mWCriminal.MyImage != null && mWCriminal.MyImage.ContentLength > 0)
                 {

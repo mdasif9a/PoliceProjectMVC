@@ -22,6 +22,8 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Create()
         {
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -30,6 +32,8 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+                ViewBag.MySubDiv = new SelectList(db.SubDivisions.ToList(), "Id", "Name_En");
                 TempData["responseError"] = "Data validation failed.";
                 return View(circle);
             }
@@ -53,8 +57,9 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //circle.CreatedBy = "admin";
-                circle.CreatedBy = "admin";
+                //circle.CreatedBy = User.Identity.Name;
+                circle.IsActive = true;
+                circle.CreatedBy = User.Identity.Name;
                 circle.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -81,6 +86,8 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.ToList(), "Id", "Name_En");
             return View(circle);
         }
 
@@ -89,7 +96,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                circle.UpdatedBy = "admin";
+                circle.UpdatedBy = User.Identity.Name;;
                 circle.UpdatedDate = DateTime.Now;
                 if (circle.MyImage != null && circle.MyImage.ContentLength > 0)
                 {
@@ -111,6 +118,8 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(circle);
         }

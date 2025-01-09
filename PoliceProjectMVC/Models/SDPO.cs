@@ -5,6 +5,7 @@ using System.Web;
 
 namespace PoliceProjectMVC.Models
 {
+    [Table("SDPOs")]
     public class SDPO
     {
         [Key]
@@ -14,7 +15,7 @@ namespace PoliceProjectMVC.Models
         [Required(ErrorMessage = "Enter SDPO Name in Hindi")]
         public string Name_Hi { get; set; }
         [Required(ErrorMessage = "Select DSP")]
-        public int? DspId { get; set; }
+        public int DspId { get; set; }
         [Required(ErrorMessage = "Enter Date of Joining")]
         public DateTime DateOfJoining { get; set; }
         [Required(ErrorMessage = "Enter SDPO Email")]
@@ -35,5 +36,7 @@ namespace PoliceProjectMVC.Models
 
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
+        [NotMapped]
+        public string Designation { get; set; }
     }
 }

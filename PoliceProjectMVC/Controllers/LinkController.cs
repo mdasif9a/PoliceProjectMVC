@@ -33,7 +33,7 @@ namespace PoliceProjectMVC.Controllers
                 link.IsActive = true;
                 link.CreatedDate = DateTime.Now;
                 //link.CreatedBy = User.Identity.Name;
-                link.CreatedBy = "admin";
+                link.CreatedBy = User.Identity.Name;
                 db.Links.Add(link);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
@@ -67,7 +67,7 @@ namespace PoliceProjectMVC.Controllers
 
                 link.UpdatedDate = DateTime.Now;
                 //link.UpdatedBy = User.Identity.Name;
-                link.UpdatedBy = "admin";
+                link.UpdatedBy = User.Identity.Name;;
                 db.Entry(link).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

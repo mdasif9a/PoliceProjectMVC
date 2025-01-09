@@ -20,11 +20,11 @@
                         <th>#</th>
                         <th>Name (En)</th>
                         <th>Name (Hi)</th>
+                        <th>Designation</th>
+                        <th>Image</th>
                         <th>Mobile No</th>
                         <th>Email</th>
-                        <th>Date of Joining</th>
                         <th>Priority</th>
-                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,10 +35,7 @@
                             <td>@(b++)</td>
                             <td>@item.Name_En</td>
                             <td>@item.Name_Hi</td>
-                            <td>@item.MobileNo</td>
-                            <td>@item.Sdpo_Email</td>
-                            <td>@item.DateOfJoining.ToString("yyyy-MM-dd")</td>
-                            <td>@item.Priority</td>
+                            <td>@item.Designation</td>
                             <td>
                                 @if (!string.IsNullOrEmpty(item.ImageUrl))
                                 {
@@ -49,6 +46,9 @@
                                     <img src="/Images/noimage.png" width="50" height="50" class="rounded-circle" />
                                 }
                             </td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.Sdpo_Email</td>
+                            <td>@item.Priority</td>
                             <td>
                                 <a href="/SDPO/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
                                 <a href="/SDPO/Delete/@item.Id" onclick="return confirm('Are you sure you want to delete this SDPO?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>

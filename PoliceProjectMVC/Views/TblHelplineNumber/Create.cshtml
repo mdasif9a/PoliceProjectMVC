@@ -17,12 +17,12 @@
             <div class="card-body">
                 <form action="/TblHelplineNumber/Create" method="post">
                     <div class="row">
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.HelplineNumbers, "Helpline No.", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyRoles)</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.TypeId, "Select Type", "Select Type", (SelectList)ViewBag.MyRoles)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.TypeId, "Select Type", "Select Type", (SelectList)ViewBag.MyDesignation)</div>
 
                         <div class="col-sm-6 col-md-4">
                             <label for='Description_En'>Description in English</label>
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="col-sm-6 col-md-4">
-                            <label for='Description_Hi'>Description in English</label>
+                            <label for='Description_Hi'>Description in Hindi</label>
                             @Html.TextAreaFor(m => m.Description_Hi, new { @class = "form-control form-control-sm", rows = "5" })
                             @Html.ValidationMessageFor(m => m.Description_Hi, "", new { @class = "text-danger" })
                         </div>

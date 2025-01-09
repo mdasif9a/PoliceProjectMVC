@@ -24,6 +24,7 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.SDPO = new SelectList(db.SDPOs.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -35,12 +36,13 @@ namespace PoliceProjectMVC.Controllers
                 subdivision.IsActive = true;
                 subdivision.CreatedDate = DateTime.Now;
                 //subdivision.CreatedBy = User.Identity.Name;
-                subdivision.CreatedBy = "admin";
+                subdivision.CreatedBy = User.Identity.Name;
                 db.SubDivisions.Add(subdivision);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.SDPO = new SelectList(db.SDPOs.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(subdivision);
         }
@@ -56,6 +58,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SDPO = new SelectList(db.SDPOs.ToList(), "Id", "Name_En");
             return View(subdivision);
         }
 
@@ -67,12 +70,13 @@ namespace PoliceProjectMVC.Controllers
 
                 subdivision.UpdatedDate = DateTime.Now;
                 //subdivision.UpdatedBy = User.Identity.Name;
-                subdivision.UpdatedBy = "admin";
+                subdivision.UpdatedBy = User.Identity.Name;;
                 db.Entry(subdivision).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.SDPO = new SelectList(db.SDPOs.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(subdivision);
         }

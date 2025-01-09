@@ -24,6 +24,8 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -32,6 +34,8 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+                ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
                 TempData["responseError"] = "Data validation failed.";
                 return View(sdpo);
             }
@@ -55,8 +59,8 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //sdpo.CreatedBy = "admin";
-                sdpo.CreatedBy = "admin";
+                sdpo.IsActive = true;
+                sdpo.CreatedBy = User.Identity.Name;
                 sdpo.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -84,6 +88,8 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
             return View(sdpo);
         }
 
@@ -92,7 +98,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                sdpo.UpdatedBy = "admin";
+                sdpo.UpdatedBy = User.Identity.Name; ;
                 sdpo.UpdatedDate = DateTime.Now;
                 if (sdpo.MyImage != null && sdpo.MyImage.ContentLength > 0)
                 {
@@ -114,6 +120,8 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
+            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(sdpo);
         }

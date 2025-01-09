@@ -21,7 +21,7 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -32,14 +32,13 @@ namespace PoliceProjectMVC.Controllers
             {
                 helpline.IsActive = true;
                 helpline.CreatedDate = DateTime.Now;
-                //helpline.CreatedBy = User.Identity.Name;
-                helpline.CreatedBy = "admin";
+                helpline.CreatedBy = User.Identity.Name;
                 db.TblHelplineNumbers.Add(helpline);
                 db.SaveChanges();
                 TempData["response"] = "Helpline Created Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(helpline);
         }
@@ -55,7 +54,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View(helpline);
         }
 
@@ -66,14 +65,13 @@ namespace PoliceProjectMVC.Controllers
             {
 
                 helpline.UpdatedDate = DateTime.Now;
-                //helpline.UpdatedBy = User.Identity.Name;
-                helpline.UpdatedBy = "admin";
+                helpline.UpdatedBy = User.Identity.Name;
                 db.Entry(helpline).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Helpline Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(helpline);
         }

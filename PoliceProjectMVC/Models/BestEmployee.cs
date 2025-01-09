@@ -32,5 +32,7 @@ namespace PoliceProjectMVC.Models
 
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
+        [NotMapped]
+        public string Designation { get; set; }
     }
 }

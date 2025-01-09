@@ -23,6 +23,7 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -31,6 +32,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
                 TempData["responseError"] = "Data validation failed.";
                 return View(dsp);
             }
@@ -54,8 +56,9 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //dsp.CreatedBy = "admin";
-                dsp.CreatedBy = "admin";
+                //dsp.CreatedBy = User.Identity.Name;
+                dsp.IsActive = true;
+                dsp.CreatedBy = User.Identity.Name;
                 dsp.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -83,6 +86,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View(dsp);
         }
 
@@ -91,7 +95,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                dsp.UpdatedBy = "admin";
+                dsp.UpdatedBy = User.Identity.Name;;
                 dsp.UpdatedDate = DateTime.Now;
                 if (dsp.MyImage != null && dsp.MyImage.ContentLength > 0)
                 {
@@ -113,6 +117,7 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(dsp);
         }

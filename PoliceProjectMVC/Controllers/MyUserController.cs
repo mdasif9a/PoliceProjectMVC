@@ -28,6 +28,14 @@ namespace PoliceProjectMVC.Controllers
         [HttpPost]
         public ActionResult Create(TblLogin login)
         {
+            bool exists = db.TblLogins.Any(x => x.Email == login.Email);
+            if (exists)
+            {
+                ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+                TempData["responseError"] = "User Email Already Exists.";
+                return View(login);
+            }
+
             if (!ModelState.IsValid)
             {
                 ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
@@ -54,8 +62,8 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //login.CreatedBy = "admin";
-                login.CreatedBy = "admin";
+                login.IsActive = true;
+                login.CreatedBy = User.Identity.Name;
                 login.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -90,9 +98,17 @@ namespace PoliceProjectMVC.Controllers
         [HttpPost]
         public ActionResult Edit(TblLogin login)
         {
+            bool exists = db.TblLogins.Any(x => x.Email == login.Email && x.Id != login.Id);
+            if (exists)
+            {
+                ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+                TempData["responseError"] = "Another User Email Already Exists.";
+                return View(login);
+            }
+
             if (ModelState.IsValid)
             {
-                login.UpdatedBy = "admin";
+                login.UpdatedBy = User.Identity.Name;
                 login.UpdatedDate = DateTime.Now;
                 if (login.MyImage != null && login.MyImage.ContentLength > 0)
                 {
@@ -158,8 +174,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 role.IsActive = true;
                 role.CreatedDate = DateTime.Now;
-                //role.CreatedBy = User.Identity.Name;
-                role.CreatedBy = "admin";
+                role.CreatedBy = User.Identity.Name;
                 db.TblRoles.Add(role);
                 db.SaveChanges();
                 TempData["response"] = "Role Created Successfully.";
@@ -197,8 +212,7 @@ namespace PoliceProjectMVC.Controllers
             {
 
                 role.UpdatedDate = DateTime.Now;
-                //role.UpdatedBy = User.Identity.Name;
-                role.UpdatedBy = "admin";
+                role.UpdatedBy = User.Identity.Name;
                 db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Role Updated Successfully.";

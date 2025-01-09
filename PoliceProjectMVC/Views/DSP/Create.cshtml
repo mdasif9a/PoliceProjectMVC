@@ -21,7 +21,7 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Name in Hindi", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfJoining, "Date of Joining", "date")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "select", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
 
                         <div class="col-sm-6 col-md-4">

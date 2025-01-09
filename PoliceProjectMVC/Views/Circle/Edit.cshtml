@@ -21,11 +21,11 @@
                         @Html.HiddenFor(m => m.IsActive)
                         @Html.HiddenFor(m => m.CreatedBy)
                         @Html.HiddenFor(m => m.CreatedDate)
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Circle Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Circle Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Circle Name in Hindi", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.OName_En, "Officer Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.OName_En, "Officer Name in English", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.OName_Hi, "Officer Name in Hindi", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivId, "Select Subdivision", "Select Subdivision", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivId, "Select Subdivision", "Select Subdivision", (SelectList)ViewBag.MySubDiv)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfJoining, "Date of Joining", "date")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Circle_Email, "Circle Email", "email")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
@@ -33,7 +33,7 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile No.", "number")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AltMobileNo, "Alt Mobile No.", "number")</div>
 
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
 
                         <div class="col-sm-6 col-md-4">

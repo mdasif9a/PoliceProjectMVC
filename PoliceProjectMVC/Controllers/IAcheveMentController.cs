@@ -53,8 +53,9 @@ namespace PoliceProjectMVC.Controllers
                 }
 
                 // Set audit fields
-                //iachevement.CreatedBy = "admin";
-                iachevement.CreatedBy = "admin";
+                //iachevement.CreatedBy = User.Identity.Name;
+                iachevement.IsActive = true;
+                iachevement.CreatedBy = User.Identity.Name;
                 iachevement.CreatedDate = DateTime.Now;
 
                 // Save to database
@@ -89,7 +90,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                iachevement.UpdatedBy = "admin";
+                iachevement.UpdatedBy = User.Identity.Name;;
                 iachevement.UpdatedDate = DateTime.Now;
                 if (iachevement.MyImage != null && iachevement.MyImage.ContentLength > 0)
                 {
