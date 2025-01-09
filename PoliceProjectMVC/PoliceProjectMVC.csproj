@@ -222,7 +222,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CircleController.cs" />
+    <Compile Include="Controllers\DesignationController.cs" />
+    <Compile Include="Controllers\DSPController.cs" />
     <Compile Include="Controllers\MWCriminalController.cs" />
+    <Compile Include="Controllers\SDPOController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SubDivisionController.cs" />
     <Compile Include="Controllers\SuccessionListController.cs" />
     <Compile Include="Controllers\IAcheveMentController.cs" />
     <Compile Include="Controllers\BestEmployeeController.cs" />
@@ -239,12 +245,18 @@
     </Compile>
     <Compile Include="Models\Admin_Menu.cs" />
     <Compile Include="Models\BestEmployee.cs" />
+    <Compile Include="Models\Circle.cs" />
+    <Compile Include="Models\Designation.cs" />
+    <Compile Include="Models\DSP.cs" />
     <Compile Include="Models\IAcheveMent.cs" />
     <Compile Include="Models\JqueryDatatableParam.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\MWCriminal.cs" />
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
+    <Compile Include="Models\SDPO.cs" />
+    <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\SubDivision.cs" />
     <Compile Include="Models\SuccessionList.cs" />
     <Compile Include="Models\TblLogin.cs" />
     <Compile Include="Models\TblHelplineNumber.cs" />
@@ -331,6 +343,24 @@
     <Content Include="Views\MWCriminal\Create.cshtml" />
     <Content Include="Views\MWCriminal\Edit.cshtml" />
     <Content Include="Views\MWCriminal\Index.cshtml" />
+    <Content Include="Views\Designation\Create.cshtml" />
+    <Content Include="Views\Designation\Edit.cshtml" />
+    <Content Include="Views\Designation\Index.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Edit.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\DSP\Create.cshtml" />
+    <Content Include="Views\DSP\Edit.cshtml" />
+    <Content Include="Views\DSP\Index.cshtml" />
+    <Content Include="Views\SDPO\Create.cshtml" />
+    <Content Include="Views\SDPO\Edit.cshtml" />
+    <Content Include="Views\SDPO\Index.cshtml" />
+    <Content Include="Views\SubDivision\Create.cshtml" />
+    <Content Include="Views\SubDivision\Edit.cshtml" />
+    <Content Include="Views\SubDivision\Index.cshtml" />
+    <Content Include="Views\Circle\Create.cshtml" />
+    <Content Include="Views\Circle\Edit.cshtml" />
+    <Content Include="Views\Circle\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

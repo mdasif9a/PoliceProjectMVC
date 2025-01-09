@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PoliceProjectMVC.Models.DSP>
+
+@{
+    ViewBag.PageTitle = "DSP List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">DSP List</h3>
+        <div class="card-tools ml-auto">
+            <a href="/DSP/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New DSP</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name (En)</td>
+                        <td>Name (Hi)</td>
+                        <td>Image</td>
+                        <td>Designation</td>
+                        <td>Date Of Joining</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name_En</td>
+                            <td>@item.Name_Hi</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img src="@item.ImageUrl" width="50" height="50" />
+                                }
+                                else
+                                {
+                                    <img src="/Images/noimage.png" width="50" height="50" />
+                                }
+                            </td>
+                            <td>@item.DesignationId</td>
+                            <td>@item.DateOfJoining.ToString("dd MMM yyyy")</td>
+                            <td>
+                                <a href="/DSP/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/DSP/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

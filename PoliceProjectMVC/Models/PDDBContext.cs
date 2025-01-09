@@ -20,5 +20,11 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<Link> Links { get; set; }
         public virtual DbSet<MWCriminal> MWCriminals { get; set; }
         public virtual DbSet<SuccessionList> SuccessionLists { get; set; }
+        public virtual DbSet<Designation> Designations { get; set; }
+        public virtual DbSet<Section> Sections { get; set; }
+        public virtual DbSet<DSP> DSPs { get; set; }
+        public virtual DbSet<SDPO> SDPOs { get; set; }
+        public virtual DbSet<SubDivision> SubDivisions { get; set; }
+        public virtual DbSet<Circle> Circles { get; set; }
     }
 }

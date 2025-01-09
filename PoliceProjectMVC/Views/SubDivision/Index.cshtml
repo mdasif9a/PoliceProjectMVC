@@ -1,0 +1,50 @@
+﻿@model  IEnumerable<PoliceProjectMVC.Models.SubDivision>
+
+@{
+    ViewBag.PageTitle = "All Sub Division";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">All Sub Division</h3>
+        <div class="card-tools ml-auto">
+            <a href="/SubDivision/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name (En)</td>
+                        <td>Name (Hi)</td>
+                        <td>SDPO</td>
+                        <td>Description (En)</td>
+                        <td>Description (Hi)</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PoliceProjectMVC.Models.SubDivision item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name_En</td>
+                            <td>@item.Name_Hi</td>
+                            <td>@item.SdpoId</td>
+                            <td class="text-wrap">@item.Description_En</td>
+                            <td class="text-wrap">@item.Description_Hi</td>
+                            <td>
+                                <a href="/SubDivision/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/SubDivision/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

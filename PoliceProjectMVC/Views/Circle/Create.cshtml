@@ -1,0 +1,50 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.Circle
+@{
+    ViewBag.PageTitle = "Add Circle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Add Circle</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/Circle" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/Circle/Create" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Circle Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Circle Name in Hindi", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.OName_En, "Officer Name in Englsh", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.OName_Hi, "Officer Name in Hindi", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivId, "Select Subdivision", "Select Subdivision", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfJoining, "Date of Joining", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Circle_Email, "Circle Email", "email")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile No.", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AltMobileNo, "Alt Mobile No.", "number")</div>
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
