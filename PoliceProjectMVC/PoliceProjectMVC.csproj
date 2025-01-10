@@ -225,7 +225,12 @@
     <Compile Include="Controllers\CircleController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\DSPController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\MWCriminalController.cs" />
+    <Compile Include="Controllers\PassportController.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\Passport.cs" />
+    <Compile Include="Controllers\PoliceOfficerController.cs" />
     <Compile Include="Controllers\SDPOController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\SubDivisionController.cs" />
@@ -254,6 +259,7 @@
     <Compile Include="Models\MWCriminal.cs" />
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
+    <Compile Include="Models\PoliceOfficer.cs" />
     <Compile Include="Models\SDPO.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SubDivision.cs" />
@@ -361,6 +367,15 @@
     <Content Include="Views\Circle\Create.cshtml" />
     <Content Include="Views\Circle\Edit.cshtml" />
     <Content Include="Views\Circle\Index.cshtml" />
+    <Content Include="Views\PoliceOfficer\Create.cshtml" />
+    <Content Include="Views\PoliceOfficer\Edit.cshtml" />
+    <Content Include="Views\PoliceOfficer\Index.cshtml" />
+    <Content Include="Views\Passport\Create.cshtml" />
+    <Content Include="Views\Passport\Edit.cshtml" />
+    <Content Include="Views\Passport\Index.cshtml" />
+    <Content Include="Views\Feedback\Create.cshtml" />
+    <Content Include="Views\Feedback\Edit.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

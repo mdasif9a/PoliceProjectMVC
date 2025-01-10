@@ -1,0 +1,58 @@
+﻿@model  IEnumerable<PoliceProjectMVC.Models.PoliceOfficer>
+
+@{
+    ViewBag.PageTitle = "All Police Officers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">All Police Officers</h3>
+        <div class="card-tools ml-auto">
+            <a href="/PoliceOfficer/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>BrassNo</td>
+                        <td>Desgnation</td>
+                        <td>Name</td>
+                        <td>Mobile No.</td>
+                        <td>Date Of Birth</td>
+                        <td>Date Of Joining</td>
+                        <td>Home District</td>
+                        <td>Place of posting</td>
+                        <td>Name of posting</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PoliceProjectMVC.Models.PoliceOfficer item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.BrassNo</td>
+                            <td>@item.DesignationId</td>
+                            <td>@item.Name</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.DateOfBirth.ToShortDateString()</td>
+                            <td>@item.DateOfJoining.ToShortDateString()</td>
+                            <td>@item.HomeDistrict</td>
+                            <td>@item.PlaceOfPosting</td>
+                            <td>@item.NameOfPosting</td>
+                            <td>
+                                <a href="/PoliceOfficer/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/PoliceOfficer/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -8,14 +8,11 @@ namespace PoliceProjectMVC.Custome_Helpers
 {
     public static class MyDropdownsValue
     {
-        public static SelectList GetFeesForSelectList()
+        public static SelectList GetDistrictForSelectList()
         {
             return new SelectList(new List<SelectListItem>
                             {
-                                new SelectListItem { Text = "1st Year", Value = "1st" },
-                                new SelectListItem { Text = "2nd Year", Value = "2nd" },
-                                new SelectListItem { Text = "3rd Year", Value = "3rd" },
-                                new SelectListItem { Text = "4th Year", Value = "4th" }
+                                new SelectListItem { Text = "West  Champaran", Value = "West  Champaran" }
                             }, "Value", "Text");
         }
 

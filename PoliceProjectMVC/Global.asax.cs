@@ -14,7 +14,7 @@ namespace PoliceProjectMVC
         protected void Application_BeginRequest()
         {
             HttpCookie cultureCookie = Request.Cookies["Culture"];
-            string culture = cultureCookie != null ? cultureCookie.Value : "en"; // Default to English
+            string culture = cultureCookie != null ? cultureCookie.Value : "en-IN"; // Default to English
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);

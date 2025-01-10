@@ -1,0 +1,44 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.PoliceOfficer
+@{
+    ViewBag.PageTitle = "Edit Police Officer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit Police Officer</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/PoliceOfficer" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/PoliceOfficer/Edit" method="post">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.IsActive)
+                        @Html.HiddenFor(m => m.CreatedBy)
+                        @Html.HiddenFor(m => m.CreatedDate)
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.BrassNo, "Brass No", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.DesignationId, "Select Designation", "Select Designation", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name, "Officer Name", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile No.", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfBirth, "Date Of Birth", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfJoining, "Date Of Joining", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.HomeDistrict, "Home District", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfPosting, "Place of Posting", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NameOfPosting, "Name of Posting", "text")</div>
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
