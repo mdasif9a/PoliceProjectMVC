@@ -29,23 +29,28 @@ namespace PoliceProjectMVC.Controllers
 
         public List<M_Menu> MainMenu()
         {
-            List<M_Menu> mymenus = db.M_Menus.Where(x => x.Menu_ParentId == 0 && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
-            foreach (var item in mymenus)
+            List<M_Menu> allMenus = db.M_Menus.Where(x => x.IsActive).ToList();
+
+            List<M_Menu> mymenus = allMenus.Where(x => x.Menu_ParentId == 0).OrderBy(p => p.MenuOrder).ToList();
+            foreach (M_Menu item in mymenus)
             {
-                item.SubMenus = db.M_Menus.Where(x => x.Menu_ParentId == item.MenuId && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
+                item.SubMenus = allMenus.Where(x => x.Menu_ParentId == item.MenuId).OrderBy(p => p.MenuOrder).ToList();
             }
             return mymenus;
         }
 
         public List<Admin_Menu> AdminMenu()
         {
-            List<Admin_Menu> mymenus = db.Admin_Menus.Where(x => x.Menu_ParentId == 0 && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
-            foreach (var item in mymenus)
+            List<Admin_Menu> allMenus = db.Admin_Menus.Where(x => x.IsActive).ToList();
+
+            List<Admin_Menu> parentMenus = allMenus.Where(x => x.Menu_ParentId == 0).OrderBy(p => p.MenuOrder).ToList();
+            foreach (Admin_Menu parent in parentMenus)
             {
-                item.SubMenus = db.Admin_Menus.Where(x => x.Menu_ParentId == item.MenuId && x.IsActive).OrderBy(p => p.MenuOrder).ToList();
+                parent.SubMenus = allMenus.Where(x => x.Menu_ParentId == parent.MenuId).OrderBy(p => p.MenuOrder).ToList();
             }
-            return mymenus;
+            return parentMenus;
         }
+
 
         // GET: Home
         public ActionResult Index()

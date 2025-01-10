@@ -1,0 +1,60 @@
+﻿@model  IEnumerable<PoliceProjectMVC.Models.Character>
+
+@{
+    ViewBag.PageTitle = "All Character";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">All Character</h3>
+        @*<div class="card-tools ml-auto">
+                <a href="/Character/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+            </div>*@
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Father/Husband/Mother</td>
+                        <td>Mobile No.</td>
+                        <td>Station Name</td>
+                        <td>Applicant Type</td>
+                        <td>Reciept No</td>
+                        <td>District Memo No</td>
+                        <td>Complaint Source</td>
+                        <td>Status</td>
+                        <td>Applied Date</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PoliceProjectMVC.Models.Character item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name</td>
+                            <td>@item.Rel_Name</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.PoliceStationId</td>
+                            <td>@item.ApplicationType</td>
+                            <td>@item.RecieptNo</td>
+                            <td>@item.DistrictMemoNo</td>
+                            <td>@item.ComplaintSource</td>
+                            <td>@item.Status</td>
+                            <td>@item.CreatedDate.ToShortDateString()</td>
+                            <td>
+                                <a href="/Character/Details/@item.Id" class="btn btn-sm mr-2 btn-success"><i class="fa fa-eye"></i></a>
+                                @*<a href="/Character/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

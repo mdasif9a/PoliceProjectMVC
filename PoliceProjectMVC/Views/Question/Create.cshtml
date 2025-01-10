@@ -1,0 +1,35 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.Question
+@{
+    ViewBag.PageTitle = "Create Question";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Add Question</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/Question" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/Question/Create" method="post">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.QuestionText, "Question", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Answer1, "Answer 1", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Answer2, "Answer 2", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Answer3, "Answer 3", "text")</div>
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

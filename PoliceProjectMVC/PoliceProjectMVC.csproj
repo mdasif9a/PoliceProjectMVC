@@ -226,9 +226,15 @@
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\DSPController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\GrievanceFemalePoliceController.cs" />
     <Compile Include="Controllers\MWCriminalController.cs" />
+    <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\PassportController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\GrievancePoliceController.cs" />
+    <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\GrievancePolice.cs" />
     <Compile Include="Models\Passport.cs" />
     <Compile Include="Controllers\PoliceOfficerController.cs" />
     <Compile Include="Controllers\SDPOController.cs" />
@@ -260,6 +266,7 @@
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
     <Compile Include="Models\PoliceOfficer.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\SDPO.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SubDivision.cs" />
@@ -376,6 +383,18 @@
     <Content Include="Views\Feedback\Create.cshtml" />
     <Content Include="Views\Feedback\Edit.cshtml" />
     <Content Include="Views\Feedback\Index.cshtml" />
+    <Content Include="Views\Character\Create.cshtml" />
+    <Content Include="Views\Character\Edit.cshtml" />
+    <Content Include="Views\Character\Index.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\GrievancePolice\Create.cshtml" />
+    <Content Include="Views\GrievancePolice\Edit.cshtml" />
+    <Content Include="Views\GrievancePolice\Index.cshtml" />
+    <Content Include="Views\GrievanceFemalePolice\Create.cshtml" />
+    <Content Include="Views\GrievanceFemalePolice\Edit.cshtml" />
+    <Content Include="Views\GrievanceFemalePolice\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

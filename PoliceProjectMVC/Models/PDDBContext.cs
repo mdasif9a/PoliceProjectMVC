@@ -29,5 +29,8 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<PoliceOfficer> PoliceOfficers { get; set; }
         public virtual DbSet<Passport> Passports { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Character> Characters { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<GrievancePolice> GrievancePolices { get; set; }
     }
 }
