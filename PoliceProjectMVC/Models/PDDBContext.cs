@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
@@ -32,5 +31,13 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<GrievancePolice> GrievancePolices { get; set; }
+        public virtual DbSet<MPerson> MPersons { get; set; }
+        public virtual DbSet<FPerson> FPersons { get; set; }
+        public virtual DbSet<DPerson> DPersons { get; set; }
+        public virtual DbSet<RTI> RTIs { get; set; }
+        public virtual DbSet<MHead> MHeads { get; set; }
+        public virtual DbSet<SMHead> SMHeads { get; set; }
+        public virtual DbSet<MOperandi> MOperandis { get; set; }
     }
+
 }

@@ -1,0 +1,48 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.RTI
+@{
+    ViewBag.PageTitle = "Edit RTI";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit RTI</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/RTI" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/RTI/Edit" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.IsActive)
+                        @Html.HiddenFor(m => m.CreatedBy)
+                        @Html.HiddenFor(m => m.CreatedDate)
+                        @Html.HiddenFor(m => m.ImageUrl)
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SerialNumber, "Serial No. and Date", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.GotItFrom, "Got it From", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ApplicantName, "Applicant Name and Address", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.RequestSubject, "Request Subject", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Department, "Select Department", "Select Department", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ReceivedLetter, "Recived Letter From Confidential Branch & Date", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DisposalTargetDate, "Disposal Target Date", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ExecutionDateAndKnowledgeBook, "Execution Date and Knowledge Book", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Document", "file", "")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Conviction, "Conviction", "text")</div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

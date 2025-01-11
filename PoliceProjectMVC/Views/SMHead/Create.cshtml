@@ -1,0 +1,49 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.SMHead
+@{
+    ViewBag.PageTitle = "Create SubMajor Head";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Add SubMajor Head</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/SMHead" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/SMHead/Create" method="post">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Select Major Head", "Select Major Head", (SelectList)ViewBag.MyMHead)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_EN, "SubMajor Head (En)", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "SubMajor Head (Hi)", "text")</div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                                @Html.GenerateCheckbox(m => m.IsAccused, "Allow Accused")
+                                @Html.GenerateCheckbox(m => m.IsDeceased, "Allow Deceased")
+                                @Html.GenerateCheckbox(m => m.IsVictim, "Allow Victim")
+                                @Html.GenerateCheckbox(m => m.IsCashCollection, "Allow Cash Collection")
+                                @Html.GenerateCheckbox(m => m.IsLootedItems, "Allow Looted Items")
+                                @Html.GenerateCheckbox(m => m.IsOtherEvidence, "Allow Other Evidence")
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

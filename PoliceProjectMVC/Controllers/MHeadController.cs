@@ -10,15 +10,15 @@ using System.Web.Mvc;
 
 namespace PoliceProjectMVC.Controllers
 {
-    public class QuestionController : Controller
+    public class MHeadController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
 
-        //Question Crud Operation
+        //MHead Crud Operation
         public ActionResult Index()
         {
-            List<Question> questions = db.Questions.ToList();
-            return View(questions);
+            List<MHead> mheads = db.MHeads.ToList();
+            return View(mheads);
         }
         public ActionResult Create()
         {
@@ -26,20 +26,20 @@ namespace PoliceProjectMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Question question)
+        public ActionResult Create(MHead mhead)
         {
             if (ModelState.IsValid)
             {
-                question.IsActive = true;
-                question.CreatedDate = DateTime.Now;
-                question.CreatedBy = User.Identity.Name;
-                db.Questions.Add(question);
+                mhead.IsActive = true;
+                mhead.CreatedDate = DateTime.Now;
+                mhead.CreatedBy = User.Identity.Name;
+                db.MHeads.Add(mhead);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
                 return RedirectToAction("Index");
             }
             TempData["responseError"] = "Data Error.";
-            return View(question);
+            return View(mhead);
         }
 
         public ActionResult Edit(int? id)
@@ -48,29 +48,29 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            MHead mhead = db.MHeads.Find(id);
+            if (mhead == null)
             {
                 return HttpNotFound();
             }
-            return View(question);
+            return View(mhead);
         }
 
         [HttpPost]
-        public ActionResult Edit(Question question)
+        public ActionResult Edit(MHead mhead)
         {
             if (ModelState.IsValid)
             {
 
-                question.UpdatedDate = DateTime.Now;
-                question.UpdatedBy = User.Identity.Name;
-                db.Entry(question).State = EntityState.Modified;
+                mhead.UpdatedDate = DateTime.Now;
+                mhead.UpdatedBy = User.Identity.Name;
+                db.Entry(mhead).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
             TempData["responseError"] = "Data Error.";
-            return View(question);
+            return View(mhead);
         }
 
         public ActionResult Delete(int? id)
@@ -79,12 +79,12 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            MHead mhead = db.MHeads.Find(id);
+            if (mhead == null)
             {
                 return HttpNotFound();
             }
-            db.Questions.Remove(question);
+            db.MHeads.Remove(mhead);
             db.SaveChanges();
             TempData["response"] = "Deleted Successfully.";
             return RedirectToAction("Index");

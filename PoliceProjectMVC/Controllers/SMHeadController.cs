@@ -10,36 +10,38 @@ using System.Web.Mvc;
 
 namespace PoliceProjectMVC.Controllers
 {
-    public class QuestionController : Controller
+    public class SMHeadController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
 
-        //Question Crud Operation
+        //SMHead Crud Operation
         public ActionResult Index()
         {
-            List<Question> questions = db.Questions.ToList();
-            return View(questions);
+            List<SMHead> smheads = db.SMHeads.ToList();
+            return View(smheads);
         }
         public ActionResult Create()
         {
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).ToList(), "Id", "Name_En");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Question question)
+        public ActionResult Create(SMHead smhead)
         {
             if (ModelState.IsValid)
             {
-                question.IsActive = true;
-                question.CreatedDate = DateTime.Now;
-                question.CreatedBy = User.Identity.Name;
-                db.Questions.Add(question);
+                smhead.IsActive = true;
+                smhead.CreatedDate = DateTime.Now;
+                smhead.CreatedBy = User.Identity.Name;
+                db.SMHeads.Add(smhead);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
-            return View(question);
+            return View(smhead);
         }
 
         public ActionResult Edit(int? id)
@@ -48,29 +50,31 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            SMHead smhead = db.SMHeads.Find(id);
+            if (smhead == null)
             {
                 return HttpNotFound();
             }
-            return View(question);
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).ToList(), "Id", "Name_En");
+            return View(smhead);
         }
 
         [HttpPost]
-        public ActionResult Edit(Question question)
+        public ActionResult Edit(SMHead smhead)
         {
             if (ModelState.IsValid)
             {
 
-                question.UpdatedDate = DateTime.Now;
-                question.UpdatedBy = User.Identity.Name;
-                db.Entry(question).State = EntityState.Modified;
+                smhead.UpdatedDate = DateTime.Now;
+                smhead.UpdatedBy = User.Identity.Name;
+                db.Entry(smhead).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
-            return View(question);
+            return View(smhead);
         }
 
         public ActionResult Delete(int? id)
@@ -79,12 +83,12 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            SMHead smhead = db.SMHeads.Find(id);
+            if (smhead == null)
             {
                 return HttpNotFound();
             }
-            db.Questions.Remove(question);
+            db.SMHeads.Remove(smhead);
             db.SaveChanges();
             TempData["response"] = "Deleted Successfully.";
             return RedirectToAction("Index");

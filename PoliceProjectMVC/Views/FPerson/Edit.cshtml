@@ -1,0 +1,71 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.FPerson
+@{
+    ViewBag.PageTitle = "Edit Found Person";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit Found Person</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/FPerson" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/FPerson/Edit" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.IsActive)
+                        @Html.HiddenFor(m => m.CreatedBy)
+                        @Html.HiddenFor(m => m.CreatedDate)
+                        @Html.HiddenFor(m => m.ImageUrl)
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonName, "Person Name", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Select PoliceStation", "Select PoliceStation", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PersonGender, "Select Gender", "Select Gender", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonAge, "Person Age", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfBirth, "Date of Birth", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonHeight, "Person Height", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonColor, "Person Colour", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonIdentity, "Person Identity", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FoundArea, "Found Area", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Person Image", "file", "image/*", "#profileImage")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FatherName, "Father Name", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MotherName, "Mother Name", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.WearingClothes, "Wearing Clothes", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Nationality, "Natinality", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FoundDate, "Date of Found", "date")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FIRNoAndDate, "Fir NO. And Date", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Mobile Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Address, "Address", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Religion, "Religion", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SectionLodged, "Section Lodged", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Language, "Language", "text")</div>
+
+
+                        <div class="col-sm-6 col-md-4">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Uploaded Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                            else
+                            {
+                                <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

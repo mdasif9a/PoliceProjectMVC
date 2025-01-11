@@ -90,5 +90,26 @@ namespace PoliceProjectMVC.Custome_Helpers
             return MvcHtmlString.Create(result);
         }
 
+        public static MvcHtmlString GenerateCheckbox<TModel>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, bool>> expression, string labelText)
+        {
+            var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            string label = $"<label for='{metadata.PropertyName}'>{labelText}</label>";
+
+            string checkbox;
+            var isChecked = metadata.Model != null && (bool)metadata.Model;
+            if (isChecked)
+            {
+                checkbox = htmlHelper.CheckBoxFor(expression, new { @class = "form-check-input", @checked = "" }).ToHtmlString();
+            }
+            else
+            {
+                checkbox = htmlHelper.CheckBoxFor(expression, new { @class = "form-check-input" }).ToHtmlString();
+            }
+            string validationMessage = htmlHelper.ValidationMessageFor(expression, "", new { @class = "text-danger" })?.ToHtmlString();
+            string result = $"<div class='form-check'>{checkbox}{label}{validationMessage}</div>";
+            return MvcHtmlString.Create(result);
+        }
+
+
     }
 }

@@ -1,0 +1,46 @@
+﻿@model  IEnumerable<PoliceProjectMVC.Models.MHead>
+
+@{
+    ViewBag.PageTitle = "Major Heads";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int b = 1;
+}
+
+<div class="card card-outline card-primary">
+    <div class="card-header d-flex align-items-center">
+        <h3 class="card-title mb-0">Major Heads</h3>
+        <div class="card-tools ml-auto">
+            <a href="/MHead/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid table-responsive">
+            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Major Head Name</td>
+                        <td>Major Head Name (Hi)</td>
+                        <td>Chargesheet Monitoring Days</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PoliceProjectMVC.Models.MHead item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name_EN</td>
+                            <td>@item.Name_Hi</td>
+                            <td>@item.CSM_Days</td>
+                            <td>
+                                <a href="/MHead/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                                <a href="/MHead/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

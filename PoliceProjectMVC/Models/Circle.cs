@@ -42,4 +42,5 @@ namespace PoliceProjectMVC.Models
         [NotMapped]
         public string Designation { get; set; }
     }
+
 }

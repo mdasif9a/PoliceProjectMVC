@@ -1,0 +1,41 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.MOperandi
+@{
+    ViewBag.PageTitle = "Edit Modus Operandi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit Modus Operandi</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/MOperandi" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/MOperandi/Edit" method="post">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.IsActive)
+                        @Html.HiddenFor(m => m.CreatedBy)
+                        @Html.HiddenFor(m => m.CreatedDate)
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Select Major Head", "Select Major Head", (SelectList)ViewBag.MyMHead)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SMHeadId, "Select SubMajor Head", "Select SubMajor Head", (SelectList)ViewBag.MySMHead)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_EN, "Modus Operandi (En)", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Modus Operandi (Hi)", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Description, "Description", "text")</div>
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
