@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //BestEmployee Crud Operation
         public ActionResult Index()
         {
-            List<BestEmployee> bestemployees = db.BestEmployees.ToList();
+            List<BestEmployee> bestemployees = db.BestEmployees.AsNoTracking().Include(x => x.Designation).ToList();
             return View(bestemployees);
         }
         public ActionResult Create()

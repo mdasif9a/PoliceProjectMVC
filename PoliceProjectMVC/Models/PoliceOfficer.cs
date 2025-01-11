@@ -34,6 +34,8 @@ namespace PoliceProjectMVC.Models
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public Designation Designation { get; set; }
     }
 
 }

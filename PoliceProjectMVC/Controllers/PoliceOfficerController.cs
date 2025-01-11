@@ -16,7 +16,7 @@ namespace PoliceProjectMVC.Controllers
         //PoliceOfficer Crud Operation
         public ActionResult Index()
         {
-            List<PoliceOfficer> policeofficers = db.PoliceOfficers.ToList();
+            List<PoliceOfficer> policeofficers = db.PoliceOfficers.Include(x => x.Designation).ToList();
             return View(policeofficers);
         }
         public ActionResult Create()

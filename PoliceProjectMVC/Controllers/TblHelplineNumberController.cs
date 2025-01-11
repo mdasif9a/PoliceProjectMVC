@@ -16,7 +16,7 @@ namespace PoliceProjectMVC.Controllers
         //TblHelplineNumber Crud Operation
         public ActionResult Index()
         {
-            List<TblHelplineNumber> helplines = db.TblHelplineNumbers.ToList();
+            List<TblHelplineNumber> helplines = db.TblHelplineNumbers.Include(x => x.Designation).ToList();
             return View(helplines);
         }
         public ActionResult Create()

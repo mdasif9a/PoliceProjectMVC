@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //SuccessionList Crud Operation
         public ActionResult Index()
         {
-            List<SuccessionList> successionLists = db.SuccessionLists.ToList();
+            List<SuccessionList> successionLists = db.SuccessionLists.Include(x => x.Designation).ToList();
             return View(successionLists);
         }
         public ActionResult Create()

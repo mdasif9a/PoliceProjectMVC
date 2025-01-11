@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<PoliceProjectMVC.Models.ViewLogin>
+﻿@model  IEnumerable<PoliceProjectMVC.Models.TblLogin>
 
 @{
     ViewBag.PageTitle = "All Users";
@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (PoliceProjectMVC.Models.ViewLogin item in Model)
+                    @foreach (PoliceProjectMVC.Models.TblLogin item in Model)
                     {
                         <tr>
                             <td>@(b++)</td>
@@ -47,7 +47,7 @@
                                     <img src="/Images/noimage.png" width="50" height="50" />
                                 }
                             </td>
-                            <td>@item.Role</td>
+                            <td>@item.Role.RoleName</td>
                             <td>
                                 <a href="/MyUser/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
                                 <a href="/MyUser/Delete/@item.Id" onclick="return confirm('Are You Sure To Delete ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>

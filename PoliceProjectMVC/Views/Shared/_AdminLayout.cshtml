@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bettiah Police Admin Panel</title>
+    <link href="/Images/faviconlogo.jpg" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="/AdminLayout/css/adminlte.css">
     <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.theme.green.min.css">
-    <link href="/favicon.png" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="/AdminLayout/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminLayout/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminLayout/css/buttons.dataTables.min.css">
@@ -30,16 +30,16 @@
                     </a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="/Home/Dashboard" class="nav-link">Home</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <form action="@Url.Action("SetLanguage", "Home")" method="post" style="display:inline;">
-                        <button type="submit" name="culture" value="hi" class="btn btn-link text-white"><i class="fas fa-globe"></i> Hindi</button>
-                        <button type="submit" name="culture" value="en-IN" class="btn btn-link text-white">English</button>
-                    </form>
+                    <button type="submit" name="culture" value="en-IN" class="btn btn-link text-white"><i class="fas fa-globe"></i>  English</button>
+                    @*<form action="@Url.Action("SetLanguage", "Home")" method="post" style="display:inline;">
+                            <button type="submit" name="culture" value="hi" class="btn btn-link text-white"><i class="fas fa-globe"></i> Hindi</button>
+                        </form>*@
                 </li>
                 @*<li class="nav-item">
                         <div class="user-panel d-flex">
@@ -52,8 +52,11 @@
         </nav>
 
         <aside class="main-sidebar sidebar-light-cyan elevation-4">
-            <a href="/" class="brand-link bg-cyan">
-                <span class="text-white ml-3 font-weight-bold">Admin Panel</span>
+            <a href="/Home/Dashboard" class="brand-link bg-cyan">
+                <span class="text-white ml-3 font-weight-bold">
+                    <img src="/Images/faviconlogo.jpg" style="height:26px; width:auto; padding-right:20px;" />
+                    Admin Panel
+                </span>
             </a>
             <div class="sidebar text-sm">
                 <nav class="mt-2">
@@ -66,22 +69,21 @@
 
         <div class="content-wrapper">
 
-            <div class="content-header">
+            <div class="content-header" style="padding:7px;">
                 <div class="container-fluid">
-                    <div class="row mb-2">
+                    <div class="row">
                         <div class="col-sm-6">
                             <h1 class="m-0">@ViewBag.PageTitle</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/Home/Dashboard">Home</a></li>
                                 <li class="breadcrumb-item active">@ViewBag.PageTitle</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid pt-2">
@@ -95,7 +97,7 @@
             <div class="float-right d-none d-sm-inline">
                 Bettiah Police Management System
             </div>
-            <strong>Copyright &copy; @DateTime.UtcNow.AddHours(5).AddMinutes(30).Year <a href="/"> Created By Md Asif </a>.</strong> All rights reserved.
+            <strong>Copyright &copy; @DateTime.UtcNow.AddHours(5).AddMinutes(30).Year <a href="javascript:void(0)"> Developed By Apex Data Solution PVT LTD. </a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -112,7 +114,7 @@
     <script src="/AdminLayout/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/AdminLayout/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="/AdminLayout/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/AdminLayout/datatables-buttons/js/buttons.html5.min.js"></script>>
+    <script src="/AdminLayout/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/AdminLayout/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/Scripts/select2.min.js"></script>
 
@@ -124,8 +126,10 @@
             });
             links.addClass("active").closest("ul.nav-treeview").parent().addClass("menu-open").children("a.nav-link").addClass("active");
 
-            $('.table td,.table th').addClass('py-1 px-2 align-middle')
-            $('.dtable').dataTable({ "pageLength": 25, "ordering": false, "scrollX":true });
+            $('.table td').addClass('py-1 px-2 align-middle');
+            $('.dtable').dataTable({ "pageLength": 25, "ordering": false});
+            $('div.col-sm-12').has('.dtable').css('overflow-x', 'auto');
+
             let a = "@TempData["response"]";
             if (a != "") {
                 toastr.success(a);

@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //OurTeam Crud Operation
         public ActionResult Index()
         {
-            List<TblOurTeam> ourTeams = db.TblOurTeams.ToList();
+            List<TblOurTeam> ourTeams = db.TblOurTeams.Include(x => x.Designation).ToList();
             return View(ourTeams);
         }
         public ActionResult Create()

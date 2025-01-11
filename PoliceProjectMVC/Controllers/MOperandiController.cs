@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //MOperandi Crud Operation
         public ActionResult Index()
         {
-            List<MOperandi> moperandis = db.MOperandis.ToList();
+            List<MOperandi> moperandis = db.MOperandis.Include(x => x.MHead).Include(x => x.SMHead).ToList();
             return View(moperandis);
         }
         public ActionResult Create()

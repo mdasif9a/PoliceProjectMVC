@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //DSP Crud Operation
         public ActionResult Index()
         {
-            List<DSP> dsps = db.DSPs.ToList();
+            List<DSP> dsps = db.DSPs.Include(x => x.Designation).ToList();
             return View(dsps);
         }
 

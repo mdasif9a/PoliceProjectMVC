@@ -16,7 +16,7 @@ namespace PoliceProjectMVC.Controllers
         //User Crud Operation
         public ActionResult Index()
         {
-            List<ViewLogin> logins = db.Database.SqlQuery<ViewLogin>("select * from viewlogin").ToList();
+            List<TblLogin> logins = db.TblLogins.Include(x => x.Role).ToList();
             return View(logins);
         }
         public ActionResult Create()

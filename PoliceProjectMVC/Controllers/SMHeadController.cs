@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //SMHead Crud Operation
         public ActionResult Index()
         {
-            List<SMHead> smheads = db.SMHeads.ToList();
+            List<SMHead> smheads = db.SMHeads.Include(x => x.MHead).ToList();
             return View(smheads);
         }
         public ActionResult Create()

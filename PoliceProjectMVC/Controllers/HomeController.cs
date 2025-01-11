@@ -104,8 +104,19 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Dashboard()
         {
+            ViewBag.TotalComplaints = 0;
+            ViewBag.PendingComplaints = 0;
+            ViewBag.ClosedComplaints = 0;
+            ViewBag.RejectedComplaints = 0;
+
+            ViewBag.TotalCharacterCertificates = 0;
+            ViewBag.TotalMissingPersons = 0;
+            ViewBag.TotalFoundPersons = 0;
+            ViewBag.TotalPassports = 0;
+
+            ViewBag.TotalFeedbackSuggestions = 0;
+
             return View("AdminDash");
-            //return View("CoorDash");
         }
     }
 }

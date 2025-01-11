@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //Circle Crud Operation
         public ActionResult Index()
         {
-            List<Circle> circles = db.Circles.ToList();
+            List<Circle> circles = db.Circles.Include(x => x.Designation).ToList();
             return View(circles);
         }
         public ActionResult Create()

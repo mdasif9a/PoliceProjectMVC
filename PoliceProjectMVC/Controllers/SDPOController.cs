@@ -18,7 +18,7 @@ namespace PoliceProjectMVC.Controllers
         //SDPO Crud Operation
         public ActionResult Index()
         {
-            List<SDPO> sdpos = db.SDPOs.ToList();
+            List<SDPO> sdpos = db.SDPOs.Include(x => x.Designation).ToList();
             return View(sdpos);
         }
 

@@ -44,9 +44,7 @@ namespace PoliceProjectMVC.Models
         public string UpdatedBy { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
-
-        [NotMapped]
-        public string Designation { get; set; }
+        public Designation Designation { get; set; }
         [NotMapped]
         public string Type { get; set; }
     }

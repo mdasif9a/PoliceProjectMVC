@@ -29,6 +29,8 @@ namespace PoliceProjectMVC.Models
         public string UpdatedBy { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
+        public MHead MHead { get; set; }
+        public SMHead SMHead { get; set; }
     }
 
 }

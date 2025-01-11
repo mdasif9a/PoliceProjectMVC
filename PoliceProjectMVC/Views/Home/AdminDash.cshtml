@@ -2,113 +2,113 @@
     ViewBag.PageTitle = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<h5 class="mb-2">Complaints :-</h5>
 <div class="row">
+    <!-- Complaint Section -->
     <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
-            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <span class="info-box-icon bg-info"><i class="fas fa-clipboard-list"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Today's Registration</span>
-                <span class="info-box-number">@ViewBag.TodayReg</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-4 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-success"><i class="fas fa-list"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Total Coordinator</span>
-                <span class="info-box-number">@ViewBag.ToalCoor</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-4 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-warning"><i class="fas fa-graduation-cap"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Total Student</span>
-                <span class="info-box-number">@ViewBag.ToalSt</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-4 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-indigo"><i class="fas fa-money-bill-wave-alt"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Today's Cash Payment</span>
-                @if (ViewBag.MoneyCash != null)
-                {
-                    <span class="info-box-number">@ViewBag.MoneyCash Rs.</span>
-                }
-                else
-                {
-                    <span class="info-box-number">0 Rs.</span>
-
-                }
+                <span class="info-box-text">Total Complaints</span>
+                <span class="info-box-number">@ViewBag.TotalComplaints</span>
             </div>
         </div>
     </div>
 
     <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
-            <span class="info-box-icon bg-teal"><i class="fas fa-money-check-alt"></i></span>
+            <span class="info-box-icon bg-warning"><i class="fas fa-exclamation-circle"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Today's Online Payment</span>
-                @if (ViewBag.MoneyOnline != null)
-                {
-                    <span class="info-box-number">@ViewBag.MoneyOnline Rs.</span>
-                }
-                else
-                {
-                    <span class="info-box-number">0 Rs.</span>
-
-                }
+                <span class="info-box-text">Pending Complaints</span>
+                <span class="info-box-number">@ViewBag.PendingComplaints</span>
             </div>
         </div>
     </div>
 
     <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
-            <span class="info-box-icon bg-danger"><i class="fas fa-money-bill-alt"></i></span>
+            <span class="info-box-icon bg-success"><i class="fas fa-check-circle"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Today's Total Payment</span>
-                @if (ViewBag.MoneyRec != null)
-                {
-                    <span class="info-box-number">@ViewBag.MoneyRec Rs.</span>
-                }
-                else
-                {
-                    <span class="info-box-number">0 Rs.</span>
-
-                }
+                <span class="info-box-text">Closed Complaints</span>
+                <span class="info-box-number">@ViewBag.ClosedComplaints</span>
             </div>
         </div>
     </div>
 
     <div class="col-md-4 col-sm-6 col-12">
         <div class="info-box">
-            <span class="info-box-icon bg-primary"><i class="fas fa-money-bill-wave"></i></span>
+            <span class="info-box-icon bg-danger"><i class="fas fa-ban"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Today's Expense</span>
-                @if (ViewBag.Expenses != null)
-                {
-                    <span class="info-box-number">@ViewBag.Expenses Rs.</span>
-                }
-                else
-                {
-                    <span class="info-box-number">0 Rs.</span>
+                <span class="info-box-text">Rejected Complaints</span>
+                <span class="info-box-number">@ViewBag.RejectedComplaints</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-                }
+<h5 class="mb-2">Character Certificate :-</h5>
+<div class="row">
+    <!-- Character Certificate Section -->
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-primary"><i class="fas fa-certificate"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Character Certificates</span>
+                <span class="info-box-number">@ViewBag.TotalCharacterCertificates</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5 class="mb-2">Missing And Found Person :-</h5>
+<div class="row">
+    <!-- Missing Person Section -->
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-teal"><i class="fas fa-search"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Missing Persons</span>
+                <span class="info-box-number">@ViewBag.TotalMissingPersons</span>
             </div>
         </div>
     </div>
 
+    <!-- Found Person Section -->
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-secondary"><i class="fas fa-user-check"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Found Persons</span>
+                <span class="info-box-number">@ViewBag.TotalFoundPersons</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5 class="mb-2">Passport :-</h5>
+<div class="row">
+    <!-- Passport Section -->
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-dark"><i class="fas fa-passport"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Passports</span>
+                <span class="info-box-number">@ViewBag.TotalPassports</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5 class="mb-2">Feedback/Suggestions :-</h5>
+<div class="row">
+    <!-- Feedback/Suggestion Section -->
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="fas fa-comments"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Feedback/Suggestions</span>
+                <span class="info-box-number">@ViewBag.TotalFeedbackSuggestions</span>
+            </div>
+        </div>
+    </div>
 </div>
