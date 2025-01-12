@@ -1,4 +1,5 @@
-﻿using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Custome_Helpers;
+using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,8 +24,8 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
+            ViewBag.MyGender = MyDropdownsValue.GetGender();
             return View();
         }
 
@@ -33,8 +34,8 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-                ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+                ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
+                ViewBag.MyGender = MyDropdownsValue.GetGender();
                 TempData["responseError"] = "Data validation failed.";
                 return View(fperson);
             }
@@ -87,8 +88,8 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
+            ViewBag.MyGender = MyDropdownsValue.GetGender();
             return View(fperson);
         }
 
@@ -119,8 +120,8 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
+            ViewBag.MyGender = MyDropdownsValue.GetGender();
             TempData["responseError"] = "Data Error.";
             return View(fperson);
         }

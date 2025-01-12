@@ -21,7 +21,7 @@ namespace PoliceProjectMVC.Models
         public int DesignationId { get; set; }
 
         [Required(ErrorMessage = "Select Type")]
-        public int TypeId { get; set; }
+        public string Type { get; set; }
 
         [Required(ErrorMessage = "Enter Helpline Numbers")]
         public string HelplineNumbers { get; set; }
@@ -45,7 +45,5 @@ namespace PoliceProjectMVC.Models
 
         public DateTime? UpdatedDate { get; set; }
         public Designation Designation { get; set; }
-        [NotMapped]
-        public string Type { get; set; }
     }
 }

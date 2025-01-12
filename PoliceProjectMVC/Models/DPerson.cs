@@ -73,8 +73,7 @@ namespace PoliceProjectMVC.Models
 
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
+        public PoliceStation PoliceStation { get; set; }
     }
-
-
 
 }

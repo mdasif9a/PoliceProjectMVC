@@ -28,7 +28,7 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Icon, "Icon", "text")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
 
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.LinkTypeId, "Select Type", "Select Type", (SelectList)ViewBag.MyRoles)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.LinkType, "Select Type", "Select Type", (SelectList)ViewBag.LinkType)</div>
 
                         <div class="col-sm-6 col-md-4">
                             <label for='Description_En'>Description in English</label>

@@ -18,8 +18,8 @@
                 <form action="/DPerson/Create" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonName, "Person Name", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Select PoliceStation", "Select PoliceStation", (SelectList)ViewBag.MyDesignation)</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PersonGender, "Select Gender", "Select Gender", (SelectList)ViewBag.MyDesignation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Select PoliceStation", "Select PoliceStation", (SelectList)ViewBag.MyStation)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PersonGender, "Select Gender", "Select Gender", (SelectList)ViewBag.MyGender)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonAge, "Person Age", "number")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateOfBirth, "Date of Birth", "date")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PersonHeight, "Person Height", "text")</div>

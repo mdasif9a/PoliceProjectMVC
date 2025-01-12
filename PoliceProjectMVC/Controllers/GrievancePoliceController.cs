@@ -1,4 +1,5 @@
-﻿using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Custome_Helpers;
+using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,6 +25,7 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.EmpStatus = MyDropdownsValue.GetEmployeeStatusType();
             return View();
         }
 
@@ -32,6 +34,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.EmpStatus = MyDropdownsValue.GetEmployeeStatusType();
                 TempData["responseError"] = "Data validation failed.";
                 return View(gpo);
             }
@@ -85,8 +88,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+            ViewBag.EmpStatus = MyDropdownsValue.GetEmployeeStatusType();
             return View(gpo);
         }
 
@@ -117,8 +119,7 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDSP = new SelectList(db.DSPs.ToList(), "Id", "Name_En");
+            ViewBag.EmpStatus = MyDropdownsValue.GetEmployeeStatusType();
             TempData["responseError"] = "Data Error.";
             return View(gpo);
         }

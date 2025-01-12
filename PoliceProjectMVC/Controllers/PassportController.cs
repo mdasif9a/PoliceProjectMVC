@@ -23,7 +23,7 @@ namespace PoliceProjectMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.MyPolices = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDistricts = MyDropdownsValue.GetDistrictForSelectList();
+            ViewBag.MyDistricts = MyDropdownsValue.GetDistrict();
             return View();
         }
 
@@ -42,7 +42,7 @@ namespace PoliceProjectMVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MyPolices = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDistricts = MyDropdownsValue.GetDistrictForSelectList();
+            ViewBag.MyDistricts = MyDropdownsValue.GetDistrict();
             TempData["responseError"] = "Data Error.";
             return View(passport);
         }
@@ -59,7 +59,7 @@ namespace PoliceProjectMVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.MyPolices = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDistricts = MyDropdownsValue.GetDistrictForSelectList();
+            ViewBag.MyDistricts = MyDropdownsValue.GetDistrict();
             return View(passport);
         }
 
@@ -77,7 +77,7 @@ namespace PoliceProjectMVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MyPolices = new SelectList(db.Designations.ToList(), "Id", "Name_En");
-            ViewBag.MyDistricts = MyDropdownsValue.GetDistrictForSelectList();
+            ViewBag.MyDistricts = MyDropdownsValue.GetDistrict();
             TempData["responseError"] = "Data Error.";
             return View(passport);
         }

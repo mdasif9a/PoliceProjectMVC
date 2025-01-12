@@ -1,5 +1,4 @@
-﻿using PoliceProjectMVC.Custome_Helpers;
-using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,44 +8,43 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace PoliceProjectMVC.Controllers
 {
-    public class DPersonController : Controller
+    public class PoliceStationController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
 
-        //DPerson Crud Operation
+        //PoliceStation Crud Operation
         public ActionResult Index()
         {
-            List<DPerson> dpersons = db.DPersons.ToList();
-            return View(dpersons);
+            List<PoliceStation> sdpos = db.PoliceStations.ToList();
+            return View(sdpos);
         }
 
         public ActionResult Create()
         {
-            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
-            ViewBag.MyGender = MyDropdownsValue.GetGender();
+            ViewBag.MyCircle = new SelectList(db.Circles.ToList(), "Id", "Name_En");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(DPerson dperson)
+        public ActionResult Create(PoliceStation sdpo)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
-                ViewBag.MyGender = MyDropdownsValue.GetGender();
+                ViewBag.MyCircle = new SelectList(db.Circles.ToList(), "Id", "Name_En");
                 TempData["responseError"] = "Data validation failed.";
-                return View(dperson);
+                return View(sdpo);
             }
 
             try
             {
                 // Handle file upload if present
-                if (dperson.MyImage != null && dperson.MyImage.ContentLength > 0)
+                if (sdpo.MyImage != null && sdpo.MyImage.ContentLength > 0)
                 {
-                    string imagePath = Path.Combine(Server.MapPath("~/Images/DPersonImages/"));
-                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(dperson.MyImage.FileName)}";
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/PoliceStationImages/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(sdpo.MyImage.FileName)}";
                     string fullPath = Path.Combine(imagePath, fileName);
 
                     if (!Directory.Exists(imagePath))
@@ -54,17 +52,17 @@ namespace PoliceProjectMVC.Controllers
                         Directory.CreateDirectory(imagePath);
                     }
 
-                    dperson.MyImage.SaveAs(fullPath);
-                    dperson.ImageUrl = $"/Images/DPersonImages/{fileName}";
+                    sdpo.MyImage.SaveAs(fullPath);
+                    sdpo.ImageUrl = $"/Images/PoliceStationImages/{fileName}";
                 }
 
                 // Set audit fields
-                dperson.IsActive = true;
-                dperson.CreatedBy = User.Identity.Name;
-                dperson.CreatedDate = DateTime.Now;
+                sdpo.IsActive = true;
+                sdpo.CreatedBy = User.Identity.Name;
+                sdpo.CreatedDate = DateTime.Now;
 
                 // Save to database
-                db.DPersons.Add(dperson);
+                db.PoliceStations.Add(sdpo);
                 db.SaveChanges();
 
                 TempData["response"] = "created successfully.";
@@ -73,7 +71,7 @@ namespace PoliceProjectMVC.Controllers
             catch (Exception ex)
             {
                 TempData["responseError"] = $"An error occurred: {ex.Message}";
-                return View(dperson);
+                return View(sdpo);
             }
         }
 
@@ -83,27 +81,26 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DPerson dperson = db.DPersons.Find(id);
-            if (dperson == null)
+            PoliceStation sdpo = db.PoliceStations.Find(id);
+            if (sdpo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
-            ViewBag.MyGender = MyDropdownsValue.GetGender();
-            return View(dperson);
+            ViewBag.MyCircle = new SelectList(db.Circles.ToList(), "Id", "Name_En");
+            return View(sdpo);
         }
 
         [HttpPost]
-        public ActionResult Edit(DPerson dperson)
+        public ActionResult Edit(PoliceStation sdpo)
         {
             if (ModelState.IsValid)
             {
-                dperson.UpdatedBy = User.Identity.Name; ;
-                dperson.UpdatedDate = DateTime.Now;
-                if (dperson.MyImage != null && dperson.MyImage.ContentLength > 0)
+                sdpo.UpdatedBy = User.Identity.Name; ;
+                sdpo.UpdatedDate = DateTime.Now;
+                if (sdpo.MyImage != null && sdpo.MyImage.ContentLength > 0)
                 {
-                    string imagePath = Path.Combine(Server.MapPath("~/Images/DPersonImages/"));
-                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(dperson.MyImage.FileName)}";
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/PoliceStationImages/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(sdpo.MyImage.FileName)}";
                     string fullPath = Path.Combine(imagePath, fileName);
 
                     if (!Directory.Exists(imagePath))
@@ -111,19 +108,18 @@ namespace PoliceProjectMVC.Controllers
                         Directory.CreateDirectory(imagePath);
                     }
 
-                    dperson.MyImage.SaveAs(fullPath);
-                    dperson.ImageUrl = $"/Images/DPersonImages/{fileName}";
+                    sdpo.MyImage.SaveAs(fullPath);
+                    sdpo.ImageUrl = $"/Images/PoliceStationImages/{fileName}";
                 }
 
-                db.Entry(dperson).State = EntityState.Modified;
+                db.Entry(sdpo).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyStation = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
-            ViewBag.MyGender = MyDropdownsValue.GetGender();
+            ViewBag.MyCircle = new SelectList(db.Circles.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
-            return View(dperson);
+            return View(sdpo);
         }
 
         public ActionResult Delete(int? id)
@@ -132,12 +128,12 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DPerson dperson = db.DPersons.Find(id);
-            if (dperson == null)
+            PoliceStation sdpo = db.PoliceStations.Find(id);
+            if (sdpo == null)
             {
                 return HttpNotFound();
             }
-            db.DPersons.Remove(dperson);
+            db.PoliceStations.Remove(sdpo);
             db.SaveChanges();
             TempData["response"] = "Deleted Successfully.";
             return RedirectToAction("Index");

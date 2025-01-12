@@ -53,6 +53,7 @@ namespace PoliceProjectMVC.Models
         public DateTime? UpdatedDate { get; set; }
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
+        public PoliceStation PoliceStation { get; set; }
     }
 
 

@@ -1,4 +1,5 @@
-﻿using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Custome_Helpers;
+using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,7 +22,7 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.LinkType = MyDropdownsValue.GetLinkType();
             return View();
         }
 
@@ -32,14 +33,13 @@ namespace PoliceProjectMVC.Controllers
             {
                 link.IsActive = true;
                 link.CreatedDate = DateTime.Now;
-                //link.CreatedBy = User.Identity.Name;
                 link.CreatedBy = User.Identity.Name;
                 db.Links.Add(link);
                 db.SaveChanges();
                 TempData["response"] = "Created Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.LinkType = MyDropdownsValue.GetLinkType();
             TempData["responseError"] = "Data Error.";
             return View(link);
         }
@@ -55,7 +55,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.LinkType = MyDropdownsValue.GetLinkType();
             return View(link);
         }
 
@@ -66,14 +66,13 @@ namespace PoliceProjectMVC.Controllers
             {
 
                 link.UpdatedDate = DateTime.Now;
-                //link.UpdatedBy = User.Identity.Name;
-                link.UpdatedBy = User.Identity.Name;;
+                link.UpdatedBy = User.Identity.Name; ;
                 db.Entry(link).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
-            ViewBag.MyRoles = new SelectList(db.TblRoles.ToList(), "Id", "RoleName");
+            ViewBag.LinkType = MyDropdownsValue.GetLinkType();
             TempData["responseError"] = "Data Error.";
             return View(link);
         }

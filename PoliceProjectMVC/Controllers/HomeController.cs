@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace PoliceProjectMVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
@@ -80,18 +81,22 @@ namespace PoliceProjectMVC.Controllers
         [HttpPost]
         public ActionResult Login(TblLogin log, string ReturnUrl)
         {
-            TblLogin User = db.TblLogins.Where(x => x.Email == log.Email && x.Password == log.Password).FirstOrDefault();
+            TblLogin User = db.TblLogins
+                .AsNoTracking()
+                .Where(x => x.Email == log.Email && x.Password == log.Password)
+                .Include(x => x.Role)
+                .FirstOrDefault();
             if (User != null)
             {
-                //if (User.Role == "CoOrdinator" || User.Role == "Admin" || User.Role == "Staff")
-                //{
-                FormsAuthentication.SetAuthCookie(log.Email, false);
-                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                if (User.Role.RoleName == "CoOrdinator" || User.Role.RoleName == "Admin" || User.Role.RoleName == "Staff")
                 {
-                    return Redirect(ReturnUrl);
+                    FormsAuthentication.SetAuthCookie(log.Email, false);
+                    if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    return RedirectToAction("Dashboard", "MyUser");
                 }
-                return RedirectToAction("Dashboard");
-                //}
             }
             TempData["response"] = "Incorrect username or password.";
             return View(log);
@@ -100,23 +105,6 @@ namespace PoliceProjectMVC.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
-        }
-
-        public ActionResult Dashboard()
-        {
-            ViewBag.TotalComplaints = 0;
-            ViewBag.PendingComplaints = 0;
-            ViewBag.ClosedComplaints = 0;
-            ViewBag.RejectedComplaints = 0;
-
-            ViewBag.TotalCharacterCertificates = 0;
-            ViewBag.TotalMissingPersons = 0;
-            ViewBag.TotalFoundPersons = 0;
-            ViewBag.TotalPassports = 0;
-
-            ViewBag.TotalFeedbackSuggestions = 0;
-
-            return View("AdminDash");
         }
     }
 }

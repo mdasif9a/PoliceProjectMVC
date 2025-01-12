@@ -1,4 +1,5 @@
-﻿using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Custome_Helpers;
+using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,6 +22,7 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Create()
         {
+            ViewBag.MyHelplineType = MyDropdownsValue.GetHelplineType();
             ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View();
         }
@@ -38,6 +40,7 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Helpline Created Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyHelplineType = MyDropdownsValue.GetHelplineType();
             ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(helpline);
@@ -54,6 +57,7 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MyHelplineType = MyDropdownsValue.GetHelplineType();
             ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             return View(helpline);
         }
@@ -71,6 +75,7 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Helpline Updated Successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyHelplineType = MyDropdownsValue.GetHelplineType();
             ViewBag.MyDesignation = new SelectList(db.Designations.ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data Error.";
             return View(helpline);

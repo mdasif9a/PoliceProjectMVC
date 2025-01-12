@@ -221,6 +221,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CircleController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Controllers\FPersonController.cs" />
     <Compile Include="Controllers\DPersonController.cs" />
     <Compile Include="Controllers\MOperandiController.cs" />
+    <Compile Include="Controllers\PoliceStationController.cs" />
     <Compile Include="Controllers\SMHeadController.cs" />
     <Compile Include="Controllers\MHeadController.cs" />
     <Compile Include="Controllers\RTIController.cs" />
@@ -239,14 +241,24 @@
     <Compile Include="Controllers\PassportController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\GrievancePoliceController.cs" />
+    <Compile Include="Models\Act.cs" />
+    <Compile Include="Models\Announcement.cs" />
+    <Compile Include="Models\Banner.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\CriminalList.cs" />
+    <Compile Include="Models\DistrictDetail.cs" />
     <Compile Include="Models\DPerson.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\Form.cs" />
     <Compile Include="Models\FPerson.cs" />
     <Compile Include="Models\GrievancePolice.cs" />
+    <Compile Include="Models\ImageGallery.cs" />
+    <Compile Include="Models\ImportantPlace.cs" />
     <Compile Include="Models\MHead.cs" />
     <Compile Include="Models\MOperandi.cs" />
     <Compile Include="Models\MPerson.cs" />
+    <Compile Include="Models\NewsAndEvent.cs" />
     <Compile Include="Models\Passport.cs" />
     <Compile Include="Controllers\PoliceOfficerController.cs" />
     <Compile Include="Controllers\SDPOController.cs" />
@@ -277,7 +289,11 @@
     <Compile Include="Models\MWCriminal.cs" />
     <Compile Include="Models\M_Menu.cs" />
     <Compile Include="Models\PDDBContext.cs" />
+    <Compile Include="Models\PeaceCommittee.cs" />
     <Compile Include="Models\PoliceOfficer.cs" />
+    <Compile Include="Models\PoliceStation.cs" />
+    <Compile Include="Models\PostingList.cs" />
+    <Compile Include="Models\PressRelease.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\RTI.cs" />
     <Compile Include="Models\SDPO.cs" />
@@ -289,6 +305,7 @@
     <Compile Include="Models\TblHelplineNumber.cs" />
     <Compile Include="Models\TblOurTeam.cs" />
     <Compile Include="Models\TblRole.cs" />
+    <Compile Include="Models\TransferBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -338,7 +355,7 @@
     <Content Include="Scripts\jquery-3.6.3.min.map" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Home\AdminDash.cshtml" />
+    <Content Include="Views\MyUser\AdminDash.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\jquery.min.map" />
     <Content Include="Scripts\toastr.js.map" />
@@ -430,6 +447,9 @@
     <Content Include="Views\MOperandi\Create.cshtml" />
     <Content Include="Views\MOperandi\Edit.cshtml" />
     <Content Include="Views\MOperandi\Index.cshtml" />
+    <Content Include="Views\PoliceStation\Create.cshtml" />
+    <Content Include="Views\PoliceStation\Edit.cshtml" />
+    <Content Include="Views\PoliceStation\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

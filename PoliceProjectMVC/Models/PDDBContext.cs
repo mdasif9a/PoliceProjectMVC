@@ -38,6 +38,21 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<MHead> MHeads { get; set; }
         public virtual DbSet<SMHead> SMHeads { get; set; }
         public virtual DbSet<MOperandi> MOperandis { get; set; }
+        public virtual DbSet<PoliceStation> PoliceStations { get; set; }
+        public virtual DbSet<PostingList> PostingLists { get; set; }
+        public virtual DbSet<PressRelease> PressReleases { get; set; }
+        public virtual DbSet<TransferBlock> TransferBlocks { get; set; }
+        public virtual DbSet<Announcement> Announcements { get; set; }
+        public virtual DbSet<PeaceCommittee> PeaceCommittees { get; set; }
+        public virtual DbSet<CriminalList> CriminalLists { get; set; }
+        public virtual DbSet<Form> Forms { get; set; }
+        public virtual DbSet<Act> ACTs { get; set; }
+        public virtual DbSet<NewsAndEvent> NewsAndEvents { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<ImageGallery> ImageGalleries { get; set; }
+        public virtual DbSet<ImportantPlace> ImportantPlaces { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<DistrictDetail> DistrictDetails { get; set; }
     }
 
 }

@@ -37,7 +37,7 @@
 
                         <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CurrentPosting, "Current Posting", "text")</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CurrentStatus, "Current Employee Status", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CurrentStatus, "Current Employee Status", "Select Status", (SelectList)ViewBag.EmpStatus)</div>
 
                         <div class="col-sm-6 col-md-4">
                             @if (!string.IsNullOrEmpty(Model.ImageUrl))

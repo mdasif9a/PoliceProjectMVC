@@ -1,0 +1,65 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.PoliceStation
+@{
+    ViewBag.PageTitle = "Edit PoliceStation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit PoliceStation</h3>
+                <div class="card-tools ml-auto">
+                    <a href="/PoliceStation" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/PoliceStation/Edit" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.IsActive)
+                        @Html.HiddenFor(m => m.CreatedBy)
+                        @Html.HiddenFor(m => m.CreatedDate)
+                        @Html.HiddenFor(m => m.ImageUrl)
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_En, "Station Name in English", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Name_Hi, "Station Name in Hindi", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CircleId, "Select Circle", "Select Circle", (SelectList)ViewBag.MyCircle)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MobileNo, "Station Contact Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Email, "Station Email", "email")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SiteMapURL, "Site Map URL", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Image", "file", "image/*", "#profileImage")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AreaCovered, "Area Covered", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AreaCovered, "Area Covered", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Address, "Station Address", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Priority", "number")</div>
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.HelpLineNo, "Helpline Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.MedicalNo, "Medical Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.AmbulanceNo, "Ambulance Number", "number")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FieBrigadeNo, "Fire Brigade Number", "number")</div>
+
+                        <div class="col-sm-6 col-md-4">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Uploaded Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                            else
+                            {
+                                <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
+                            }
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
