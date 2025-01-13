@@ -92,7 +92,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                successionList.UpdatedBy = User.Identity.Name;;
+                successionList.UpdatedBy = User.Identity.Name; ;
                 successionList.UpdatedDate = DateTime.Now;
                 if (successionList.MyImage != null && successionList.MyImage.ContentLength > 0)
                 {

@@ -65,7 +65,7 @@ namespace PoliceProjectMVC.Controllers
 
                 section.UpdatedDate = DateTime.Now;
                 //section.UpdatedBy = User.Identity.Name;
-                section.UpdatedBy = User.Identity.Name;;
+                section.UpdatedBy = User.Identity.Name; ;
                 db.Entry(section).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

@@ -96,7 +96,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                circle.UpdatedBy = User.Identity.Name;;
+                circle.UpdatedBy = User.Identity.Name; ;
                 circle.UpdatedDate = DateTime.Now;
                 if (circle.MyImage != null && circle.MyImage.ContentLength > 0)
                 {

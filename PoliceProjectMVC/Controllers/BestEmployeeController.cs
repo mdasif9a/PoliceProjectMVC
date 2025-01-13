@@ -93,7 +93,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                bestemployee.UpdatedBy = User.Identity.Name;;
+                bestemployee.UpdatedBy = User.Identity.Name; ;
                 bestemployee.UpdatedDate = DateTime.Now;
                 if (bestemployee.MyImage != null && bestemployee.MyImage.ContentLength > 0)
                 {

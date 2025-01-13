@@ -65,7 +65,7 @@ namespace PoliceProjectMVC.Controllers
 
                 designation.UpdatedDate = DateTime.Now;
                 //designation.UpdatedBy = User.Identity.Name;
-                designation.UpdatedBy = User.Identity.Name;;
+                designation.UpdatedBy = User.Identity.Name; ;
                 db.Entry(designation).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

@@ -7,7 +7,7 @@ namespace PoliceProjectMVC.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage ="Enter Question")]
+        [Required(ErrorMessage = "Enter Question")]
         public string QuestionText { get; set; }
         [Required(ErrorMessage = "Enter Answer 1")]
         public string Answer1 { get; set; }

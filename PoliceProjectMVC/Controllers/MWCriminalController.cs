@@ -90,7 +90,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                mWCriminal.UpdatedBy = User.Identity.Name;;
+                mWCriminal.UpdatedBy = User.Identity.Name; ;
                 mWCriminal.UpdatedDate = DateTime.Now;
                 if (mWCriminal.MyImage != null && mWCriminal.MyImage.ContentLength > 0)
                 {

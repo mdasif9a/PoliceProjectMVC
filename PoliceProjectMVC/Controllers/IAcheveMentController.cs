@@ -90,7 +90,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                iachevement.UpdatedBy = User.Identity.Name;;
+                iachevement.UpdatedBy = User.Identity.Name; ;
                 iachevement.UpdatedDate = DateTime.Now;
                 if (iachevement.MyImage != null && iachevement.MyImage.ContentLength > 0)
                 {

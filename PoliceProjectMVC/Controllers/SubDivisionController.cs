@@ -70,7 +70,7 @@ namespace PoliceProjectMVC.Controllers
 
                 subdivision.UpdatedDate = DateTime.Now;
                 //subdivision.UpdatedBy = User.Identity.Name;
-                subdivision.UpdatedBy = User.Identity.Name;;
+                subdivision.UpdatedBy = User.Identity.Name; ;
                 db.Entry(subdivision).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["response"] = "Updated Successfully.";

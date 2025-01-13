@@ -95,7 +95,7 @@ namespace PoliceProjectMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                dsp.UpdatedBy = User.Identity.Name;;
+                dsp.UpdatedBy = User.Identity.Name; ;
                 dsp.UpdatedDate = DateTime.Now;
                 if (dsp.MyImage != null && dsp.MyImage.ContentLength > 0)
                 {

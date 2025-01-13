@@ -18,13 +18,13 @@ namespace PoliceProjectMVC.Models
         public string TwitterLink { get; set; }
         public string YoutubeLink { get; set; }
         public string DownloadLink { get; set; }
-        public string QRImageUrl { get; set; }
+        public string ImageUrl { get; set; }
         public int Priority { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
     }

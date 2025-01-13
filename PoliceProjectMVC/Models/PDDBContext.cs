@@ -46,7 +46,7 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<PeaceCommittee> PeaceCommittees { get; set; }
         public virtual DbSet<CriminalList> CriminalLists { get; set; }
         public virtual DbSet<Form> Forms { get; set; }
-        public virtual DbSet<Act> ACTs { get; set; }
+        public virtual DbSet<Act> Acts { get; set; }
         public virtual DbSet<NewsAndEvent> NewsAndEvents { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<ImageGallery> ImageGalleries { get; set; }
