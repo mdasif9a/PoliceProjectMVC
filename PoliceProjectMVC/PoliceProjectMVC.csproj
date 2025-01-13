@@ -231,7 +231,9 @@
     <Compile Include="Controllers\FPersonController.cs" />
     <Compile Include="Controllers\DPersonController.cs" />
     <Compile Include="Controllers\MOperandiController.cs" />
+    <Compile Include="Controllers\PostingListController.cs" />
     <Compile Include="Controllers\PoliceStationController.cs" />
+    <Compile Include="Controllers\PressReleaseController.cs" />
     <Compile Include="Controllers\SMHeadController.cs" />
     <Compile Include="Controllers\MHeadController.cs" />
     <Compile Include="Controllers\RTIController.cs" />
@@ -450,6 +452,12 @@
     <Content Include="Views\PoliceStation\Create.cshtml" />
     <Content Include="Views\PoliceStation\Edit.cshtml" />
     <Content Include="Views\PoliceStation\Index.cshtml" />
+    <Content Include="Views\PostingList\Create.cshtml" />
+    <Content Include="Views\PostingList\Edit.cshtml" />
+    <Content Include="Views\PostingList\Index.cshtml" />
+    <Content Include="Views\PressRelease\Create.cshtml" />
+    <Content Include="Views\PressRelease\Edit.cshtml" />
+    <Content Include="Views\PressRelease\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
