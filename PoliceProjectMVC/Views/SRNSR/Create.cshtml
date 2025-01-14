@@ -1,0 +1,165 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.SRNSRCase
+@{
+    ViewBag.PageTitle = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header p-0 pt-1 border-bottom-0">
+                <ul class="nav nav-pills nav-fill" id="mycustomformtab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab1" href="javascript:void(0);">Case Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab2" href="javascript:void(0);">Accused</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab3" href="javascript:void(0);">Case Proceeding</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <form action="/SubDivision/Create" method="post">
+                    <div class="tab-content" id="custom-tabs-three-tabContent">
+                        <div class="tab-pane fade active show" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                            </div>
+                            <hr />
+                            <div class="row justify-content-end align-content-center mt-3">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right next">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2Content" role="tabpanel" aria-labelledby="tab2">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                            </div>
+                            <hr />
+                            <div class="row justify-content-between align-content-center mt-3">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right back">Back</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right next">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab3Content" role="tabpanel" aria-labelledby="tab3">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                            </div>
+                            <hr />
+                            <div class="row justify-content-between align-content-center mt-3">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right back">Back</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right next">Finish</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        // Function to validate inputs in the active tab
+        function validateInputs() {
+            let isValid = true;
+
+            // Get all inputs, selects, and textareas in the active tab
+            const inputs = $(".tab-pane.active input, .tab-pane.active select, .tab-pane.active textarea");
+            debugger;
+            inputs.each(function () {
+                // Trigger validation for each element
+                if (!$(this).valid()) {
+                    isValid = false; // Mark form as invalid if any field fails
+                }
+            });
+
+            return isValid;
+        }
+
+        // Function to change active tab
+        function changeTab(isNext) {
+            const activeLink = $(".nav.nav-pills .nav-item .nav-link.active");
+            const activeTab = $(".tab-pane.active");
+
+            const newLink = isNext
+                ? activeLink.parent().next().children("a")
+                : activeLink.parent().prev().children("a");
+
+            const newTab = isNext
+                ? activeTab.next(".tab-pane")
+                : activeTab.prev(".tab-pane");
+
+            // Validate inputs before navigating to the next tab
+            if (isNext && !validateInputs()) {
+                return; // Stop if validation fails
+            }
+
+            // Update active link
+            if (newLink.length) {
+                activeLink.removeClass("active");
+                newLink.addClass("active");
+            }
+
+            // Update active tab
+            if (newTab.length) {
+                activeTab.removeClass("show active");
+                newTab.addClass("show active");
+            }
+        }
+
+        // Handle Next button
+        $(".next").on("click", function () {
+            changeTab(true); // Move to the next tab
+        });
+
+        // Handle Back button
+        $(".back").on("click", function () {
+            changeTab(false); // Move to the previous tab
+        });
+    </script>
+}

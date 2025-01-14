@@ -1,4 +1,4 @@
-@using PoliceProjectMVC.Custome_Helpers
+@*using PoliceProjectMVC.Custome_Helpers*@
 @model PoliceProjectMVC.Models.TransferBlock
 @{
     ViewBag.PageTitle = "Edit TransferBlock";
@@ -18,6 +18,7 @@
                 <form action="/TransferBlock/Edit" method="post" enctype="multipart/form-data">
                     <div class="row">
                         @Html.HiddenFor(m => m.Id)
+                        @Html.
 @Html.HiddenFor(m => m.ImageUrl)
 @Html.HiddenFor(m => m.IsActive)
 @Html.HiddenFor(m => m.CreatedBy)
@@ -26,11 +27,11 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Title, "Enter Title", "text")</div>
 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Images", "file", "image/*", "#profileImage")</div>
 <div class="col-sm-6 col-md-4">
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    @If (!string.IsNullOrEmpty(Model.ImageUrl))
     {
         <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Uploaded Photo" class="border border-dark mb-3" width="130" height="156">
     }
-    else
+    Else
     {
         <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
     }

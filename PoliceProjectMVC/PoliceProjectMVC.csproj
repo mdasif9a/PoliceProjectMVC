@@ -175,6 +175,9 @@
     <Content Include="Content\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\jquery.steps.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\swiper\swiper-bundle.min.css" />
     <Content Include="Content\swiper\swiper-bundle.min.js" />
@@ -201,6 +204,8 @@
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.steps.js" />
+    <Content Include="Scripts\jquery.steps.min.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\mycustom.js" />
@@ -223,6 +228,8 @@
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\SRNSRCase.cs" />
+    <Compile Include="Controllers\SRNSRController.cs" />
     <Compile Include="Controllers\ActController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\BannerController.cs" />
@@ -506,6 +513,7 @@
     <Content Include="Views\DistrictDetail\Create.cshtml" />
     <Content Include="Views\DistrictDetail\Edit.cshtml" />
     <Content Include="Views\DistrictDetail\Index.cshtml" />
+    <Content Include="Views\SRNSR\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

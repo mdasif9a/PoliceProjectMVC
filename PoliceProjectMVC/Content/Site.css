@@ -1,6 +1,23 @@
 ﻿.error {
     color: #dc3545;
 }
-body.dt-print-view{
+
+body.dt-print-view {
     min-height: calc(100% - 15px) !important;
+}
+
+.nav.nav-pills.nav-fill .nav-link, .nav.nav-tabs.nav-fill .nav-link {
+    border: 1px solid;
+    border-top: 0;
+    border-radius: 0;
+}
+
+.nav.nav-pills.nav-fill .nav-item:first-child .nav-link, .nav.nav-tabs.nav-fill .nav-item:first-child .nav-link {
+    border-left: 0px solid;
+    border-right: 0px solid;
+}
+
+.nav.nav-pills.nav-fill .nav-item:last-child .nav-link, .nav.nav-tabs.nav-fill .nav-item:last-child .nav-link {
+    border-left: 0px solid;
+    border-right: 0px solid;
 }

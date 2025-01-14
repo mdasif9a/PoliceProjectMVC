@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources {
+namespace Resources
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,301 +23,367 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
-        
+    internal class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Resources", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bihar Police.
         /// </summary>
-        internal static string implinkbiharpolice {
-            get {
+        internal static string implinkbiharpolice
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkbiharpolice", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cyber Safe.
         /// </summary>
-        internal static string implinkcybersafe {
-            get {
+        internal static string implinkcybersafe
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkcybersafe", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Darpan.
         /// </summary>
-        internal static string implinkdarpan {
-            get {
+        internal static string implinkdarpan
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkdarpan", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edashboard.
         /// </summary>
-        internal static string implinkedashboard {
-            get {
+        internal static string implinkedashboard
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkedashboard", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FIR Upload.
         /// </summary>
-        internal static string implinkfirupload {
-            get {
+        internal static string implinkfirupload
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkfirupload", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bettiah District.
         /// </summary>
-        internal static string implinkjamuidistrict {
-            get {
+        internal static string implinkjamuidistrict
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkjamuidistrict", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Missing Child.
         /// </summary>
-        internal static string implinkmissingchild {
-            get {
+        internal static string implinkmissingchild
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkmissingchild", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to National Cyber Crime Reporting Portal.
         /// </summary>
-        internal static string implinknationalcybercrime {
-            get {
+        internal static string implinknationalcybercrime
+        {
+            get
+            {
                 return ResourceManager.GetString("implinknationalcybercrime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Official Login.
         /// </summary>
-        internal static string implinkofficiallogin {
-            get {
+        internal static string implinkofficiallogin
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkofficiallogin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Passport Seva.
         /// </summary>
-        internal static string implinkpassportseva {
-            get {
+        internal static string implinkpassportseva
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkpassportseva", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to PG Portal.
         /// </summary>
-        internal static string implinkpgportal {
-            get {
+        internal static string implinkpgportal
+        {
+            get
+            {
                 return ResourceManager.GetString("implinkpgportal", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Online Character.
         /// </summary>
-        internal static string servicecharacter {
-            get {
+        internal static string servicecharacter
+        {
+            get
+            {
                 return ResourceManager.GetString("servicecharacter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Online Complaint.
         /// </summary>
-        internal static string servicecomplain {
-            get {
+        internal static string servicecomplain
+        {
+            get
+            {
                 return ResourceManager.GetString("servicecomplain", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Feedback.
         /// </summary>
-        internal static string servicefeedback {
-            get {
+        internal static string servicefeedback
+        {
+            get
+            {
                 return ResourceManager.GetString("servicefeedback", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Passport.
         /// </summary>
-        internal static string servicepassport {
-            get {
+        internal static string servicepassport
+        {
+            get
+            {
                 return ResourceManager.GetString("servicepassport", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Police Station.
         /// </summary>
-        internal static string servicepolice {
-            get {
+        internal static string servicepolice
+        {
+            get
+            {
                 return ResourceManager.GetString("servicepolice", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to R.T.I.
         /// </summary>
-        internal static string servicerti {
-            get {
+        internal static string servicerti
+        {
+            get
+            {
                 return ResourceManager.GetString("servicerti", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Press Release.
         /// </summary>
-        internal static string titilepress {
-            get {
+        internal static string titilepress
+        {
+            get
+            {
                 return ResourceManager.GetString("titilepress", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to About Bettiah Police.
         /// </summary>
-        internal static string titleabout {
-            get {
+        internal static string titleabout
+        {
+            get
+            {
                 return ResourceManager.GetString("titleabout", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Important Achievements.
         /// </summary>
-        internal static string titleacheve {
-            get {
+        internal static string titleacheve
+        {
+            get
+            {
                 return ResourceManager.GetString("titleacheve", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Best Police Officials Of The Month.
         /// </summary>
-        internal static string titlebestpolice {
-            get {
+        internal static string titlebestpolice
+        {
+            get
+            {
                 return ResourceManager.GetString("titlebestpolice", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Image Gallery.
         /// </summary>
-        internal static string titleimagegallery {
-            get {
+        internal static string titleimagegallery
+        {
+            get
+            {
                 return ResourceManager.GetString("titleimagegallery", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Important Links.
         /// </summary>
-        internal static string titleimplinks {
-            get {
+        internal static string titleimplinks
+        {
+            get
+            {
                 return ResourceManager.GetString("titleimplinks", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Most Wanted Criminal.
         /// </summary>
-        internal static string titlemostwanted {
-            get {
+        internal static string titlemostwanted
+        {
+            get
+            {
                 return ResourceManager.GetString("titlemostwanted", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Our Services.
         /// </summary>
-        internal static string titleservices {
-            get {
+        internal static string titleservices
+        {
+            get
+            {
                 return ResourceManager.GetString("titleservices", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to District Social Media.
         /// </summary>
-        internal static string titlesocial {
-            get {
+        internal static string titlesocial
+        {
+            get
+            {
                 return ResourceManager.GetString("titlesocial", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Welcome to the official website of BETTIAH Police..
         /// </summary>
-        internal static string titlewelcome {
-            get {
+        internal static string titlewelcome
+        {
+            get
+            {
                 return ResourceManager.GetString("titlewelcome", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Dgp, Bihar.
         /// </summary>
-        internal static string title_dgp_bihar {
-            get {
+        internal static string title_dgp_bihar
+        {
+            get
+            {
                 return ResourceManager.GetString("title_dgp_bihar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Superintendent Of Police.
         /// </summary>
-        internal static string title_superintendent_of_police {
-            get {
+        internal static string title_superintendent_of_police
+        {
+            get
+            {
                 return ResourceManager.GetString("title_superintendent_of_police", resourceCulture);
             }
         }

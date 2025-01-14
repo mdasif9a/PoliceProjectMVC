@@ -8,6 +8,8 @@
     <link href="/Images/faviconlogo.jpg" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
+    <link href="/Content/normalize.css" rel="stylesheet" />
+    <link href="/Content/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="/AdminLayout/css/adminlte.css">
     <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.theme.green.min.css">
@@ -15,6 +17,7 @@
     <link rel="stylesheet" href="/AdminLayout/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/AdminLayout/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="/AdminLayout/css/select2.min.css" />
+    <link href="/Content/jquery.steps.css" rel="stylesheet" />
     <link href="/Content/Site.css" rel="stylesheet" />
     <link href="/Content/toastr.min.css" rel="stylesheet" />
 </head>
@@ -127,7 +130,7 @@
             });
 
             if (links.length === 0 && !currentPath.includes('/MyUser')) {
-                links = $("a.nav-link").filter(function () {
+                links = $("a.nav-link:not([data-toggle='pill'])").filter(function () {
                     return this.href.includes(currentPath);
                 });
             }
