@@ -5,38 +5,61 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-12">
-        <div class="card card-primary card-outline">
-            <div class="card-header p-0 pt-1 border-bottom-0">
-                <ul class="nav nav-pills nav-fill" id="mycustomformtab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tab1" href="javascript:void(0);">Case Details</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab2" href="javascript:void(0);">Accused</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab3" href="javascript:void(0);">Case Proceeding</a>
-                    </li>
-                </ul>
+<form action="/SubDivision/Create" method="post">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary card-outline">
+                <div class="card-header p-0 pt-1 border-bottom-0">
+
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Major Head", "Select Major Head", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SMHeadId, "Sub Major Head", "Select Sub Major Head", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivisionId, "Sub Division", "Select Sub Division", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CircleId, "Crcle", "Select Circle", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select PoliceStation", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseType, "SR/NSR", "Select SR/NSR", null)</div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.card -->
             </div>
-            <div class="card-body">
-                <form action="/SubDivision/Create" method="post">
+        </div>
+        <div class="col-12">
+            <div class="card card-primary card-outline" id="downcardmy" style="display:none;">
+                <div class="card-header p-0 pt-1 border-bottom-0">
+                    <ul class="nav nav-pills nav-fill mb-2" id="mycustomformtab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab1" href="javascript:void(0);">Case Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab2" href="javascript:void(0);">Accused</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab3" href="javascript:void(0);">Case Proceeding</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
                     <div class="tab-content" id="custom-tabs-three-tabContent">
-                        <div class="tab-pane fade active show" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
+                        <div class="tab-pane fade" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
                             <div class="row">
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Fir No", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Jail Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Section", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Date and Time Of Occurance", "datetime")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Place Of Occurance", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "No of Known Accused", "number")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "No of UnKnown Accused", "number")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "IO Name", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "IO Mobile", "number")</div>
                             </div>
                             <hr />
                             <div class="row justify-content-end align-content-center mt-3">
@@ -94,12 +117,11 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-            <!-- /.card -->
         </div>
     </div>
-</div>
+</form>
 
 @section Scripts{
 
@@ -153,6 +175,15 @@
         }
 
         // Handle Next button
+        $("#CaseType").on("click", function () {
+            $("#downcardmy").show();
+            const firstLink = $(".nav.nav-pills .nav-item:first-child .nav-link");
+            const firstTab = $(".tab-pane:first-child");
+
+            firstLink.addClass("active");
+            firstTab.addClass("show active");
+        });
+
         $(".next").on("click", function () {
             changeTab(true); // Move to the next tab
         });

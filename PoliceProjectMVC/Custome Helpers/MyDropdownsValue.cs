@@ -8,6 +8,20 @@ namespace PoliceProjectMVC.Custome_Helpers
 {
     public static class MyDropdownsValue
     {
+        public static SelectList EmptySelectList()
+        {
+            return new SelectList(Enumerable.Empty<object>(), "Value", "Text");
+        }
+
+        public static SelectList CaseTypeSRNSR()
+        {
+            return new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "SR", Value = "SR" },
+                                new SelectListItem { Text = "NSR", Value = "NSR" }
+                            }, "Value", "Text");
+        }
+
         public static SelectList GetDistrict()
         {
             return new SelectList(new List<SelectListItem>

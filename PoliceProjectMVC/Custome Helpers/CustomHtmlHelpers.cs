@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -38,10 +39,19 @@ namespace PoliceProjectMVC.Custome_Helpers
         {
             var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             string label = $"<label for='{metadata.PropertyName}'>{labelText}</label>";
-            string input = htmlHelper.DropDownListFor(expression, myList, oplabel, new { @class = "form-control select2 form-control-sm" }).ToHtmlString();
+            string input = "";
             if (!String.IsNullOrEmpty(data_val))
             {
                 input = htmlHelper.DropDownListFor(expression, myList, oplabel, new { @class = "form-control select2 form-control-sm", data_val }).ToHtmlString();
+            }
+            else if (myList == null)
+            {
+                myList = MyDropdownsValue.EmptySelectList();
+                input = htmlHelper.DropDownListFor(expression, myList, oplabel, new { @class = "form-control select2 form-control-sm" }).ToHtmlString();
+            }
+            else
+            {
+                input = htmlHelper.DropDownListFor(expression, myList, oplabel, new { @class = "form-control select2 form-control-sm" }).ToHtmlString();
             }
             string validationMessage = htmlHelper.ValidationMessageFor(expression, "", new { @class = "text-danger" })?.ToHtmlString();
             string result = $"<div class='form-group'>{label}{input}{validationMessage}</div>";
