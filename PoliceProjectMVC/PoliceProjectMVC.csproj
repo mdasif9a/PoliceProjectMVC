@@ -228,6 +228,7 @@
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\Accused.cs" />
     <Compile Include="Models\SRNSRCase.cs" />
     <Compile Include="Controllers\SRNSRController.cs" />
     <Compile Include="Controllers\ActController.cs" />

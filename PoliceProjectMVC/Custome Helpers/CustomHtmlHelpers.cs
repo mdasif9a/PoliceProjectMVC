@@ -46,7 +46,7 @@ namespace PoliceProjectMVC.Custome_Helpers
             }
             else if (myList == null)
             {
-                myList = MyDropdownsValue.EmptySelectList();
+                myList = MyDropdownsValue.CaseTypeSRNSR();
                 input = htmlHelper.DropDownListFor(expression, myList, oplabel, new { @class = "form-control select2 form-control-sm" }).ToHtmlString();
             }
             else

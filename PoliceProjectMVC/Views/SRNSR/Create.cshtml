@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form action="/SubDivision/Create" method="post">
+<form action="/SRNSR/Create" method="post" id="mainForm">
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
@@ -15,7 +15,6 @@
                 <div class="card-body">
 
                     <div class="row">
-
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Major Head", "Select Major Head", null)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SMHeadId, "Sub Major Head", "Select Sub Major Head", null)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivisionId, "Sub Division", "Select Sub Division", null)</div>
@@ -23,8 +22,6 @@
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select PoliceStation", null)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseType, "SR/NSR", "Select SR/NSR", null)</div>
                     </div>
-
-
 
                 </div>
                 <!-- /.card -->
@@ -48,17 +45,18 @@
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-three-tabContent">
                         <div class="tab-pane fade" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
+
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ModusOperandiId, "Modus Operandi", "Select Modus Operandi", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Fir No", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Jail Date", "date")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Section", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Date and Time Of Occurance", "datetime")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Date and Time Of Occurance", "datetime-local")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Place Of Occurance", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "No of Known Accused", "number")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "No of UnKnown Accused", "number")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "IO Name", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.IoDesignationId, "IO Designation", "Select Designation", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "IO Mobile", "number")</div>
                             </div>
                             <hr />
@@ -69,19 +67,47 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2Content" role="tabpanel" aria-labelledby="tab2">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                            <div class="row" id="accusedform">
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Name, "Name", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Age, "Age", "number")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Gender, "Gender", "Select Gender", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.FirOrNonFir, "FIR/Non FIR", "Select FIR/Non FIR", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.FatherOrHusbandName, "Father Or Husband Name", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.MothersName, "Mother's Name", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Address, "Address", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.SubDivisionId, "Sub Division", "Select Sub Division", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.CircleId, "Circle", "Select Circle", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PoliceStationId, "PoliceStation", "Select PoliceStation", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PresentStatus, "Present Status", "Select Present Status", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.ConfessionFile, "Confession Statement", "file", "")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Chargesheet, "Chargesheet", "Select Chargesheet", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.ChargesheetDate, "Chargesheet Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.SectionFoundTrue, "Section Found True", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.AccusedFile, "Image of Accused", "file", "")</div>
                             </div>
+                            <div class="row justify-content-center align-content-center mt-3">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-right savebtn">Save</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Age</td>
+                                        <td>Fir / NonFir</td>
+                                        <td>Sub Division</td>
+                                        <td>Circle</td>
+                                        <td>Police Station</td>
+                                        <td>Present Status</td>
+                                        <td>Active</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="accusedTableBody">
+                                </tbody>
+                            </table>
                             <hr />
                             <div class="row justify-content-between align-content-center mt-3">
                                 <div class="col-auto">
@@ -94,17 +120,22 @@
                         </div>
                         <div class="tab-pane fade" id="tab3Content" role="tabpanel" aria-labelledby="tab3">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ModusOperandiId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FirNo, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.JailDate, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Section, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.DateAndTimeOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.PlaceOfOccurance, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoDesignationId, "Name in English", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "Name in English", "text")</div>
+                                @Html.Hidden("AccusedIds")
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SrNo, "SR. No", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CaseDate, "Case Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ReportType, "Report Type", "Select Report Type", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ReportDate, "Report Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SupervisionNote, "Supervision Note", "Select Supervision Note", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SupervisionDate, "Supervision Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SupervisionNoteBy, "Supervision Note By", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FinalForm, "Final Form (FF)", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ProgressReport, "ProgressReport", "Select ProgressReport", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ProgressReportDate, "ProgressReport Date", "date")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseDocumentType, "Case Document Type", "Select Case Document Type", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Case Document", "file", "")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ChargeSheetReport, "ChargeSheet Report", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CaseFinalHead, "Case Final Head", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CurrentCaseStatus, "Current Case Status", "Select Current Case Status", null)</div>
                             </div>
                             <hr />
                             <div class="row justify-content-between align-content-center mt-3">
@@ -112,7 +143,7 @@
                                     <button type="button" class="btn btn-primary float-right back">Back</button>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-primary float-right next">Finish</button>
+                                    <button type="button" class="btn btn-primary float-right finish">Finish</button>
                                 </div>
                             </div>
                         </div>
@@ -126,13 +157,144 @@
 @section Scripts{
 
     <script>
+
+
+        let accusedList = [];
+        let rowIndex = 1;
+        let savedaccusedids = [];
+
+        function AddRow() {
+            let name = $('#Accused_Name').val();
+            let age = $('#Accused_Age').val();
+            let fifnonfir = $('#Accused_FirOrNonFir').val();
+            let subdiv = $('#Accused_SubDivisionId option:selected').text();
+            let circleid = $('#Accused_CircleId option:selected').text();
+            let policestation = $('#Accused_PoliceStationId option:selected').text();
+            let present = $('#Accused_PresentStatus').val();
+            let isActive = true; // Defaulting as active
+
+
+            // Add accused to list
+            accusedList.push({
+                name,
+                age,
+                fifnonfir,
+                subdiv,
+                circleid,
+                policestation,
+                present,
+                isActive
+            });
+
+            // Add row to table
+            const rowHtml = `
+                    <tr>
+                        <td>${rowIndex++}</td>
+                        <td>${name}</td>
+                        <td>${age}</td>
+                        <td>${fifnonfir}</td>
+                        <td>${subdiv}</td>
+                        <td>${circleid}</td>
+                        <td>${policestation}</td>
+                        <td>${present}</td>
+                        <td>${isActive ? 'Yes' : 'No'}</td>
+                    </tr>
+                `;
+            $('#accusedTableBody').append(rowHtml);
+
+            // Clear form fields
+            $('#accusedform input, #accusedform select').val('');
+        }
+
+        $('.savebtn').on('click', function () {
+
+            if (rowIndex > parseInt($("#NoOfKnownAccused").val()) || 0) {
+                alert("You Already Submitted All Accused");
+                return;
+            }
+
+            if (!validateInputs()) {
+                return;
+            }
+
+            // Create FormData object
+            let formData = new FormData();
+
+            // Add text inputs to FormData
+            formData.append('Name', $('#Accused_Name').val());
+            formData.append('Age', $('#Accused_Age').val());
+            formData.append('Gender', $('#Accused_Gender').val());
+            formData.append('FirOrNonFir', $('#Accused_FirOrNonFir').val());
+            formData.append('FatherOrHusbandName', $('#Accused_FatherOrHusbandName').val());
+            formData.append('MothersName', $('#Accused_MothersName').val());
+            formData.append('Address', $('#Accused_Address').val());
+            formData.append('SubDivisionId', $('#Accused_SubDivisionId').val());
+            formData.append('CircleId', $('#Accused_CircleId').val());
+            formData.append('PoliceStationId', $('#Accused_PoliceStationId').val());
+            formData.append('PresentStatus', $('#Accused_PresentStatus').val());
+            formData.append('Chargesheet', $('#Accused_Chargesheet').val());
+            formData.append('ChargesheetDate', $('#Accused_ChargesheetDate').val());
+            formData.append('SectionFoundTrue', $('#Accused_SectionFoundTrue').val());
+
+            // Add files to FormData
+            let confessionFile = $('#Accused_ConfessionFile')[0].files[0];
+            if (confessionFile) {
+                formData.append('ConfessionFile', confessionFile);
+            }
+
+            let accusedFile = $('#Accused_AccusedFile')[0].files[0];
+            if (accusedFile) {
+                formData.append('AccusedFile', accusedFile);
+            }
+
+            // Send AJAX request
+            $.ajax({
+                url: '/SRNSR/SaveAccused',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    AddRow();
+                    savedaccusedids.push(response);
+                },
+                error: function (error) {
+                    alert('Error saving data.');
+                    console.error(error);
+                }
+            });
+        });
+
+        // Delete button click
+        $(document).on('click', '.deletebtn', function () {
+            const row = $(this).closest('tr');
+            const index = row.index();
+            accusedList.splice(index, 1);
+            row.remove();
+            rowIndex--;
+        });
+
+        $(document).on('click', '.finish', function () {
+            if (!validateInputs()) {
+                return;
+            }
+            $("#AccusedIds").val(savedaccusedids.join(","));
+            $("#mainForm").submit();
+        });
+
+
+
+
+
+
+
         // Function to validate inputs in the active tab
         function validateInputs() {
             let isValid = true;
 
             // Get all inputs, selects, and textareas in the active tab
             const inputs = $(".tab-pane.active input, .tab-pane.active select, .tab-pane.active textarea");
-            debugger;
+            //debugger;
             inputs.each(function () {
                 // Trigger validation for each element
                 if (!$(this).valid()) {
@@ -158,7 +320,7 @@
 
             // Validate inputs before navigating to the next tab
             if (isNext && !validateInputs()) {
-                return; // Stop if validation fails
+                return;
             }
 
             // Update active link
@@ -175,7 +337,8 @@
         }
 
         // Handle Next button
-        $("#CaseType").on("click", function () {
+        $("#CaseType").on("change", function () {
+        //$("#CaseType").on("click", function () {
             $("#downcardmy").show();
             const firstLink = $(".nav.nav-pills .nav-item:first-child .nav-link");
             const firstTab = $(".tab-pane:first-child");

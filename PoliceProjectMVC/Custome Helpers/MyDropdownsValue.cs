@@ -17,8 +17,8 @@ namespace PoliceProjectMVC.Custome_Helpers
         {
             return new SelectList(new List<SelectListItem>
                             {
-                                new SelectListItem { Text = "SR", Value = "SR" },
-                                new SelectListItem { Text = "NSR", Value = "NSR" }
+                                new SelectListItem { Text = "SR", Value = "1" },
+                                new SelectListItem { Text = "NSR", Value = "2" }
                             }, "Value", "Text");
         }
 

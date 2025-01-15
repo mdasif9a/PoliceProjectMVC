@@ -53,6 +53,8 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<ImportantPlace> ImportantPlaces { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<DistrictDetail> DistrictDetails { get; set; }
+        public virtual DbSet<SRNSRCase> SRNSRCases { get; set; }
+        public virtual DbSet<Accused> Accuseds { get; set; }
     }
 
 }

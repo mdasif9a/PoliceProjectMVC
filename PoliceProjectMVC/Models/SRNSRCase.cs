@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace PoliceProjectMVC.Models
 {
@@ -44,5 +47,13 @@ namespace PoliceProjectMVC.Models
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public List<Accused> Accuseds { get; set; }
+        [NotMapped]
+        public Accused Accused { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase MyImage { get; set; }
     }
+
 }
