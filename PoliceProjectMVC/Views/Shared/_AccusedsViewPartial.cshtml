@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PoliceProjectMVC.Models.Accused>
+@{
+    int b = 1;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Fir / NonFir</td>
+            <td>Sub Division</td>
+            <td>Circle</td>
+            <td>Police Station</td>
+            <td>Present Status</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(b++)</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.FirOrNonFir</td>
+                <td>@item.SubDivisionId</td>
+                <td>@item.CircleId</td>
+                <td>@item.PoliceStationId</td>
+                <td>@item.PresentStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>

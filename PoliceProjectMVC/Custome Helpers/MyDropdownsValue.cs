@@ -13,6 +13,14 @@ namespace PoliceProjectMVC.Custome_Helpers
             return new SelectList(Enumerable.Empty<object>(), "Value", "Text");
         }
 
+        public static SelectList GetYesNo()
+        {
+            return new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Yes", Value = "Yes" },
+                                new SelectListItem { Text = "No", Value = "No" }
+                            }, "Value", "Text");
+        }
         public static SelectList CaseTypeSRNSR()
         {
             return new SelectList(new List<SelectListItem>

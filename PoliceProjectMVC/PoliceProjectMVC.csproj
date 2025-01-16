@@ -229,6 +229,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Accused.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\SRNSRCase.cs" />
     <Compile Include="Controllers\SRNSRController.cs" />
     <Compile Include="Controllers\ActController.cs" />
@@ -515,6 +516,8 @@
     <Content Include="Views\DistrictDetail\Edit.cshtml" />
     <Content Include="Views\DistrictDetail\Index.cshtml" />
     <Content Include="Views\SRNSR\Create.cshtml" />
+    <Content Include="Views\SRNSR\Index.cshtml" />
+    <Content Include="Views\Shared\_AccusedsViewPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

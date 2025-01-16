@@ -56,8 +56,20 @@ namespace PoliceProjectMVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel
+            {
+                DistrictDetail = db.DistrictDetails.FirstOrDefault(),
+                Banners = db.Banners.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                PressReleases = db.PressReleases.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                MWCriminals = db.MWCriminals.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                AcheveMents = db.IAcheveMents.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                BestEmployees = db.BestEmployees.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                Galleries = db.ImageGalleries.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList()
+            };
+
+            return View(viewModel);
         }
+
 
         public ActionResult MyMainMenu()
         {

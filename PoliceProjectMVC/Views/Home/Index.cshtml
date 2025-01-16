@@ -1,4 +1,4 @@
-﻿
+﻿@model PoliceProjectMVC.Models.HomeViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -53,27 +53,23 @@
         <div class="col-md-9">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/Images/slider2.jpeg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider3.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider4.jpeg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider5.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider6.jpeg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider7.jpeg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/Images/slider1.jpg" class="d-block w-100" alt="...">
-                    </div>
+
+                    @if (Model.Banners != null && Model.Banners.Any())
+                    {
+                        <!-- First carousel item (active) -->
+                        <div class="carousel-item active">
+                            <img src="@Model.Banners.First().ImageUrl" class="d-block w-100" alt="...">
+                        </div>
+
+                        <!-- Remaining carousel items -->
+                        foreach (var banner in Model.Banners.Skip(1))
+                        {
+                            <div class="carousel-item">
+                                <img src="@banner.ImageUrl" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                    }
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -90,27 +86,12 @@
             <h4 class="sheader">@Resources.Resources.titilepress</h4>
             <marquee class="press-release-container" scrollamount="2" behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
                 <ul class="press-list">
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस विभाग ने इस महीने अवैध शराब के खिलाफ बड़े पैमाने पर छापेमारी की।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस विभाग ने नई सुरक्षा व्यवस्था लागू की, जिससे सड़क दुर्घटनाओं में कमी आई है।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस ने लापता बच्चों को ढूंढने के लिए विशेष अभियान शुरू किया।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस विभाग ने साइबर अपराधों के खिलाफ जागरूकता अभियान चलाया।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस ने त्योहारों के दौरान सुरक्षा के लिए अतिरिक्त बल तैनात किए।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">महिलाओं की सुरक्षा को लेकर बेतिया पुलिस ने विशेष हेल्पलाइन शुरू की।</a>
-                    </li>
-                    <li class="press-item">
-                        <a href="#">बेतिया पुलिस ने पर्यावरण संरक्षण के लिए हरित पट्टी अभियान में हिस्सा लिया।</a>
-                    </li>
+                    @foreach (var item in Model.PressReleases)
+                    {
+                        <li class="press-item">
+                            <a href="@item.ImageUrl">@item.Title</a>
+                        </li>
+                    }
 
                 </ul>
             </marquee>
@@ -200,7 +181,7 @@
             <h4 class="sheader">@Resources.Resources.titleimplinks</h4>
             <div class="important-links">
                 <i class="fa fa-sign-in-alt"></i>
-                <a target="blank" href="/login.aspx">@Resources.Resources.implinkofficiallogin</a>
+                <a target="blank" href="/Home/Login">@Resources.Resources.implinkofficiallogin</a>
             </div>
             <div class="important-links">
                 <i class="fa fa-info-circle"></i>
@@ -255,21 +236,17 @@
 
             <div id="criminalslider" class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="Images/criminal1.jpeg" />
-                        <div class="description">
-                            Ramesh Tuddu alias Tetu Tuddu
-                            <br />
-                            S/O- Matru Tuddu, Address- Buddhighat, Police Station- Katoriya, District- Banka
+                    @foreach (var item in Model.MWCriminals)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@item.ImageUrl" />
+                            <div class="description">
+                                @item.Name_En
+                                <br />
+                                @item.Description_En
+                            </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/criminal2.jpeg" />
-                        <div class="description">
-                            PARVIN YADAV<br />
-                            S/O JALDHARI YADAV AT- AMARI PS-KHAIRA DIST- BETTIAH
-                        </div>
-                    </div>
+                    }
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -289,38 +266,13 @@
 
             <div id="achivementslider" class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="Images/achieve1.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve2.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve3.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve4.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve5.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve6.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve7.jpg" />
-                        <div class="description">Description</div>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="Images/achieve8.jpg" />
-                        <div class="description">Description</div>
-                    </div>
+                    @foreach (var item in Model.AcheveMents)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@item.ImageUrl" />
+                            <div class="description">@item.Description_En</div>
+                        </div>
+                    }
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -333,13 +285,17 @@
 
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/Images/achieve1.jpg" alt="Criminal 1">
-                        <div class="description">
-                            Description<br />
-                            Police Inspector
+                    @foreach (var item in Model.BestEmployees)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@item.ImageUrl" alt="Criminal 1">
+                            <div class="description">
+                                @item.Description_En<br />
+                                @item.DesignationId
+                            </div>
                         </div>
-                    </div>
+                    }
+
                     .
                 </div>
                 <!-- Add Pagination -->
@@ -353,18 +309,13 @@
 
             <div id="imagegallery" class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/Images/slider2.jpeg" alt="Criminal 1">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/Images/slider2.jpeg" alt="Criminal 2">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/Images/slider2.jpeg" alt="Criminal 3">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/Images/slider2.jpeg" alt="Criminal 4">
-                    </div>
+                    @foreach (var item in Model.Galleries)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@item.ImageUrl" alt="Criminal 1">
+                        </div>
+                    }
+
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>

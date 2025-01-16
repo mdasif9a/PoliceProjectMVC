@@ -100,8 +100,14 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Index()
         {
-            List<Act> acts = db.Acts.ToList();
-            return View(acts);
+            List<SRNSRCase> cases = db.SRNSRCases.ToList();
+            return View(cases);
+        }
+
+        public ActionResult GetAccuseds(int caseId)
+        {
+            var accuseds = db.Accuseds.Where(p => p.SRNSRCaseId == caseId).ToList();
+            return PartialView("_AccusedsViewPartial", accuseds);
         }
 
         public ActionResult Create()

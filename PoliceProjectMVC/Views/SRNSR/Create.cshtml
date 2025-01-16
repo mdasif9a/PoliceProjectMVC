@@ -80,7 +80,7 @@
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PoliceStationId, "PoliceStation", "Select PoliceStation", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PresentStatus, "Present Status", "Select Present Status", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.ConfessionFile, "Confession Statement", "file", "")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Chargesheet, "Chargesheet", "Select Chargesheet", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Chargesheet, "Chargesheet", "Select Chargesheet", MyDropdownsValue.GetYesNo())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.ChargesheetDate, "Chargesheet Date", "date")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.SectionFoundTrue, "Section Found True", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.AccusedFile, "Image of Accused", "file", "")</div>
@@ -192,19 +192,7 @@
             });
 
             // Add row to table
-            const rowHtml = `
-                                                <tr>
-                                                    <td>${rowIndex++}</td>
-                                                    <td>${name}</td>
-                                                    <td>${age}</td>
-                                                    <td>${fifnonfir}</td>
-                                                    <td>${subdiv}</td>
-                                                    <td>${circleid}</td>
-                                                    <td>${policestation}</td>
-                                                    <td>${present}</td>
-                                                    <td>${isActive ? 'Yes' : 'No'}</td>
-                                                </tr>
-                                            `;
+            const rowHtml = `<tr><td>${rowIndex++}</td><td>${name}</td><td>${age}</td><td>${fifnonfir}</td><td>${subdiv}</td><td>${circleid}</td><td>${policestation}</td><td>${present}</td><td>${isActive ? 'Yes' : 'No'}</td></tr>`;
             $('#accusedTableBody').append(rowHtml);
 
             // Clear form fields
@@ -286,9 +274,6 @@
             }
             $("#AccusedIds").val(savedaccusedids.join(","));
             $("#mainForm").submit();
-            if (totalacc <= rowIndex) {
-
-            }
         });
 
 
@@ -347,7 +332,7 @@
         $("#CaseType").on("change", function () {
             //$("#CaseType").on("click", function () {
             $("#downcardmy").show();
-            const firstLink = $(".nav.nav-pills .nav-item:first-child .nav-link");
+            const firstLink = $("#mycustomformtab .nav-item:first-child .nav-link");
             const firstTab = $(".tab-pane:first-child");
 
             firstLink.addClass("active");
