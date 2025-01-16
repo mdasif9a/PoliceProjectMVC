@@ -15,12 +15,12 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Major Head", "Select Major Head", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.MHeadId, "Major Head", "Select Major Head", (SelectList)ViewBag.MyMHead)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SMHeadId, "Sub Major Head", "Select Sub Major Head", null)</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivisionId, "Sub Division", "Select Sub Division", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SubDivisionId, "Sub Division", "Select Sub Division", (SelectList)ViewBag.MySubDiv)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CircleId, "Crcle", "Select Circle", null)</div>
                         <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select PoliceStation", null)</div>
-                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseType, "SR/NSR", "Select SR/NSR", null)</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseType, "SR/NSR", "Select SR/NSR", MyDropdownsValue.CaseTypeSRNSR())</div>
                     </div>
 
                 </div>
@@ -56,7 +56,7 @@
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfKnownAccused, "No of Known Accused", "number")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.NoOfUnknownAccused, "No of UnKnown Accused", "number")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoName, "IO Name", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.IoDesignationId, "IO Designation", "Select Designation", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.IoDesignationId, "IO Designation", "Select Designation", (SelectList)ViewBag.MyDesigNation)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.IoMobile, "IO Mobile", "number")</div>
                             </div>
                             <hr />
@@ -75,7 +75,7 @@
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.FatherOrHusbandName, "Father Or Husband Name", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.MothersName, "Mother's Name", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Address, "Address", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.SubDivisionId, "Sub Division", "Select Sub Division", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.SubDivisionId, "Sub Division", "Select Sub Division", (SelectList)ViewBag.MySubDiv)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.CircleId, "Circle", "Select Circle", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PoliceStationId, "PoliceStation", "Select PoliceStation", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PresentStatus, "Present Status", "Select Present Status", null)</div>
@@ -105,8 +105,7 @@
                                         <td>Active</td>
                                     </tr>
                                 </thead>
-                                <tbody id="accusedTableBody">
-                                </tbody>
+                                <tbody id="accusedTableBody"></tbody>
                             </table>
                             <hr />
                             <div class="row justify-content-between align-content-center mt-3">
@@ -114,7 +113,7 @@
                                     <button type="button" class="btn btn-primary float-right back">Back</button>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-primary float-right next">Next</button>
+                                    <button type="button" class="btn btn-primary float-right next2">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +156,13 @@
 @section Scripts{
 
     <script>
+        bindDropdownOnChange("MHeadId", "SMHeadId", "/SRNSR/GetSMHead", "Name_EN", "Id");
+        bindDropdownOnChange("SubDivisionId", "CircleId", "/SRNSR/GetCircles", "Name_En", "Id");
+        bindDropdownOnChange("CircleId", "PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
+        bindDropdownOnChange("SMHeadId", "ModusOperandiId", "/SRNSR/GetModusOpernadi", "Name_EN", "Id");
 
+        bindDropdownOnChange("Accused_SubDivisionId", "Accused_CircleId", "/SRNSR/GetCircles", "Name_En", "Id");
+        bindDropdownOnChange("Accused_CircleId", "Accused_PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
 
         let accusedList = [];
         let rowIndex = 1;
@@ -188,18 +193,18 @@
 
             // Add row to table
             const rowHtml = `
-                    <tr>
-                        <td>${rowIndex++}</td>
-                        <td>${name}</td>
-                        <td>${age}</td>
-                        <td>${fifnonfir}</td>
-                        <td>${subdiv}</td>
-                        <td>${circleid}</td>
-                        <td>${policestation}</td>
-                        <td>${present}</td>
-                        <td>${isActive ? 'Yes' : 'No'}</td>
-                    </tr>
-                `;
+                                                <tr>
+                                                    <td>${rowIndex++}</td>
+                                                    <td>${name}</td>
+                                                    <td>${age}</td>
+                                                    <td>${fifnonfir}</td>
+                                                    <td>${subdiv}</td>
+                                                    <td>${circleid}</td>
+                                                    <td>${policestation}</td>
+                                                    <td>${present}</td>
+                                                    <td>${isActive ? 'Yes' : 'No'}</td>
+                                                </tr>
+                                            `;
             $('#accusedTableBody').append(rowHtml);
 
             // Clear form fields
@@ -207,11 +212,12 @@
         }
 
         $('.savebtn').on('click', function () {
-
-            if (rowIndex > parseInt($("#NoOfKnownAccused").val()) || 0) {
+            let totalacc = parseInt($("#NoOfKnownAccused").val()) || 0;
+            if (rowIndex > totalacc) {
                 alert("You Already Submitted All Accused");
                 return;
             }
+
 
             if (!validateInputs()) {
                 return;
@@ -280,11 +286,10 @@
             }
             $("#AccusedIds").val(savedaccusedids.join(","));
             $("#mainForm").submit();
+            if (totalacc <= rowIndex) {
+
+            }
         });
-
-
-
-
 
 
 
@@ -306,7 +311,7 @@
         }
 
         // Function to change active tab
-        function changeTab(isNext) {
+        function changeTab(isNext, valicheck = true) {
             const activeLink = $(".nav.nav-pills .nav-item .nav-link.active");
             const activeTab = $(".tab-pane.active");
 
@@ -319,8 +324,10 @@
                 : activeTab.prev(".tab-pane");
 
             // Validate inputs before navigating to the next tab
-            if (isNext && !validateInputs()) {
-                return;
+            if (valicheck && isNext) {
+                if (!validateInputs()) {
+                    return;
+                }
             }
 
             // Update active link
@@ -338,7 +345,7 @@
 
         // Handle Next button
         $("#CaseType").on("change", function () {
-        //$("#CaseType").on("click", function () {
+            //$("#CaseType").on("click", function () {
             $("#downcardmy").show();
             const firstLink = $(".nav.nav-pills .nav-item:first-child .nav-link");
             const firstTab = $(".tab-pane:first-child");
@@ -354,6 +361,18 @@
         // Handle Back button
         $(".back").on("click", function () {
             changeTab(false); // Move to the previous tab
+        });
+
+        $(".next2").on("click", function () {
+            debugger;
+            let totalacc = parseInt($("#NoOfKnownAccused").val()) || 0;
+
+            if (rowIndex <= totalacc) {
+                alert("Plz Submit All Accused");
+                return;
+            }
+
+            changeTab(true, false);
         });
     </script>
 }

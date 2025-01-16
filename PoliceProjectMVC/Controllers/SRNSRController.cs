@@ -17,9 +17,9 @@ namespace PoliceProjectMVC.Controllers
         private readonly PDDBContext db = new PDDBContext();
 
         //json data
-        public JsonResult GetSMHead(int MHeadId)
+        public JsonResult GetSMHead(int id)
         {
-            var sMHeads = db.SMHeads.AsNoTracking().Where(x => x.MHeadId == MHeadId).Select(x => new
+            var sMHeads = db.SMHeads.AsNoTracking().Where(x => x.MHeadId == id).Select(x => new
             {
                 x.Id,
                 x.Name_EN
@@ -27,9 +27,9 @@ namespace PoliceProjectMVC.Controllers
             return Json(sMHeads, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCircles(int SubDivisionId)
+        public JsonResult GetCircles(int id)
         {
-            var circles = db.Circles.AsNoTracking().Where(x => x.SubDivId == SubDivisionId).Select(x => new
+            var circles = db.Circles.AsNoTracking().Where(x => x.SubDivId == id).Select(x => new
             {
                 x.Id,
                 x.Name_En
@@ -37,9 +37,9 @@ namespace PoliceProjectMVC.Controllers
             return Json(circles, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetStations(int CircleId)
+        public JsonResult GetStations(int id)
         {
-            var policeStations = db.PoliceStations.AsNoTracking().Where(x => x.CircleId == CircleId).Select(x => new
+            var policeStations = db.PoliceStations.AsNoTracking().Where(x => x.CircleId == id).Select(x => new
             {
                 x.Id,
                 x.Name_En
@@ -47,9 +47,9 @@ namespace PoliceProjectMVC.Controllers
             return Json(policeStations, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetModusOpernadi(int SMHeadid)
+        public JsonResult GetModusOpernadi(int id)
         {
-            var modusoperandi = db.MOperandis.AsNoTracking().Where(x => x.SMHeadId == SMHeadid).Select(x => new
+            var modusoperandi = db.MOperandis.AsNoTracking().Where(x => x.SMHeadId == id).Select(x => new
             {
                 x.Id,
                 x.Name_EN
@@ -106,15 +106,31 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
+            ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(SRNSRCase model, string AccusedIds)
         {
+
+            var accusedIdList = AccusedIds.Split(',').Select(int.Parse).ToList();
+            var result = db.Accuseds.Where(x => accusedIdList.Contains(x.Id)).ToList();
+
+            var keysToRemove = ModelState.Keys.Where(k => k.StartsWith("Accused")).ToList();
+            foreach (var key in keysToRemove)
+            {
+                ModelState.Remove(key);
+            }
+
             if (!ModelState.IsValid)
             {
                 TempData["responseError"] = "Data validation failed.";
+                ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
+                ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
+                ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
                 return View(model);
             }
 
@@ -144,8 +160,6 @@ namespace PoliceProjectMVC.Controllers
                 db.SaveChanges();
 
                 int srnsrid = model.Id;
-                var accusedIdList = AccusedIds.Split(',').Select(int.Parse).ToList();
-                var result = db.Accuseds.Where(x => accusedIdList.Contains(x.Id)).ToList();
 
                 foreach (var item in result)
                 {
@@ -160,6 +174,9 @@ namespace PoliceProjectMVC.Controllers
             catch (Exception ex)
             {
                 TempData["responseError"] = $"An error occurred: {ex.Message}";
+                ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
+                ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
+                ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
                 return View(model);
             }
         }
@@ -170,11 +187,12 @@ namespace PoliceProjectMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Act model = db.Acts.Find(id);
+            SRNSRCase model = db.SRNSRCases.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
             }
+            model.Accuseds = db.Accuseds.Where(x => x.SRNSRCaseId == id).ToList();
             return View(model);
         }
 

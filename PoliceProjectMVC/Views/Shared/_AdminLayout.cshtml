@@ -169,6 +169,34 @@
             $(imageid).attr('src', URL.createObjectURL(event.target.files[0]));
         }
 
+        function bindDropdownOnChange(sourceDropdownId, targetDropdownId, url, textField, valueField) {
+            $(`#${sourceDropdownId}`).on("change", function () {
+                const selectedValue = $(this).val();
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { id: selectedValue },
+                    success: function (data) {
+
+                        $(`#${targetDropdownId}`).empty();
+                        if (data && data.length > 0) {
+
+                            $(`#${targetDropdownId}`).append('<option value="">Select</option>');
+                            $.each(data, function (index, item) {
+                                const option = `<option value="${item[valueField]}">${item[textField]}</option>`;
+                                $(`#${targetDropdownId}`).append(option);
+                            });
+                        } else {
+                            $(`#${targetDropdownId}`).append('<option value="">No Options Available</option>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching data:", error);
+                    }
+                });
+            });
+        }
+
     </script>
     @RenderSection("Scripts", false)
 
