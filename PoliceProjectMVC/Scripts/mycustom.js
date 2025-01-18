@@ -1,4 +1,4 @@
-(function() {
+(function () {
     "use strict";
 
     /**
@@ -81,14 +81,15 @@
     let selectHeader = select("#mainheader");
     if (selectHeader) {
         let headerOffset = selectHeader.offsetTop;
-        //let nextElement = selectHeader.nextElementSibling;
+        let nextElement = select("#nextHeaderMar");
+        let headerHeight = selectHeader.offsetHeight;
         const headerFixed = () => {
             if (headerOffset - window.scrollY <= 0) {
+                nextElement.style.marginTop = `${headerHeight}px`;
                 selectHeader.classList.add("fixed-top");
-                //nextElement.classList.add("scrolled-offset");
             } else {
                 selectHeader.classList.remove("fixed-top");
-                //nextElement.classList.remove("scrolled-offset");
+                nextElement.style.marginTop = `0px`;
             }
         };
         window.addEventListener("load", headerFixed);
@@ -114,7 +115,7 @@
     /**
      * Mobile nav toggle
      */
-    on("click", ".mobile-nav-toggle", function(e) {
+    on("click", ".mobile-nav-toggle", function (e) {
         select("#navbar").classList.toggle("navbar-mobile");
         this.classList.toggle("bi-list");
         this.classList.toggle("bi-x");
@@ -126,7 +127,7 @@
     on(
         "click",
         ".navbar .dropdown > a",
-        function(e) {
+        function (e) {
             if (select("#navbar").classList.contains("navbar-mobile")) {
                 e.preventDefault();
                 this.nextElementSibling.classList.toggle("dropdown-active");
@@ -141,7 +142,7 @@
     on(
         "click",
         ".scrollto",
-        function(e) {
+        function (e) {
             if (select(this.hash)) {
                 e.preventDefault();
 

@@ -523,6 +523,18 @@
     <Content Include="Views\Home\MessageFromSP.cshtml" />
     <Content Include="Views\Home\OurTeam.cshtml" />
     <Content Include="Views\Home\SuccesionList.cshtml" />
+    <Content Include="Views\Home\PoliceStation.cshtml" />
+    <Content Include="Views\Home\MissingPerson.cshtml" />
+    <Content Include="Views\Home\FoundPerson.cshtml" />
+    <Content Include="Views\Home\DeadPerson.cshtml" />
+    <Content Include="Views\Home\HelpLineNo.cshtml" />
+    <Content Include="Views\Home\Annoucement.cshtml" />
+    <Content Include="Views\Home\Criminal.cshtml" />
+    <Content Include="Views\Home\PeaceCommity.cshtml" />
+    <Content Include="Views\Home\PressRelease.cshtml" />
+    <Content Include="Views\Home\PhotoGallery.cshtml" />
+    <Content Include="Views\Home\NewsAndEvents.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
