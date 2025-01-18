@@ -190,6 +190,7 @@
     <Content Include="Images\dgpofbihar.jpg" />
     <Content Include="Images\faviconlogo.jpg" />
     <Content Include="Images\jamuipolicelogo.jpg" />
+    <Content Include="Images\no-image.png" />
     <Content Include="Images\noimage.png" />
     <Content Include="Images\policelogo.png" />
     <Content Include="Images\slider1.jpg" />
@@ -518,6 +519,10 @@
     <Content Include="Views\SRNSR\Create.cshtml" />
     <Content Include="Views\SRNSR\Index.cshtml" />
     <Content Include="Views\Shared\_AccusedsViewPartial.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\MessageFromSP.cshtml" />
+    <Content Include="Views\Home\OurTeam.cshtml" />
+    <Content Include="Views\Home\SuccesionList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

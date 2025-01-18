@@ -70,6 +70,25 @@ namespace PoliceProjectMVC.Controllers
             return View(viewModel);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult MessageFromSP()
+        {
+            return View();
+        }
+
+        public ActionResult OurTeam()
+        {
+            return View();
+        }
+
+        public ActionResult SuccesionList()
+        {
+            return View();
+        }
 
         public ActionResult MyMainMenu()
         {
