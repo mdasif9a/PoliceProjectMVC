@@ -1,22 +1,8 @@
-﻿
+﻿@model IEnumerable<PoliceProjectMVC.Models.PeaceCommittee>
 @{
-    ViewBag.Title = "Our Team";
+    ViewBag.Title = "PEACE COMMITTEE MEMBER LIST";
+    int b = 1;
 }
-
-@section Head{
-    <style>
-        .mystyle {
-            width: 100%;
-            padding: 30px !important;
-            box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);
-            white-space: pre-line;
-            text-align: justify;
-            height: 100%;
-        }
-    </style>
-}
-
-
 
 <section class="container my-3 p-0">
     <div class="row g-3">
@@ -25,20 +11,28 @@
 
     <div class="row g-3">
         <div class="col-md-12">
-            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+            <table class="table table-bordered table-striped table-sm text-nowrap" style="width:100%;">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <th>EventId</th>
-                        <th>Link</th>
-                        <th>ImageUrl</th>
-                        <th>Priority</th>
-                        <th>Action</th>
-
+                        <th>Description/Officer Name</th>
+                        <th>View</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <a href="@item.Link" target="_blank" class="btn btn-link">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

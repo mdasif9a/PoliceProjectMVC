@@ -1,20 +1,13 @@
-﻿
+﻿@model IEnumerable<PoliceProjectMVC.Models.TblHelplineNumber>
 @{
-    ViewBag.Title = "Our Team";
+    ViewBag.Title = "Helpline No";
+    int b = 1;
+    int c = 1;
 }
 
 @section Head{
     <style>
-        .mystyle {
-            width: 100%;
-            padding: 30px !important;
-            box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);
-            white-space: pre-line;
-            text-align: justify;
-            height: 100%;
-        }
-
-        .btn {
+        .btn-block {
             width: 100%;
         }
     </style>
@@ -29,56 +22,85 @@
 
     <div class="row mb-4 g-3">
         <div class="col-2">
-            <button class="btn btn-sm btn-block btn-primary">Police</button>
+            <button class="btn btn-sm btn-block btn-primary" onclick="PbtnClick()">Police</button>
         </div>
         <div class="col-2">
-            <button class="btn btn-sm btn-block btn-primary">Others</button>
+            <button class="btn btn-sm btn-block btn-primary" onclick="ObtnClick()">Others</button>
         </div>
         <div class="col-2">
-            <button class="btn btn-sm btn-flat btn-primary">All</button>
+            <button class="btn btn-sm btn-block btn-primary" onclick="AbtnClick()">All</button>
         </div>
     </div>
 
-    <div class="row mb-3 g-3">
+    <div class="row mb-3 g-3" id="PRow">
         <div class="col-md-12">
             <h5>Police Officers Contact Number</h5>
             <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>EventId</th>
-                        <th>Link</th>
-                        <th>ImageUrl</th>
-                        <th>Priority</th>
-                        <th>Action</th>
-
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Helpline Numbers</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @foreach (var item in Model.Where(x => x.Type == "Officer"))
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name_En</td>
+                            <td>@item.Designation.Name_En</td>
+                            <td>@item.HelplineNumbers</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 
-    <div class="row g-3">
+    <div class="row g-3" id="ORow">
         <div class="col-md-12">
             <h5>Other Department Contact Number</h5>
             <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>EventId</th>
-                        <th>Link</th>
-                        <th>ImageUrl</th>
-                        <th>Priority</th>
-                        <th>Action</th>
-
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Helpline Numbers</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @foreach (var item in Model.Where(x => x.Type == "Other Department"))
+                    {
+                        <tr>
+                            <td>@(c++)</td>
+                            <td>@item.Name_En</td>
+                            <td>@item.Designation.Name_En</td>
+                            <td>@item.HelplineNumbers</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 
 </section>
+
+@section Scripts{
+    <script>
+        function PbtnClick() {
+            $("#PRow").show();
+            $("#ORow").hide();
+        }
+        function ObtnClick() {
+            $("#PRow").hide();
+            $("#ORow").show();
+        }
+        function AbtnClick() {
+            $("#PRow").show();
+            $("#ORow").show();
+        }
+    </script>
+}

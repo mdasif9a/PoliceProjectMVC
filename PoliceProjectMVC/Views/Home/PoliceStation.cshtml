@@ -1,44 +1,46 @@
-﻿
+﻿@model IEnumerable<PoliceProjectMVC.Models.PoliceStation>
 @{
-    ViewBag.Title = "Our Team";
+    ViewBag.Title = "Police Stations";
+    int b = 1;
 }
-
-@section Head{
-    <style>
-        .mystyle {
-            width: 100%;
-            padding: 30px !important;
-            box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);
-            white-space: pre-line;
-            text-align: justify;
-            height: 100%;
-        }
-    </style>
-}
-
-
 
 <section class="container my-3 p-0">
     <div class="row g-3">
-        <h4 class="sheader mt-3">Police Station</h4>
+        <h4 class="sheader mt-3">Police Stations</h4>
     </div>
 
     <div class="row g-3">
         <div class="col-md-12">
-            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+            <table class="table table-bordered table-striped table-sm text-nowrap" style="width:100%;">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>EventId</th>
-                        <th>Link</th>
-                        <th>ImageUrl</th>
-                        <th>Priority</th>
-                        <th>Action</th>
-
+                        <th>Name</th>
+                        <th>Circla Name</th>
+                        <th>Mobile No</th>
+                        <th>Helpline No</th>
+                        <th>Medical No</th>
+                        <th>Ambulance No</th>
+                        <th>Fire Brigade No</th>
+                        <th>Image</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.Name_En</td>
+                            <td>@item.Circle.Name_En</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.HelpLineNo</td>
+                            <td>@item.MedicalNo</td>
+                            <td>@item.AmbulanceNo</td>
+                            <td>@item.FieBrigadeNo</td>
+                            <td><img src="@item.ImageUrl" width="50" height="50" /></td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

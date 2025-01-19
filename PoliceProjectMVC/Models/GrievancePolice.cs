@@ -27,12 +27,15 @@ namespace PoliceProjectMVC.Models
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public DateTime IncidentDate { get; set; }
         public string UpdatedBy { get; set; }
+        public int PoliceStationId { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
 
         [NotMapped]
         public HttpPostedFileBase MyImage { get; set; }
+        public PoliceStation PoliceStation { get; set; }
     }
 
 }

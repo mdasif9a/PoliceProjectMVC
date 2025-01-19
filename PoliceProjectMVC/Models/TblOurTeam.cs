@@ -24,11 +24,7 @@ namespace PoliceProjectMVC.Models
 
         [Required(ErrorMessage = "Enter Date")]
         public DateTime JoiningDate { get; set; }
-
-        [Required(ErrorMessage = "Enter Discription in Hindi")]
         public string Description_Hi { get; set; }
-
-        [Required(ErrorMessage = "Enter Discription in English")]
         public string Description_En { get; set; }
 
         [Required(ErrorMessage = "Enter Priority")]

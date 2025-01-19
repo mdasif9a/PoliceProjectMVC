@@ -1,0 +1,35 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.Passport
+@{
+    ViewBag.Title = "Passport";
+}
+
+<section class="container my-3 p-0">
+    <div class="row g-3">
+        <h4 class="sheader mt-3">Passport</h4>
+    </div>
+    <form method="post" action="/Home/Passport" onsubmit="return false;">
+        <div class="row mt-4 g-3">
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PassportType, "Passport Type", "Select Pasport Type", MyDropdownsValue.GetPassportType())</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.DateOfBirth, "Date Of Birth", "date")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.FileNumber, "File Number", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.ApplicantName, "Applicant's Name", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Email, "Email", "email")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MobileNo, "Mobile No", "number")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", null)</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.District, "District", "Select District", MyDropdownsValue.GetDistrict())</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Comments, "Comments", "text")</div>
+
+        </div>
+        <div class="row mt-3 justify-content-end">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts{
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

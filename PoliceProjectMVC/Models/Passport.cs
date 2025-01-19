@@ -30,7 +30,7 @@ namespace PoliceProjectMVC.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Select District")]
-        public int DistrictId { get; set; }
+        public string District { get; set; }
 
         [Required(ErrorMessage = "Enter Comments")]
         public string Comments { get; set; }

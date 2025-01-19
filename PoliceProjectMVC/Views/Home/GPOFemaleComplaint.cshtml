@@ -1,0 +1,35 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.GrievancePolice
+@{
+    ViewBag.Title = "GPO Female Complaint";
+}
+
+<section class="container my-3 p-0">
+    <div class="row g-3">
+        <h4 class="sheader mt-3">GPO Female Complaint</h4>
+    </div>
+    <form method="post" action="/Home/GPOFemaleComplaint">
+        <div class="row mt-4 g-3">
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", null)</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.EmployeeId, "Employee Id", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.IncidentDate, "Incident Date", "date")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MyImage, "Document", "file")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.CurrentPosting, "Current Posting", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.CurrentStatus, "Current Employee Status", "Select", MyDropdownsValue.GetEmployeeStatusType())</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Description, "Description", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Name, "Name", "text")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MobileNo, "Mobile No", "number")</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Email, "Email", "email")</div>
+        </div>
+        <div class="row mt-3 justify-content-end">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts{
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

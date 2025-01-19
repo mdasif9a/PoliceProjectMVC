@@ -1,22 +1,8 @@
-﻿
+﻿@model IEnumerable<PoliceProjectMVC.Models.MPerson>
 @{
     ViewBag.Title = "Missing Person";
+    int b = 1;
 }
-
-@section Head{
-    <style>
-        .mystyle {
-            width: 100%;
-            padding: 30px !important;
-            box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);
-            white-space: pre-line;
-            text-align: justify;
-            height: 100%;
-        }
-    </style>
-}
-
-
 
 <section class="container my-3 p-0">
     <div class="row g-3">
@@ -37,20 +23,37 @@
 
     <div class="row g-3">
         <div class="col-md-12">
-            <table class="table dtable table-bordered table-striped table-sm text-nowrap" style="width:100%;">
+            <table class="table table-bordered table-striped table-sm text-nowrap" style="width:100%;">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>EventId</th>
-                        <th>Link</th>
-                        <th>ImageUrl</th>
-                        <th>Priority</th>
-                        <th>Action</th>
+                        <th>Name</th>
+                        <th>Father's Name</th>
+                        <th>Mother's Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>DOB</th>
+                        <th>Mobile No</th>
+                        <th>Religion</th>
 
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(b++)</td>
+                            <td>@item.PersonName</td>
+                            <td>@item.FatherName</td>
+                            <td>@item.MotherName</td>
+                            <td>@item.PersonGender</td>
+                            <td>@item.PersonAge</td>
+                            <td>@item.DateOfBirth.ToString("dd-MM-yyyy")</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.Religion</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

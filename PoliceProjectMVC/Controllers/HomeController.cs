@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -50,13 +51,13 @@ namespace PoliceProjectMVC.Controllers
         {
             var viewModel = new HomeViewModel
             {
-                DistrictDetail = db.DistrictDetails.FirstOrDefault(),
-                Banners = db.Banners.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
-                PressReleases = db.PressReleases.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
-                MWCriminals = db.MWCriminals.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
-                AcheveMents = db.IAcheveMents.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
-                BestEmployees = db.BestEmployees.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
-                Galleries = db.ImageGalleries.Where(x => x.IsActive).OrderBy(x => x.Priority).ToList()
+                DistrictDetail = db.DistrictDetails.AsNoTracking().FirstOrDefault(),
+                Banners = db.Banners.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                PressReleases = db.PressReleases.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                MWCriminals = db.MWCriminals.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                AcheveMents = db.IAcheveMents.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList(),
+                BestEmployees = db.BestEmployees.AsNoTracking().Where(x => x.IsActive).Include(x => x.Designation).OrderBy(x => x.Priority).ToList(),
+                Galleries = db.ImageGalleries.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList()
             };
             return View(viewModel);
         }
@@ -70,17 +71,24 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult OurTeam()
         {
-            return View();
+            List<TblOurTeam> ourTeams = db.TblOurTeams.Where(x => x.IsActive).Include(x => x.Designation).ToList();
+            return View(ourTeams);
         }
         public ActionResult SuccesionList()
         {
-            return View();
+            List<SuccessionList> successions = db.SuccessionLists.Where(x => x.IsActive).Include(x => x.Designation).ToList();
+            return View(successions);
         }
         public ActionResult PoliceStation()
         {
-            return View();
+            List<PoliceStation> stations = db.PoliceStations.Where(x => x.IsActive).Include(x => x.Circle).ToList();
+            return View(stations);
         }
         public ActionResult Complaint()
+        {
+            return View();
+        }
+        public ActionResult RTI()
         {
             return View();
         }
@@ -92,6 +100,70 @@ namespace PoliceProjectMVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult GPOComplaint(GrievancePolice gpo)
+        {
+            if (gpo.MyImage != null && gpo.MyImage.ContentLength > 0)
+            {
+                string imagePath = Path.Combine(Server.MapPath("~/Images/GrievancePoliceImages/"));
+                string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(gpo.MyImage.FileName)}";
+                string fullPath = Path.Combine(imagePath, fileName);
+
+                if (!Directory.Exists(imagePath))
+                {
+                    Directory.CreateDirectory(imagePath);
+                }
+
+                gpo.MyImage.SaveAs(fullPath);
+                gpo.ImageUrl = $"/Images/GrievancePoliceImages/{fileName}";
+            }
+
+            // Set audit fields
+            gpo.GenderType = false;
+            gpo.IsActive = true;
+            gpo.CreatedBy = "Web";
+            gpo.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.GrievancePolices.Add(gpo);
+            db.SaveChanges();
+
+            TempData["alert"] = "created successfully.";
+            return RedirectToAction("GPOComplaint");
+        }
+
+        [HttpPost]
+        public ActionResult GPOFemaleComplaint(GrievancePolice gpo)
+        {
+            if (gpo.MyImage != null && gpo.MyImage.ContentLength > 0)
+            {
+                string imagePath = Path.Combine(Server.MapPath("~/Images/GrievancePoliceImages/"));
+                string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(gpo.MyImage.FileName)}";
+                string fullPath = Path.Combine(imagePath, fileName);
+
+                if (!Directory.Exists(imagePath))
+                {
+                    Directory.CreateDirectory(imagePath);
+                }
+
+                gpo.MyImage.SaveAs(fullPath);
+                gpo.ImageUrl = $"/Images/GrievancePoliceImages/{fileName}";
+            }
+
+            // Set audit fields
+            gpo.GenderType = true;
+            gpo.IsActive = true;
+            gpo.CreatedBy = "Web";
+            gpo.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.GrievancePolices.Add(gpo);
+            db.SaveChanges();
+
+            TempData["alert"] = "created successfully.";
+            return RedirectToAction("GPOFemaleComplaint");
+        }
         public ActionResult Character()
         {
             return View();
@@ -102,15 +174,18 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult MissingPerson()
         {
-            return View();
+            List<MPerson> mpersons = db.MPersons.Where(x => x.IsActive).ToList();
+            return View(mpersons);
         }
         public ActionResult FoundPerson()
         {
-            return View();
+            List<FPerson> fpersons = db.FPersons.Where(x => x.IsActive).ToList();
+            return View(fpersons);
         }
         public ActionResult DeadPerson()
         {
-            return View();
+            List<DPerson> dpersons = db.DPersons.Where(x => x.IsActive).ToList();
+            return View(dpersons);
         }
         public ActionResult FeedBack()
         {
@@ -118,31 +193,38 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult HelpLineNo()
         {
-            return View();
+            List<TblHelplineNumber> helplineNumbers = db.TblHelplineNumbers.Where(x => x.IsActive).Include(x => x.Designation).ToList();
+            return View(helplineNumbers);
         }
         public ActionResult Annoucement()
         {
-            return View();
+            List<Announcement> announcements = db.Announcements.Where(x => x.IsActive).ToList();
+            return View(announcements);
         }
         public ActionResult Criminal()
         {
-            return View();
+            List<CriminalList> criminals = db.CriminalLists.Where(x => x.IsActive).ToList();
+            return View(criminals);
         }
         public ActionResult PeaceCommity()
         {
-            return View();
+            List<PeaceCommittee> peaces = db.PeaceCommittees.Where(x => x.IsActive).ToList();
+            return View(peaces);
         }
         public ActionResult NewsAndEvents()
         {
-            return View();
+            List<NewsAndEvent> datalist = db.NewsAndEvents.Where(x => x.IsActive).ToList();
+            return View(datalist);
         }
         public ActionResult PhotoGallery()
         {
-            return View();
+            List<ImageGallery> datalist = db.ImageGalleries.Where(x => x.IsActive).ToList();
+            return View(datalist);
         }
         public ActionResult PressRelease()
         {
-            return View();
+            List<PressRelease> datalist = db.PressReleases.Where(x => x.IsActive).ToList();
+            return View(datalist);
         }
         public ActionResult ContactUs()
         {
