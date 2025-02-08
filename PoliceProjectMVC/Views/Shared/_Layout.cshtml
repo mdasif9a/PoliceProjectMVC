@@ -12,10 +12,16 @@
     <link href="/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link href="/Content/css/mystyle.css" rel="stylesheet" />
     <script src="/Scripts/jquery-3.6.3.min.js"></script>
+    <style>
+        .brd-red {
+            border-bottom: 2px solid #f10101;
+            border-top: 2px solid #f10101;
+        }
+    </style>
     @RenderSection("Head", required: false)
 </head>
 <body>
-    <section id="topbar" class="d-flex align-items-center header-top dark">
+    <section id="topbar" class="d-flex align-items-center header-top dark brd-red">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-envelope"></i><a href="mailto:sp-bettiah-bih@nic.in">sp-bettiah-bih@nic.in</a>
@@ -48,25 +54,28 @@
                 <h5>@Resources.Resources.title_superintendent_of_police</h5>
             </div>
         </div>
-        <div id="mainheader" style="background-color: #015486;">
-            <nav id="navbar" class="navbar container">
-                <ul>
-                    @Html.Action("MyMainMenu", "Home")
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
+
+        <div class="brd-red">
+            <div id="mainheader" style="background-color: #015486;">
+                <nav id="navbar" class="navbar container">
+                    <ul>
+                        @Html.Action("MyMainMenu", "Home")
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+            </div>
+
+            <div id="nextHeaderMar" style="background-color: #002366; height: 30px; padding-top: 5px">
+                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                    <div class="scroll-item">
+                        <strong style="color: #ffff33">
+                            <a href="javascript:void(0);" style="color: #ffff33">@Resources.Resources.titlewelcome</a>
+                        </strong>
+                    </div>
+                </marquee>
+            </div>
         </div>
     </header>
-
-    <div id="nextHeaderMar" style="background-color: #002366; height: 30px; padding-top: 5px">
-        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-            <div class="scroll-item">
-                <strong style="color: #ffff33">
-                    <a href="javascript:void(0);" style="color: #ffff33">@Resources.Resources.titlewelcome</a>
-                </strong>
-            </div>
-        </marquee>
-    </div>
 
     <main role="main" class="container">
         @RenderBody()
@@ -142,12 +151,17 @@
     <script src="/Content/swiper/swiper-bundle.min.js"></script>
     <script src="/Scripts/mycustom.js"></script>
     <script>
-        $(document).ready(function () {
+        $.ready(function () {
             $("img").each(function () {
-                if (!this.complete || this.naturalWidth === 0) {
+                if (this.src == '') {
                     this.src = '/Images/no-image.png';
                 }
             });
+
+            let b = `@TempData["alert"]`;
+            if (b != "") {
+                alert(b);
+            }
         });
     </script>
     @RenderSection("Scripts", required: false)

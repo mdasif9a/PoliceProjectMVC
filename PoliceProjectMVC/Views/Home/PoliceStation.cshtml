@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<PoliceProjectMVC.Models.PoliceStation>
 @{
     ViewBag.Title = "Police Stations";
-    int b = 1;
 }
 
 <section class="container my-3 p-0">
@@ -10,38 +9,23 @@
     </div>
 
     <div class="row g-3">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped table-sm text-nowrap" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Circla Name</th>
-                        <th>Mobile No</th>
-                        <th>Helpline No</th>
-                        <th>Medical No</th>
-                        <th>Ambulance No</th>
-                        <th>Fire Brigade No</th>
-                        <th>Image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@(b++)</td>
-                            <td>@item.Name_En</td>
-                            <td>@item.Circle.Name_En</td>
-                            <td>@item.MobileNo</td>
-                            <td>@item.HelpLineNo</td>
-                            <td>@item.MedicalNo</td>
-                            <td>@item.AmbulanceNo</td>
-                            <td>@item.FieBrigadeNo</td>
-                            <td><img src="@item.ImageUrl" width="50" height="50" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4">
+                <div class="card">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="Sample Image">
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>Police Station:</b> @item.Name_En<br />
+                            Contact No : @item.MobileNo<br />
+                            E-Mail : @item.Email<br />
+                            Address : @item.Address<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
+
 </section>

@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-# General
+# General  #015486
 --------------------------------------------------------------*/
 
 body {
@@ -71,12 +71,10 @@ ul {
 --------------------------------------------------------------*/
 
 #topbar {
-    background: #015486;
+    background: linear-gradient(to left, blue, darkblue);
     font-size: 15px;
     height: 40px;
     padding: 0;
-    border-bottom: 2px solid #f10101;
-    border-top: 2px solid #f10101;
     color: #fff;
 }
 
@@ -250,7 +248,7 @@ ul {
         z-index: 99;
         opacity: 0;
         visibility: hidden;
-        background: #015486;
+        background: linear-gradient(to left, blue, darkblue);
         box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
         transition: 0.3s;
         border: 5px solid #fff;
@@ -1171,7 +1169,7 @@ section {
     }
 
     #footer p {
-        font-size: 15;
+        font-size: 15px;
         padding: 0;
         margin: 0 0 10px 0;
     }

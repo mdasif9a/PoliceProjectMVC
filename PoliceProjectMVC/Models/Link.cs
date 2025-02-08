@@ -14,7 +14,7 @@ namespace PoliceProjectMVC.Models
         public string Description_Hi { get; set; }
         public string Description_En { get; set; }
         [Required(ErrorMessage = "Select Link Type")]
-        public int LinkType { get; set; }
+        public string LinkType { get; set; }
         [Required(ErrorMessage = "Enter Link URL")]
         public string LinkUrl { get; set; }
         public string Color { get; set; }

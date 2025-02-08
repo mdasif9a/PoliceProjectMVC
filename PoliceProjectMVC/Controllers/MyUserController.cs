@@ -242,17 +242,17 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Dashboard()
         {
-            ViewBag.TotalComplaints = 0;
-            ViewBag.PendingComplaints = 0;
-            ViewBag.ClosedComplaints = 0;
-            ViewBag.RejectedComplaints = 0;
+            ViewBag.TotalComplaints = db.Complaints.Count();
+            ViewBag.PendingComplaints = db.Complaints.Where(x => x.IsActive).Count();
+            ViewBag.ClosedComplaints = db.Complaints.Where(x => x.IsActive).Count();
+            ViewBag.RejectedComplaints = db.Complaints.Where(x => x.IsActive).Count();
 
-            ViewBag.TotalCharacterCertificates = 0;
-            ViewBag.TotalMissingPersons = 0;
-            ViewBag.TotalFoundPersons = 0;
-            ViewBag.TotalPassports = 0;
+            ViewBag.TotalCharacterCertificates = db.Characters.Count();
+            ViewBag.TotalMissingPersons = db.MPersons.Count();
+            ViewBag.TotalFoundPersons = db.FPersons.Count();
+            ViewBag.TotalPassports = db.Passports.Count();
 
-            ViewBag.TotalFeedbackSuggestions = 0;
+            ViewBag.TotalFeedbackSuggestions = db.Feedbacks.Count();
 
             return View("AdminDash");
         }

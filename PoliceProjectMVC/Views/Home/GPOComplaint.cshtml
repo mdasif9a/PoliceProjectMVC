@@ -8,9 +8,9 @@
     <div class="row g-3">
         <h4 class="sheader mt-3">GPO Complaint</h4>
     </div>
-    <form method="post" action="/Home/GPOComplaint">
+    <form method="post" action="/Home/GPOComplaint" enctype="multipart/form-data">
         <div class="row mt-4 g-3">
-            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", null)</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", (SelectList)ViewBag.Police)</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.EmployeeId, "Employee Id", "text")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.IncidentDate, "Incident Date", "date")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MyImage, "Document", "file")</div>
@@ -30,6 +30,6 @@
 </section>
 
 @section Scripts{
-    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script> 
     <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }

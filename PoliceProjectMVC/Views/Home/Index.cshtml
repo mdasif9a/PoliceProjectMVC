@@ -96,7 +96,7 @@
                     @foreach (var item in Model.PressReleases)
                     {
                         <li class="press-item">
-                            <a href="@item.Link" target="_blank">@item.Title</a>
+                            <a href="@item.ImageUrl" target="_blank">@item.Title</a>
                         </li>
                     }
 
@@ -242,28 +242,34 @@
             <h4 class="sheader">@Resources.Resources.titlemostwanted</h4>
             @if (Model.MWCriminals.Count == 0)
             {
+
+
                 <div class="w-100 text-center" style="color: #a22121; padding: 20px 0;"> No Criminals Are added yet! </div>
             }
-            <div id="criminalslider" class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach (var item in Model.MWCriminals)
-                    {
-                        <div class="swiper-slide">
-                            <img src="@item.ImageUrl" />
-                            <div class="description">
-                                @item.Name_En
-                                <br />
-                                @item.Description_En
+            else
+            {
+
+                <div id="criminalslider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in Model.MWCriminals)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@item.ImageUrl" />
+                                <div class="description">
+                                    @item.Name_En
+                                    <br />
+                                    @item.Description_En
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            }
 
             <h4 class="sheader mt-3">@Resources.Resources.titleabout</h4>
             <div style="width: 100%; padding: 30px !important; box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%); margin: 10px 0; white-space: pre-line; text-align: justify;">
@@ -275,82 +281,98 @@
             <h4 class="sheader mt-3">@Resources.Resources.titleacheve</h4>
             @if (Model.AcheveMents.Count == 0)
             {
+
+
                 <div class="w-100 text-center" style="color: #a22121; padding: 20px 0;"> No Acheivements Are added yet! </div>
             }
-            <div id="achivementslider" class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach (var item in Model.AcheveMents)
-                    {
-                        <div class="swiper-slide">
-                            <img src="@item.ImageUrl" />
-                            <div class="description">@item.Description_En</div>
-                        </div>
-                    }
+            else
+            {
+                <div id="achivementslider" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in Model.AcheveMents)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@item.ImageUrl" />
+                                <div class="description">@item.Description_En</div>
+                            </div>
+                        }
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            }
 
             <h4 class="sheader mt-3">@Resources.Resources.titlebestpolice</h4>
             @if (Model.BestEmployees.Count == 0)
             {
+
+
                 <div class="w-100 text-center" style="color: #a22121; padding: 20px 0;"> No Best Employee Are added yet! </div>
             }
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach (var item in Model.BestEmployees)
-                    {
-                        <div class="swiper-slide">
-                            <img src="@item.ImageUrl" alt="Criminal 1">
-                            <div class="description">
-                                @item.Description_En<br />
-                                @item.Designation.Name_En
-                            </div>
-                        </div>
-                    }
+            else
+            {
 
-                    .
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in Model.BestEmployees)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@item.ImageUrl" alt="Criminal 1">
+                                <div class="description">
+                                    @item.Description_En<br />
+                                    @item.Designation.Name_En
+                                </div>
+                            </div>
+                        }
+
+                        .
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            }
 
             <h4 class="sheader mt-3">@Resources.Resources.titleimagegallery</h4>
             @if (Model.Galleries.Count == 0)
             {
+
+
                 <div class="w-100 text-center" style="color: #a22121; padding: 20px 0;"> No Images Are added yet! </div>
             }
-            <div id="imagegallery" class="swiper-container">
-                <div class="swiper-wrapper">
-                    @foreach (var item in Model.Galleries)
-                    {
-                        <div class="swiper-slide">
-                            <img src="@item.ImageUrl" alt="Criminal 1">
-                        </div>
-                    }
+            else
+            {
+                <div id="imagegallery" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in Model.Galleries)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@item.ImageUrl" alt="Criminal 1">
+                            </div>
+                        }
 
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            }
 
         </div>
 
         <div class="col-md-3">
             <h4 class="sheader">@Resources.Resources.titlesocial</h4>
-            <iframe height="500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" data-adapt-container-width="false" style="border: 1px solid #ff6a00; margin-bottom: 10px; overflow: hidden; text-align: center;"
+            <iframe height="500" scrolling="no" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" data-adapt-container-width="false" style="border: 1px solid #ff6a00; margin-bottom: 10px; overflow: hidden; text-align: center;"
                     src="https://www.facebook.com/v16.0/plugins/page.php?adapt_container_width=false&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df2ef309ed5e5278%26domain%3Dbettiah.mocsoft.in%26is_canvas%3Dfalse%26origin%3Dhttp%253A%252F%252Fjamui.mocsoft.in%252Ff6bf7ab7cd71b%26relation%3Dparent.parent&amp;height=500&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FBettiahPoliceWC&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;tabs=timeline"
                     width="340"></iframe>
-            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline" class="twitter" style="border: 1px solid #ff6a00; margin-bottom: 10px; position: static; visibility: visible; width: 340px; height: 500px; display: block; flex-grow: 1;"
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="allowfullscreen" title="Twitter Timeline" class="twitter" style="border: 1px solid #ff6a00; margin-bottom: 10px; position: static; visibility: visible; width: 340px; height: 500px; display: block; flex-grow: 1;"
                     src="https://syndication.twitter.com/srv/timeline-profile/screen-name/Bettiah_Police?dnt=false&amp;embedId=twitter-widget-12&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbWl4ZWRfbWVkaWFfMTU4OTciOnsiYnVja2V0IjoidHJlYXRtZW50IiwidmVyc2lvbiI6bnVsbH0sInRmd19leHBlcmltZW50c19jb29raWVfZXhwaXJhdGlvbiI6eyJidWNrZXQiOjEyMDk2MDAsInZlcnNpb24iOm51bGx9LCJ0ZndfZHVwbGljYXRlX3NjcmliZXNfdG9fc2V0dGluZ3MiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3ZpZGVvX2hsc19keW5hbWljX21hbmlmZXN0c18xNTA4MiI6eyJidWNrZXQiOiJ0cnVlX2JpdHJhdGUiLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2xlZ2FjeV90aW1lbGluZV9zdW5zZXQiOnsiYnVja2V0Ijp0cnVlLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3R3ZWV0X2VkaXRfZnJvbnRlbmQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfX0%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=500px&amp;origin=https%3A%2F%2Fpublish.twitter.com%2F%23&amp;sessionId=68f32caa5c7d388397adc8d5da0edea09906faf6&amp;showHeader=true&amp;showReplies=false&amp;theme=light&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe>
         </div>
 
