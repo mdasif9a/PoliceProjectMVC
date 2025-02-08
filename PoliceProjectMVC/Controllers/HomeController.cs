@@ -16,6 +16,16 @@ namespace PoliceProjectMVC.Controllers
     public class HomeController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
+        public ActionResult DualScreen()
+        {
+            List<Banner> banners = db.Banners.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList();
+            return View(banners);
+        }
+        public ActionResult MWCount()
+        {
+            int banners = db.Banners.Count();
+            return Json(banners, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult SetLanguage(string culture)
@@ -86,7 +96,39 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Complaint()
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Complaint(Complaint complaint)
+        {
+            if (complaint.MyImage != null && complaint.MyImage.ContentLength > 0)
+            {
+                string imagePath = Path.Combine(Server.MapPath("~/Images/ComplaintImages/"));
+                string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(complaint.MyImage.FileName)}";
+                string fullPath = Path.Combine(imagePath, fileName);
+
+                if (!Directory.Exists(imagePath))
+                {
+                    Directory.CreateDirectory(imagePath);
+                }
+
+                complaint.MyImage.SaveAs(fullPath);
+                complaint.ImageUrl = $"/Images/ComplaintImages/{fileName}";
+            }
+
+            // Set audit fields
+            complaint.IsActive = true;
+            complaint.CreatedBy = "Web";
+            complaint.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.Complaints.Add(complaint);
+            db.SaveChanges();
+
+            TempData["alert"] = "submitted successfully.";
+            return RedirectToAction("Complaint");
         }
         public ActionResult RTI()
         {
@@ -94,10 +136,12 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult GPOComplaint()
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
         }
         public ActionResult GPOFemaleComplaint()
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
         }
 
@@ -129,7 +173,7 @@ namespace PoliceProjectMVC.Controllers
             db.GrievancePolices.Add(gpo);
             db.SaveChanges();
 
-            TempData["alert"] = "created successfully.";
+            TempData["alert"] = "submitted successfully.";
             return RedirectToAction("GPOComplaint");
         }
 
@@ -161,7 +205,7 @@ namespace PoliceProjectMVC.Controllers
             db.GrievancePolices.Add(gpo);
             db.SaveChanges();
 
-            TempData["alert"] = "created successfully.";
+            TempData["alert"] = "submitted successfully.";
             return RedirectToAction("GPOFemaleComplaint");
         }
         public ActionResult Character()
@@ -170,7 +214,24 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Passport()
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
+        }
+        [HttpPost]
+        public ActionResult Passport(Passport passport)
+        {
+            
+            // Set audit fields
+            passport.IsActive = true;
+            passport.CreatedBy = "Web";
+            passport.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.Passports.Add(passport);
+            db.SaveChanges();
+
+            TempData["alert"] = "submitted successfully.";
+            return RedirectToAction("Passport");
         }
         public ActionResult MissingPerson()
         {
@@ -190,6 +251,22 @@ namespace PoliceProjectMVC.Controllers
         public ActionResult FeedBack()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult FeedBack(Feedback feedback)
+        {
+
+            // Set audit fields
+            feedback.IsActive = true;
+            feedback.CreatedBy = "Web";
+            feedback.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.Feedbacks.Add(feedback);
+            db.SaveChanges();
+
+            TempData["alert"] = "submitted successfully.";
+            return RedirectToAction("Passport");
         }
         public ActionResult HelpLineNo()
         {

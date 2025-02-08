@@ -277,6 +277,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\Accused.cs" />
+    <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\SRNSRCase.cs" />
     <Compile Include="Controllers\SRNSRController.cs" />
@@ -589,6 +590,7 @@
     <Content Include="Views\Home\Passport.cshtml" />
     <Content Include="Views\Home\FeedBack.cshtml" />
     <Content Include="Views\Home\RTI.cshtml" />
+    <Content Include="Views\Home\DualScreen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

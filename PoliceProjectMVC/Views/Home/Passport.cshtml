@@ -8,7 +8,7 @@
     <div class="row g-3">
         <h4 class="sheader mt-3">Passport</h4>
     </div>
-    <form method="post" action="/Home/Passport" onsubmit="return false;">
+    <form method="post" action="/Home/Passport">
         <div class="row mt-4 g-3">
             <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PassportType, "Passport Type", "Select Pasport Type", MyDropdownsValue.GetPassportType())</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.DateOfBirth, "Date Of Birth", "date")</div>
@@ -16,7 +16,7 @@
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.ApplicantName, "Applicant's Name", "text")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Email, "Email", "email")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MobileNo, "Mobile No", "number")</div>
-            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", null)</div>
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStationId, "Police Station", "Select Police Station", (SelectList)ViewBag.Police)</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.District, "District", "Select District", MyDropdownsValue.GetDistrict())</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.Comments, "Comments", "text")</div>
 

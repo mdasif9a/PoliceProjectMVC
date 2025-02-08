@@ -8,9 +8,6 @@
 <div class="card card-outline card-primary">
     <div class="card-header d-flex align-items-center">
         <h3 class="card-title mb-0">DistrictDetail List</h3>
-        <div class="card-tools ml-auto">
-            <a href="/DistrictDetail/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New DistrictDetail</a>
-        </div>
     </div>
     <div class="card-body">
         <div class="container-fluid table-responsive">
@@ -18,20 +15,20 @@
                 <thead>
                     <tr>
                         <th>#</th>
-<th>Name</th>
-<th>Address</th>
-<th>VisitorNo</th>
-<th>Email</th>
-<th>MapUrl</th>
-<th>ContactNo</th>
-<th>MobileNo</th>
-<th>FacebookLink</th>
-<th>TwitterLink</th>
-<th>YoutubeLink</th>
-<th>DownloadLink</th>
-<th>QRImageUrl</th>
-<th>Priority</th>
-<th>Action</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>VisitorNo</th>
+                        <th>Email</th>
+                        <th>MapUrl</th>
+                        <th>ContactNo</th>
+                        <th>MobileNo</th>
+                        <th>FacebookLink</th>
+                        <th>TwitterLink</th>
+                        <th>YoutubeLink</th>
+                        <th>DownloadLink</th>
+                        <th>QRImageUrl</th>
+                        <th>Priority</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -40,32 +37,31 @@
                     {
                         <tr>
                             <td>@(b++)</td>
-<td>@item.Name</td>
-<td>@item.Address</td>
-<td>@item.VisitorNo</td>
-<td>@item.Email</td>
-<td>@item.MapUrl</td>
-<td>@item.ContactNo</td>
-<td>@item.MobileNo</td>
-<td>@item.FacebookLink</td>
-<td>@item.TwitterLink</td>
-<td>@item.YoutubeLink</td>
-<td>@item.DownloadLink</td>
-<td>
-@if (!string.IsNullOrEmpty(item.ImageUrl))
-{
-    <img src="@item.ImageUrl" width="50" height="50" class="rounded-circle" />
-}
-else
-{
-    <img src="/Images/noimage.png" width="50" height="50" class="rounded-circle" />
-}
-</td>
-<td>@item.Priority</td>
-<td>
-    <a href="/DistrictDetail/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
-    <a href="/DistrictDetail/Delete/@item.Id" onclick="return confirm('Are you sure you want to delete this DistrictDetail?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-</td>
+                            <td>@item.Name</td>
+                            <td>@item.Address</td>
+                            <td>@item.VisitorNo</td>
+                            <td>@item.Email</td>
+                            <td>@item.MapUrl</td>
+                            <td>@item.ContactNo</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.FacebookLink</td>
+                            <td>@item.TwitterLink</td>
+                            <td>@item.YoutubeLink</td>
+                            <td>@item.DownloadLink</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                {
+                                    <img src="@item.ImageUrl" width="50" height="50" class="rounded-circle" />
+                                }
+                                else
+                                {
+                                    <img src="/Images/noimage.png" width="50" height="50" class="rounded-circle" />
+                                }
+                            </td>
+                            <td>@item.Priority</td>
+                            <td>
+                                <a href="/DistrictDetail/Edit/@item.Id" class="btn btn-sm mr-2 btn-warning"><i class="fa fa-edit"></i></a>
+                            </td>
                         </tr>
                     }
                 </tbody>
