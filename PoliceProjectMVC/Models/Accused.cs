@@ -12,17 +12,9 @@ namespace PoliceProjectMVC.Models
         public int SRNSRCaseId { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
-        public string FatherOrHusbandName { get; set; }
-        public string Address { get; set; }
-        public int CircleId { get; set; }
-        public string PresentStatus { get; set; }
+        public string Address { get; set; }     
         public string Chargesheet { get; set; }
-        public string SectionFoundTrue { get; set; }
         public int Age { get; set; }
-        public string FirOrNonFir { get; set; }
-        public string MothersName { get; set; }
-        public int SubDivisionId { get; set; }
-        public int PoliceStationId { get; set; }
         public string ConfessionStatement { get; set; }
         public DateTime ChargesheetDate { get; set; }
         public string ImageOfAccused { get; set; }

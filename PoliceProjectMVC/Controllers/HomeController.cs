@@ -18,12 +18,12 @@ namespace PoliceProjectMVC.Controllers
         private readonly PDDBContext db = new PDDBContext();
         public ActionResult DualScreen()
         {
-            List<Banner> banners = db.Banners.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList();
+            List<MWCriminal> banners = db.MWCriminals.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList();
             return View(banners);
         }
         public ActionResult MWCount()
         {
-            int banners = db.Banners.Count();
+            int banners = db.MWCriminals.Where(x => x.IsActive).Count();
             return Json(banners, JsonRequestBehavior.AllowGet);
         }
 

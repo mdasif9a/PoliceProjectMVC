@@ -70,19 +70,11 @@
                             <div class="row" id="accusedform">
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Name, "Name", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Age, "Age", "number")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Gender, "Gender", "Select Gender", null)</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.FirOrNonFir, "FIR/Non FIR", "Select FIR/Non FIR", null)</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.FatherOrHusbandName, "Father Or Husband Name", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.MothersName, "Mother's Name", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Gender, "Gender", "Select Gender", MyDropdownsValue.GetGender())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.Address, "Address", "text")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.SubDivisionId, "Sub Division", "Select Sub Division", (SelectList)ViewBag.MySubDiv)</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.CircleId, "Circle", "Select Circle", null)</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PoliceStationId, "PoliceStation", "Select PoliceStation", null)</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.PresentStatus, "Present Status", "Select Present Status", null)</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.ConfessionFile, "Confession Statement", "file", "")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Accused.Chargesheet, "Chargesheet", "Select Chargesheet", MyDropdownsValue.GetYesNo())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.ChargesheetDate, "Chargesheet Date", "date")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Accused.SectionFoundTrue, "Section Found True", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.Accused.AccusedFile, "Image of Accused", "file", "")</div>
                             </div>
                             <div class="row justify-content-center align-content-center mt-3">
@@ -160,9 +152,6 @@
         bindDropdownOnChange("SubDivisionId", "CircleId", "/SRNSR/GetCircles", "Name_En", "Id");
         bindDropdownOnChange("CircleId", "PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
         bindDropdownOnChange("SMHeadId", "ModusOperandiId", "/SRNSR/GetModusOpernadi", "Name_EN", "Id");
-
-        bindDropdownOnChange("Accused_SubDivisionId", "Accused_CircleId", "/SRNSR/GetCircles", "Name_En", "Id");
-        bindDropdownOnChange("Accused_CircleId", "Accused_PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
 
         let accusedList = [];
         let rowIndex = 1;

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
 
 namespace PoliceProjectMVC.Controllers
 {
@@ -173,6 +174,17 @@ namespace PoliceProjectMVC.Controllers
                 }
                 db.SaveChanges();
 
+                var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Post, "{{api-domain-url}}/api/v1.0/messages/send-text/{{channel-number}}");
+                request.Headers.Add("Authorization", "Bearer {{api_key}}");
+
+                var content = new StringContent("{\r\n    \"messaging_product\": \"whatsapp\",    \r\n    \"recipient_type\": \"individual\",\r\n    \"to\": \"{{Recipient-Phone-Number}}\",\r\n    \"type\": \"text\",\r\n    \"text\": {\r\n        \"preview_url\": false,\r\n        \"body\": \"text-message-content\"\r\n    }\r\n}", null, "application/json");
+                request.Content = content;
+                var response = client.SendAsync(request).GetAwaiter().GetResult();
+
+                response.EnsureSuccessStatusCode();
+                string responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Console.WriteLine(responseContent);
 
                 TempData["response"] = "Created successfully.";
                 return RedirectToAction("Index");
