@@ -25,8 +25,8 @@ namespace PoliceProjectMVC.Custome_Helpers
         {
             return new SelectList(new List<SelectListItem>
                             {
-                                new SelectListItem { Text = "SR", Value = "1" },
-                                new SelectListItem { Text = "NSR", Value = "2" }
+                                new SelectListItem { Text = "SR", Value = "SR" },
+                                new SelectListItem { Text = "NSR", Value = "NSR" }
                             }, "Value", "Text");
         }
 
@@ -99,6 +99,26 @@ namespace PoliceProjectMVC.Custome_Helpers
                             {
                                 new SelectListItem { Text = "Retired", Value = "Retired" },
                                 new SelectListItem { Text = "Working Official", Value = "Working Official" }
+                            }, "Value", "Text");
+        }
+
+        public static SelectList GetCaseStatus()
+        {
+            return new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Pending", Value = "Pending" },
+                                new SelectListItem { Text = "Rejected", Value = "Rejected" },
+                                new SelectListItem { Text = "Closed", Value = "Closed" }
+                            }, "Value", "Text");
+        }
+
+        public static SelectList GetDocType()
+        {
+            return new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Pdf", Value = "Pdf" },
+                                new SelectListItem { Text = "Image", Value = "Image" },
+                                new SelectListItem { Text = "Others", Value = "Others" }
                             }, "Value", "Text");
         }
     }

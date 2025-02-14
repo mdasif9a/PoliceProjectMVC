@@ -169,31 +169,41 @@
             $(imageid).attr('src', URL.createObjectURL(event.target.files[0]));
         }
 
-        function bindDropdownOnChange(sourceDropdownId, targetDropdownId, url, textField, valueField) {
-            $(`#${sourceDropdownId}`).on("change", function () {
-                const selectedValue = $(this).val();
+        function bindDropdownOnChange(sourceDropdownId, targetDropdownId, url, textField, valueField, editValue = null, targetValue = null) {
+            function fetchData(selectedValue, setTargetValue = false) {
                 $.ajax({
                     url: url,
                     type: "GET",
                     data: { id: selectedValue },
                     success: function (data) {
+                        const $targetDropdown = $(`#${targetDropdownId}`);
+                        $targetDropdown.empty().append('<option value="">Select</option>');
 
-                        $(`#${targetDropdownId}`).empty();
                         if (data && data.length > 0) {
-
-                            $(`#${targetDropdownId}`).append('<option value="">Select</option>');
                             $.each(data, function (index, item) {
-                                const option = `<option value="${item[valueField]}">${item[textField]}</option>`;
-                                $(`#${targetDropdownId}`).append(option);
+                                $targetDropdown.append(`<option value="${item[valueField]}">${item[textField]}</option>`);
                             });
-                        } else {
-                            $(`#${targetDropdownId}`).append('<option value="">select</option>');
+
+                            // Set the selected value after data is loaded
+                            if (setTargetValue && targetValue) {
+                                $targetDropdown.val(targetValue);
+                            }
                         }
                     },
                     error: function (xhr, status, error) {
                         console.error("Error fetching data:", error);
                     }
                 });
+            }
+
+            // Load initial data if in edit mode
+            if (editValue) {
+                fetchData(editValue, true);
+            }
+
+            // Bind change event
+            $(`#${sourceDropdownId}`).on("change", function () {
+                fetchData($(this).val());
             });
         }
 

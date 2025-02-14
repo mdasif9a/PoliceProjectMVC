@@ -10,13 +10,14 @@ namespace PoliceProjectMVC.Models
         [Key]
         public int Id { get; set; }
         public int SRNSRCaseId { get; set; }
+        [Required(ErrorMessage ="Name is required")]
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Address { get; set; }     
         public string Chargesheet { get; set; }
         public int Age { get; set; }
         public string ConfessionStatement { get; set; }
-        public DateTime ChargesheetDate { get; set; }
+        public DateTime? ChargesheetDate { get; set; }
         public string ImageOfAccused { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }

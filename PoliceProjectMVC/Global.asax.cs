@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -25,6 +26,27 @@ namespace PoliceProjectMVC
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //Task.Run(() => StartScheduler());
+        }
+
+        private async Task StartScheduler()
+        {
+            while (true)
+            {
+                try
+                {
+                    var scheduler = new MessageSchedulerService();
+                    scheduler.CheckAndSendScheduledMessages();
+                }
+                catch (Exception ex)
+                {
+                    System.IO.File.AppendAllText(HttpContext.Current.Server.MapPath("~/App_Data/log.txt"), ex.ToString());
+                }
+
+                // Wait for 24 hours before running again
+                await Task.Delay(TimeSpan.FromHours(24));
+            }
         }
     }
 }

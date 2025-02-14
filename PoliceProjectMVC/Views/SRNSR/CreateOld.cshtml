@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form action="/SRNSR/Create" method="post" id="mainForm" enctype="multipart/form-data">
+<form action="/SRNSR/Create" method="post" id="mainForm">
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
@@ -82,7 +82,7 @@
                                     <button type="button" class="btn btn-primary float-right back">Back</button>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-primary float-right next">Next</button>
+                                    <button type="button" class="btn btn-primary float-right next2">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -129,10 +129,115 @@
         bindDropdownOnChange("CircleId", "PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
         bindDropdownOnChange("SMHeadId", "ModusOperandiId", "/SRNSR/GetModusOpernadi", "Name_EN", "Id");
 
+        let accusedList = [];
+        let rowIndex = 1;
+        let savedaccusedids = [];
+
+        function AddRow() {
+            let name = $('#Accused_Name').val();
+            let age = $('#Accused_Age').val();
+            let fifnonfir = $('#Accused_FirOrNonFir').val();
+            let subdiv = $('#Accused_SubDivisionId option:selected').text();
+            let circleid = $('#Accused_CircleId option:selected').text();
+            let policestation = $('#Accused_PoliceStationId option:selected').text();
+            let present = $('#Accused_PresentStatus').val();
+            let isActive = true; // Defaulting as active
+
+
+            // Add accused to list
+            accusedList.push({
+                name,
+                age,
+                fifnonfir,
+                subdiv,
+                circleid,
+                policestation,
+                present,
+                isActive
+            });
+
+            // Add row to table
+            const rowHtml = `<tr><td>${rowIndex++}</td><td>${name}</td><td>${age}</td><td>${fifnonfir}</td><td>${subdiv}</td><td>${circleid}</td><td>${policestation}</td><td>${present}</td><td>${isActive ? 'Yes' : 'No'}</td></tr>`;
+            $('#accusedTableBody').append(rowHtml);
+
+            // Clear form fields
+            $('#accusedform input, #accusedform select').val('');
+        }
+
+        $('.savebtn').on('click', function () {
+            let totalacc = parseInt($("#NoOfKnownAccused").val()) || 0;
+            if (rowIndex > totalacc) {
+                alert("You Already Submitted All Accused");
+                return;
+            }
+
+
+            if (!validateInputs()) {
+                return;
+            }
+
+            // Create FormData object
+            let formData = new FormData();
+
+            // Add text inputs to FormData
+            formData.append('Name', $('#Accused_Name').val());
+            formData.append('Age', $('#Accused_Age').val());
+            formData.append('Gender', $('#Accused_Gender').val());
+            formData.append('FirOrNonFir', $('#Accused_FirOrNonFir').val());
+            formData.append('FatherOrHusbandName', $('#Accused_FatherOrHusbandName').val());
+            formData.append('MothersName', $('#Accused_MothersName').val());
+            formData.append('Address', $('#Accused_Address').val());
+            formData.append('SubDivisionId', $('#Accused_SubDivisionId').val());
+            formData.append('CircleId', $('#Accused_CircleId').val());
+            formData.append('PoliceStationId', $('#Accused_PoliceStationId').val());
+            formData.append('PresentStatus', $('#Accused_PresentStatus').val());
+            formData.append('Chargesheet', $('#Accused_Chargesheet').val());
+            formData.append('ChargesheetDate', $('#Accused_ChargesheetDate').val());
+            formData.append('SectionFoundTrue', $('#Accused_SectionFoundTrue').val());
+
+            // Add files to FormData
+            let confessionFile = $('#Accused_ConfessionFile')[0].files[0];
+            if (confessionFile) {
+                formData.append('ConfessionFile', confessionFile);
+            }
+
+            let accusedFile = $('#Accused_AccusedFile')[0].files[0];
+            if (accusedFile) {
+                formData.append('AccusedFile', accusedFile);
+            }
+
+            // Send AJAX request
+            $.ajax({
+                url: '/SRNSR/SaveAccused',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    AddRow();
+                    savedaccusedids.push(response);
+                },
+                error: function (error) {
+                    alert('Error saving data.');
+                    console.error(error);
+                }
+            });
+        });
+
+        // Delete button click
+        $(document).on('click', '.deletebtn', function () {
+            const row = $(this).closest('tr');
+            const index = row.index();
+            accusedList.splice(index, 1);
+            row.remove();
+            rowIndex--;
+        });
+
         $(document).on('click', '.finish', function () {
             if (!validateInputs()) {
                 return;
             }
+            $("#AccusedIds").val(savedaccusedids.join(","));
             $("#mainForm").submit();
         });
 
@@ -206,6 +311,18 @@
         // Handle Back button
         $(".back").on("click", function () {
             changeTab(false); // Move to the previous tab
+        });
+
+        $(".next2").on("click", function () {
+            debugger;
+            let totalacc = parseInt($("#NoOfKnownAccused").val()) || 0;
+
+            if (rowIndex <= totalacc) {
+                alert("Plz Submit All Accused");
+                return;
+            }
+
+            changeTab(true, false);
         });
     </script>
 }

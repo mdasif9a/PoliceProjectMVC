@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
+using System.Text.Json;
 
 namespace PoliceProjectMVC.Controllers
 {
@@ -101,7 +102,7 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Index()
         {
-            List<SRNSRCase> cases = db.SRNSRCases.ToList();
+            List<SRNSRCase> cases = db.SRNSRCases.AsNoTracking().Include(x => x.PoliceStation).Include(x => x.MHead).ToList();
             return View(cases);
         }
 
@@ -116,21 +117,23 @@ namespace PoliceProjectMVC.Controllers
             ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
             ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
             ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
-            return View();
+            SRNSRCase sRNSR = new SRNSRCase
+            {
+                NoOfKnownAccused = 1,
+                NoOfUnknownAccused = 0,
+                ChargesheetYesNo = "No",
+                JailDate = DateTime.Today,
+                CaseDate = DateTime.Today,
+                DateAndTimeOfOccurance = DateTime.Now
+            };
+            return View(sRNSR);
         }
 
         [HttpPost]
-        public ActionResult Create(SRNSRCase model, string AccusedIds)
+        public ActionResult Create(SRNSRCase model)
         {
+            int cmsdays = db.MHeads.Find(model.MHeadId).CSM_Days;
 
-            var accusedIdList = AccusedIds.Split(',').Select(int.Parse).ToList();
-            var result = db.Accuseds.Where(x => accusedIdList.Contains(x.Id)).ToList();
-
-            var keysToRemove = ModelState.Keys.Where(k => k.StartsWith("Accused")).ToList();
-            foreach (var key in keysToRemove)
-            {
-                ModelState.Remove(key);
-            }
 
             if (!ModelState.IsValid)
             {
@@ -159,34 +162,64 @@ namespace PoliceProjectMVC.Controllers
                     model.CaseDocument = $"/Images/SRNSRImages/{fileName}";
                 }
 
+                if (model.ConfessionFile != null && model.ConfessionFile.ContentLength > 0)
+                {
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/SRNSRImages/ConFession/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(model.ConfessionFile.FileName)}";
+                    string fullPath = Path.Combine(imagePath, fileName);
+
+                    if (!Directory.Exists(imagePath))
+                    {
+                        Directory.CreateDirectory(imagePath);
+                    }
+
+                    model.ConfessionFile.SaveAs(fullPath);
+                    model.ConfessionStatement = $"/Images/SRNSRImages/ConFession/{fileName}";
+                }
+
+                if (model.AccusedFile != null && model.AccusedFile.ContentLength > 0)
+                {
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/SRNSRImages/AccusedFile/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(model.AccusedFile.FileName)}";
+                    string fullPath = Path.Combine(imagePath, fileName);
+
+                    if (!Directory.Exists(imagePath))
+                    {
+                        Directory.CreateDirectory(imagePath);
+                    }
+
+                    model.AccusedFile.SaveAs(fullPath);
+                    model.ImageOfAccused = $"/Images/SRNSRImages/AccusedFile/{fileName}";
+                }
+
                 model.IsActive = true;
                 model.CreatedBy = User.Identity.Name;
                 model.CreatedDate = DateTime.Now;
+                model.SecondWPMessageSent = false;
+                model.ThirdWPMessageSent = false;
+                model.FourthWPMessageSent = false;
+                model.LastChargeSheetdate = DateTime.Today.AddDays(cmsdays);
+                model.Status = "Pending";
 
                 db.SRNSRCases.Add(model);
                 db.SaveChanges();
-
-                int srnsrid = model.Id;
-
-                foreach (var item in result)
+                if (model.CaseType == "SR")
                 {
-                    item.SRNSRCaseId = srnsrid;
+                    int sdpo = db.SubDivisions.Where(x => x.Id == model.SubDivisionId).Select(x => x.SdpoId).FirstOrDefault();
+                    string spnumber = db.DistrictDetails.Select(x => x.ContactNo).FirstOrDefault();
+                    string sdponumber = db.SDPOs.Where(x => x.Id == sdpo).Select(x => x.MobileNo).FirstOrDefault();
+                    var policestation = db.PoliceStations.Where(x => x.Id == model.PoliceStationId).FirstOrDefault();
+                    string shonumber = policestation.MobileNo;
+                    var validNumbers = new List<string> { spnumber, sdponumber, shonumber, model.IoMobile, model.CIMobile }
+                        .Where(num => !string.IsNullOrEmpty(num));
+                    string allnumbers = string.Join(",", validNumbers);
+                    int leftdays = (model.LastChargeSheetdate.Date - DateTime.Today).Days;
+
+                    string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
+                    SendWPMessage(allnumbers, message);
+                    //SendWPMessage("9110036432", "Demo message");
                 }
-                db.SaveChanges();
-
-                var client = new HttpClient();
-                var request = new HttpRequestMessage(HttpMethod.Post, "{{api-domain-url}}/api/v1.0/messages/send-text/{{channel-number}}");
-                request.Headers.Add("Authorization", "Bearer {{api_key}}");
-
-                var content = new StringContent("{\r\n    \"messaging_product\": \"whatsapp\",    \r\n    \"recipient_type\": \"individual\",\r\n    \"to\": \"{{Recipient-Phone-Number}}\",\r\n    \"type\": \"text\",\r\n    \"text\": {\r\n        \"preview_url\": false,\r\n        \"body\": \"text-message-content\"\r\n    }\r\n}", null, "application/json");
-                request.Content = content;
-                var response = client.SendAsync(request).GetAwaiter().GetResult();
-
-                response.EnsureSuccessStatusCode();
-                string responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                Console.WriteLine(responseContent);
-
-                TempData["response"] = "Created successfully.";
+                TempData["response"] = "Created successfully and message sent.";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -199,6 +232,53 @@ namespace PoliceProjectMVC.Controllers
             }
         }
 
+        public ActionResult TaskMessage(string numbers, string message)
+        {
+            SendWPMessage("9110036432", "Demo message");
+            return Content("Done");
+        }
+
+        private void SendWPMessage(string numbers, string message)
+        {
+            if (string.IsNullOrEmpty(numbers))
+            {
+                TempData["responseError"] = $"Numbers Not Found to sent message.";
+                return;
+            }
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var request = new HttpRequestMessage(HttpMethod.Post, $"https://cloudapi.wbbox.in/api/v1.0/messages/send-text/919580204974");
+                    request.Headers.Add("Authorization", "Bearer APcNHjzB406q7a0ln6NrKQ");
+
+                    var jsonPayload = new
+                    {
+                        messaging_product = "whatsapp",
+                        recipient_type = "individual",
+                        to = numbers,
+                        type = "text",
+                        text = new { preview_url = false, body = message }
+                    };
+
+                    string jsonContent = JsonSerializer.Serialize(jsonPayload);
+                    request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+
+                    var response = client.SendAsync(request).GetAwaiter().GetResult();
+                    response.EnsureSuccessStatusCode();
+
+                    string responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    Console.WriteLine(responseContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
+            }
+        }
+
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -210,12 +290,14 @@ namespace PoliceProjectMVC.Controllers
             {
                 return HttpNotFound();
             }
-            model.Accuseds = db.Accuseds.Where(x => x.SRNSRCaseId == id).ToList();
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
+            ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(Act model)
+        public ActionResult Edit(SRNSRCase model)
         {
             if (ModelState.IsValid)
             {
@@ -225,7 +307,7 @@ namespace PoliceProjectMVC.Controllers
 
                 if (model.MyImage != null && model.MyImage.ContentLength > 0)
                 {
-                    string imagePath = Path.Combine(Server.MapPath("~/Images/ActImages/"));
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/SRNSRImages/"));
                     string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(model.MyImage.FileName)}";
                     string fullPath = Path.Combine(imagePath, fileName);
 
@@ -235,7 +317,37 @@ namespace PoliceProjectMVC.Controllers
                     }
 
                     model.MyImage.SaveAs(fullPath);
-                    model.ImageUrl = $"/Images/ActImages/{fileName}";
+                    model.CaseDocument = $"/Images/ActImages/{fileName}";
+                }
+
+                if (model.ConfessionFile != null && model.ConfessionFile.ContentLength > 0)
+                {
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/SRNSRImages/ConFession/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(model.ConfessionFile.FileName)}";
+                    string fullPath = Path.Combine(imagePath, fileName);
+
+                    if (!Directory.Exists(imagePath))
+                    {
+                        Directory.CreateDirectory(imagePath);
+                    }
+
+                    model.ConfessionFile.SaveAs(fullPath);
+                    model.ConfessionStatement = $"/Images/SRNSRImages/ConFession/{fileName}";
+                }
+
+                if (model.AccusedFile != null && model.AccusedFile.ContentLength > 0)
+                {
+                    string imagePath = Path.Combine(Server.MapPath("~/Images/SRNSRImages/AccusedFile/"));
+                    string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(model.AccusedFile.FileName)}";
+                    string fullPath = Path.Combine(imagePath, fileName);
+
+                    if (!Directory.Exists(imagePath))
+                    {
+                        Directory.CreateDirectory(imagePath);
+                    }
+
+                    model.AccusedFile.SaveAs(fullPath);
+                    model.ImageOfAccused = $"/Images/SRNSRImages/AccusedFile/{fileName}";
                 }
 
                 db.Entry(model).State = EntityState.Modified;
@@ -243,6 +355,9 @@ namespace PoliceProjectMVC.Controllers
                 TempData["response"] = "Updated successfully.";
                 return RedirectToAction("Index");
             }
+            ViewBag.MyMHead = new SelectList(db.MHeads.Select(x => new { x.Id, x.Name_EN }).OrderBy(x => x.Name_EN).ToList(), "Id", "Name_EN");
+            ViewBag.MySubDiv = new SelectList(db.SubDivisions.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
+            ViewBag.MyDesigNation = new SelectList(db.Designations.Select(x => new { x.Id, x.Name_En }).OrderBy(x => x.Name_En).ToList(), "Id", "Name_En");
             TempData["responseError"] = "Data validation failed.";
             return View(model);
         }

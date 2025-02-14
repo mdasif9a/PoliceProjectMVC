@@ -13,9 +13,16 @@ namespace PoliceProjectMVC.Custome_Helpers
             var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             string label = $"<label for='{metadata.PropertyName}'>{labelText}</label>";
             string Value = metadata.Model?.ToString();
-            if (metadata.Model is DateTime)
+            if (metadata.Model is DateTime mydatetime)
             {
-                Value = ((DateTime)metadata.Model).ToString("yyyy-MM-dd");
+                if (type == "date")
+                {
+                    Value = mydatetime.ToString("yyyy-MM-dd");
+                }
+                else if (type == "datetime-local")
+                {
+                    Value = mydatetime.ToString("yyyy-MM-ddThh:mm");
+                }
             }
             string input;
             if (!String.IsNullOrEmpty(@readonly))

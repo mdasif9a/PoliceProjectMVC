@@ -5,7 +5,19 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<form action="/SRNSR/Create" method="post" id="mainForm" enctype="multipart/form-data">
+<form action="/SRNSR/Edit" method="post" id="mainForm" enctype="multipart/form-data">
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.IsActive)
+    @Html.HiddenFor(m => m.CreatedBy)
+    @Html.HiddenFor(m => m.CreatedDate)
+    @Html.HiddenFor(m => m.SecondWPMessageSent)
+    @Html.HiddenFor(m => m.ThirdWPMessageSent)
+    @Html.HiddenFor(m => m.FourthWPMessageSent)
+    @Html.HiddenFor(m => m.LastChargeSheetdate)
+
+    @Html.HiddenFor(m => m.ConfessionStatement)
+    @Html.HiddenFor(m => m.ImageOfAccused)
+    @Html.HiddenFor(m => m.CaseDocument)
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline">
@@ -28,11 +40,11 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="card card-primary card-outline" id="downcardmy" style="display:none;">
+            <div class="card card-primary card-outline" id="downcardmy">
                 <div class="card-header p-0 pt-1 border-bottom-0">
                     <ul class="nav nav-pills nav-fill mb-2" id="mycustomformtab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" id="tab1" href="javascript:void(0);">Case Details</a>
+                            <a class="nav-link active" id="tab1" href="javascript:void(0);">Case Details</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab2" href="javascript:void(0);">Accused</a>
@@ -44,7 +56,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-three-tabContent">
-                        <div class="tab-pane fade" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
+                        <div class="tab-pane show active fade" id="tab1Content" role="tabpanel" aria-labelledby="tab1">
 
                             <div class="row">
                                 <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ModusOperandiId, "Modus Operandi", "Select Modus Operandi", null)</div>
@@ -91,18 +103,19 @@
                                 @Html.Hidden("AccusedIds")
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SrNo, "SR. No/Case No", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CaseDate, "Case Date", "date")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ReportType, "Report Type", "Select Report Type", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ReportType, "Report Type", "Select Report Type", MyDropdownsValue.GetDocType())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ReportDate, "Report Date", "date")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SupervisionNote, "Supervision Note", "Select Supervision Note", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.SupervisionNote, "Supervision Note", "Select Supervision Note", MyDropdownsValue.GetYesNo())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SupervisionDate, "Supervision Date", "date")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.SupervisionNoteBy, "Supervision Note By", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.FinalForm, "Final Form (FF)", "date")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ProgressReport, "ProgressReport", "Select ProgressReport", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.ProgressReport, "ProgressReport", "Select ProgressReport", MyDropdownsValue.GetYesNo())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ProgressReportDate, "ProgressReport Date", "date")</div>
-                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseDocumentType, "Case Document Type", "Select Case Document Type", null)</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.CaseDocumentType, "Case Document Type", "Select Case Document Type", MyDropdownsValue.GetDocType())</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Case Document", "file", "")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ChargeSheetReport, "ChargeSheet Report", "text")</div>
                                 <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.CaseFinalHead, "Case Final Head", "text")</div>
+                                <div class="col-sm-6 col-md-4">@Html.GenerateDropDown(m => m.Status, "Current Case Status", "Select Report Type", MyDropdownsValue.GetCaseStatus())</div>
                             </div>
                             <hr />
                             <div class="row justify-content-between align-content-center mt-3">
@@ -124,10 +137,10 @@
 @section Scripts{
 
     <script>
-        bindDropdownOnChange("MHeadId", "SMHeadId", "/SRNSR/GetSMHead", "Name_EN", "Id");
-        bindDropdownOnChange("SubDivisionId", "CircleId", "/SRNSR/GetCircles", "Name_En", "Id");
-        bindDropdownOnChange("CircleId", "PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id");
-        bindDropdownOnChange("SMHeadId", "ModusOperandiId", "/SRNSR/GetModusOpernadi", "Name_EN", "Id");
+        bindDropdownOnChange("MHeadId", "SMHeadId", "/SRNSR/GetSMHead", "Name_EN", "Id","@Model.MHeadId","@Model.SMHeadId");
+        bindDropdownOnChange("SMHeadId", "ModusOperandiId", "/SRNSR/GetModusOpernadi", "Name_EN", "Id","@Model.SMHeadId","@Model.ModusOperandiId");
+        bindDropdownOnChange("SubDivisionId", "CircleId", "/SRNSR/GetCircles", "Name_En", "Id","@Model.SubDivisionId","@Model.CircleId");
+        bindDropdownOnChange("CircleId", "PoliceStationId", "/SRNSR/GetStations", "Name_En", "Id","@Model.CircleId","@Model.PoliceStationId");
 
         $(document).on('click', '.finish', function () {
             if (!validateInputs()) {
@@ -187,17 +200,6 @@
                 newTab.addClass("show active");
             }
         }
-
-        // Handle Next button
-        $("#CaseType").on("change", function () {
-            //$("#CaseType").on("click", function () {
-            $("#downcardmy").show();
-            const firstLink = $("#mycustomformtab .nav-item:first-child .nav-link");
-            const firstTab = $(".tab-pane:first-child");
-
-            firstLink.addClass("active");
-            firstTab.addClass("show active");
-        });
 
         $(".next").on("click", function () {
             changeTab(true); // Move to the next tab
