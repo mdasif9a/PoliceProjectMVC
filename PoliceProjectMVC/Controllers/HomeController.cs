@@ -16,11 +16,13 @@ namespace PoliceProjectMVC.Controllers
     public class HomeController : Controller
     {
         private readonly PDDBContext db = new PDDBContext();
+
         public ActionResult DualScreen()
         {
             List<MWCriminal> banners = db.MWCriminals.AsNoTracking().Where(x => x.IsActive).OrderBy(x => x.Priority).ToList();
             return View(banners);
         }
+
         public ActionResult MWCount()
         {
             int banners = db.MWCriminals.Where(x => x.IsActive).Count();
@@ -37,6 +39,7 @@ namespace PoliceProjectMVC.Controllers
             Response.Cookies.Add(cultureCookie);
             return Redirect(Request.UrlReferrer.AbsoluteUri);
         }
+
         public List<M_Menu> MainMenu()
         {
             List<M_Menu> allMenus = db.M_Menus.Where(x => x.IsActive).ToList();
@@ -47,6 +50,7 @@ namespace PoliceProjectMVC.Controllers
             }
             return mymenus;
         }
+
         public List<Admin_Menu> AdminMenu()
         {
             List<Admin_Menu> allMenus = db.Admin_Menus.Where(x => x.IsActive).ToList();
@@ -57,6 +61,7 @@ namespace PoliceProjectMVC.Controllers
             }
             return parentMenus;
         }
+
         public ActionResult Index()
         {
             var viewModel = new HomeViewModel
@@ -71,29 +76,35 @@ namespace PoliceProjectMVC.Controllers
             };
             return View(viewModel);
         }
+
         public ActionResult About()
         {
             return View();
         }
+
         public ActionResult MessageFromSP()
         {
             return View();
         }
+
         public ActionResult OurTeam()
         {
             List<TblOurTeam> ourTeams = db.TblOurTeams.Where(x => x.IsActive).Include(x => x.Designation).ToList();
             return View(ourTeams);
         }
+
         public ActionResult SuccesionList()
         {
             List<SuccessionList> successions = db.SuccessionLists.Where(x => x.IsActive).Include(x => x.Designation).ToList();
             return View(successions);
         }
+
         public ActionResult PoliceStation()
         {
             List<PoliceStation> stations = db.PoliceStations.Where(x => x.IsActive).Include(x => x.Circle).ToList();
             return View(stations);
         }
+
         public ActionResult Complaint()
         {
             ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
@@ -130,15 +141,18 @@ namespace PoliceProjectMVC.Controllers
             TempData["alert"] = "submitted successfully.";
             return RedirectToAction("Complaint");
         }
+
         public ActionResult RTI()
         {
             return View();
         }
+
         public ActionResult GPOComplaint()
         {
             ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
         }
+
         public ActionResult GPOFemaleComplaint()
         {
             ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
@@ -208,19 +222,22 @@ namespace PoliceProjectMVC.Controllers
             TempData["alert"] = "submitted successfully.";
             return RedirectToAction("GPOFemaleComplaint");
         }
+
         public ActionResult Character()
         {
             return View();
         }
+
         public ActionResult Passport()
         {
             ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Id", "Name_En");
             return View();
         }
+
         [HttpPost]
         public ActionResult Passport(Passport passport)
         {
-            
+
             // Set audit fields
             passport.IsActive = true;
             passport.CreatedBy = "Web";
@@ -233,26 +250,32 @@ namespace PoliceProjectMVC.Controllers
             TempData["alert"] = "submitted successfully.";
             return RedirectToAction("Passport");
         }
+
         public ActionResult MissingPerson()
         {
             List<MPerson> mpersons = db.MPersons.Where(x => x.IsActive).ToList();
             return View(mpersons);
         }
+
         public ActionResult FoundPerson()
         {
             List<FPerson> fpersons = db.FPersons.Where(x => x.IsActive).ToList();
             return View(fpersons);
         }
+
         public ActionResult DeadPerson()
         {
             List<DPerson> dpersons = db.DPersons.Where(x => x.IsActive).ToList();
             return View(dpersons);
         }
+
         public ActionResult FeedBack()
         {
             return View();
         }
+
         [HttpPost]
+
         public ActionResult FeedBack(Feedback feedback)
         {
 
@@ -268,53 +291,64 @@ namespace PoliceProjectMVC.Controllers
             TempData["alert"] = "submitted successfully.";
             return RedirectToAction("Passport");
         }
+
         public ActionResult HelpLineNo()
         {
             List<TblHelplineNumber> helplineNumbers = db.TblHelplineNumbers.Where(x => x.IsActive).Include(x => x.Designation).ToList();
             return View(helplineNumbers);
         }
+
         public ActionResult Annoucement()
         {
             List<Announcement> announcements = db.Announcements.Where(x => x.IsActive).ToList();
             return View(announcements);
         }
+
         public ActionResult Criminal()
         {
             List<CriminalList> criminals = db.CriminalLists.Where(x => x.IsActive).ToList();
             return View(criminals);
         }
+
         public ActionResult PeaceCommity()
         {
             List<PeaceCommittee> peaces = db.PeaceCommittees.Where(x => x.IsActive).ToList();
             return View(peaces);
         }
+
         public ActionResult NewsAndEvents()
         {
             List<NewsAndEvent> datalist = db.NewsAndEvents.Where(x => x.IsActive).ToList();
             return View(datalist);
         }
+
         public ActionResult PhotoGallery()
         {
             List<ImageGallery> datalist = db.ImageGalleries.Where(x => x.IsActive).ToList();
             return View(datalist);
         }
+
         public ActionResult PressRelease()
         {
             List<PressRelease> datalist = db.PressReleases.Where(x => x.IsActive).ToList();
             return View(datalist);
         }
+
         public ActionResult ContactUs()
         {
             return View();
         }
+
         public ActionResult MyMainMenu()
         {
             return PartialView("_MainMenu", MainMenu());
         }
+
         public ActionResult AdminMainMenu()
         {
             return PartialView("_AdminMainMenu", AdminMenu());
         }
+
         public ActionResult Login(string ReturnUrl)
         {
             if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
@@ -343,10 +377,47 @@ namespace PoliceProjectMVC.Controllers
             TempData["response"] = "Incorrect username or password.";
             return View(log);
         }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
+        }
+
+        public ActionResult MissingMobile()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MissingMobile(MissingMobile missingMobile)
+        {
+            if (missingMobile.MyImage != null && missingMobile.MyImage.ContentLength > 0)
+            {
+                string imagePath = Path.Combine(Server.MapPath("~/Images/MissingMobileImages/"));
+                string fileName = $"{DateTime.Now.Ticks}{Path.GetExtension(missingMobile.MyImage.FileName)}";
+                string fullPath = Path.Combine(imagePath, fileName);
+
+                if (!Directory.Exists(imagePath))
+                {
+                    Directory.CreateDirectory(imagePath);
+                }
+
+                missingMobile.MyImage.SaveAs(fullPath);
+                missingMobile.DocumentPath = $"/Images/MissingMobileImages/{fileName}";
+            }
+
+            // Set audit fields
+            missingMobile.IsActive = true;
+            missingMobile.CreatedBy = "Web";
+            missingMobile.CreatedDate = DateTime.Now;
+
+            // Save to database
+            db.MissingMobiles.Add(missingMobile);
+            db.SaveChanges();
+
+            TempData["alert"] = "submitted successfully.";
+            return RedirectToAction("MissingMobile");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace PoliceProjectMVC
             DateTime today = DateTime.Now.Date;
 
             List<SRNSRCase> cases = db.SRNSRCases
-                .Where(x => DbFunctions.TruncateTime(x.LastChargeSheetdate) <= DbFunctions.TruncateTime(DateTime.Now)
+                .Where(x => DbFunctions.TruncateTime(x.LastChargeSheetdate) >= DbFunctions.TruncateTime(DateTime.Now)
                             && x.Status == "Pending")
                 .ToList();
 

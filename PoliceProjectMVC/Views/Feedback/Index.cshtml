@@ -10,8 +10,8 @@
     <div class="card-header d-flex align-items-center">
         <h3 class="card-title mb-0">All Feedback</h3>
         @*<div class="card-tools ml-auto">
-            <a href="/Feedback/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
-        </div>*@
+                <a href="/Feedback/Create" class="btn btn-primary"><span class="fas fa-plus"></span>&nbsp;&nbsp;Add New</a>
+            </div>*@
     </div>
     <div class="card-body">
         <div class="container-fluid table-responsive">
@@ -22,8 +22,9 @@
                         <td>Application Name</td>
                         <td>Email</td>
                         <td>Mobile No.</td>
+                        <td>Comments.</td>
                         <td>Created Date</td>
-                        <td>Action</td>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -34,10 +35,9 @@
                             <td>@item.ApplicantName</td>
                             <td>@item.Email</td>
                             <td>@item.MobileNo</td>
+                            <td class="text-wrap">@item.Comments</td>
                             <td>@item.CreatedDate.ToShortDateString()</td>
-                            <td>
-                                <a href="/Feedback/Details/@item.Id" class="btn btn-sm mr-2 btn-success"><i class="fa fa-eye"></i></a>
-                            </td>
+
                         </tr>
                     }
                 </tbody>

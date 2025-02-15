@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
         //Passport Crud Operation
         public ActionResult Index()
         {
-            List<Passport> passports = db.Passports.ToList();
+            List<Passport> passports = db.Passports.AsNoTracking().Include(x => x.PoliceStation).ToList();
             return View(passports);
         }
         public ActionResult Create()
