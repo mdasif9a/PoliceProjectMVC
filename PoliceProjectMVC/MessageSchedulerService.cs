@@ -47,17 +47,26 @@ namespace PoliceProjectMVC
 
                 if (!item.SecondWPMessageSent && today == secondReminderDate)
                 {
-                    SendWPMessage(allnumbers, message);
+                    foreach (var number in validNumbers)
+                    {
+                        SendWPMessage(number, message);
+                    }
                 }
 
                 if (!item.ThirdWPMessageSent && today == thirdReminderDate)
                 {
-                    SendWPMessage(allnumbers, message);
+                    foreach (var number in validNumbers)
+                    {
+                        SendWPMessage(number, message);
+                    }
                 }
 
                 if (!item.FourthWPMessageSent && today == fourthReminderDate)
                 {
-                    SendWPMessage(allnumbers, message);
+                    foreach (var number in validNumbers)
+                    {
+                        SendWPMessage(number, message);
+                    }
                 }
             }
         }

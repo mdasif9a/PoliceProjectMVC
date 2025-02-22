@@ -38,6 +38,7 @@ namespace PoliceProjectMVC
                 {
                     var scheduler = new MessageSchedulerService();
                     scheduler.CheckAndSendScheduledMessages();
+                    System.IO.File.AppendAllText(HttpContext.Current.Server.MapPath("~/App_Data/log.txt"), "Task Excuted on : " + DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss tt"));
                 }
                 catch (Exception ex)
                 {

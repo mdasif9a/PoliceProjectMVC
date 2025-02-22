@@ -102,7 +102,10 @@ namespace PoliceProjectMVC.Controllers
         }
         public ActionResult Index()
         {
-            List<SRNSRCase> cases = db.SRNSRCases.AsNoTracking().Include(x => x.PoliceStation).Include(x => x.MHead).ToList();
+            List<SRNSRCase> cases = db.SRNSRCases.AsNoTracking()
+                .Include(x => x.PoliceStation)
+                .Include(x => x.MHead)
+                .OrderByDescending(x => x.CreatedDate).ToList();
             return View(cases);
         }
 
@@ -212,11 +215,16 @@ namespace PoliceProjectMVC.Controllers
                     string shonumber = policestation.MobileNo;
                     var validNumbers = new List<string> { spnumber, sdponumber, shonumber, model.IoMobile, model.CIMobile }
                         .Where(num => !string.IsNullOrEmpty(num));
-                    string allnumbers = string.Join(",", validNumbers);
+
                     int leftdays = (model.LastChargeSheetdate.Date - DateTime.Today).Days;
 
                     string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
-                    SendWPMessage(allnumbers, message);
+
+                    foreach (var item in validNumbers)
+                    {
+                        SendWPMessage(item, message);
+                    }
+
                     //SendWPMessage("9110036432", "Demo message");
                 }
                 TempData["response"] = "Created successfully and message sent.";
@@ -232,15 +240,16 @@ namespace PoliceProjectMVC.Controllers
             }
         }
 
-        public ActionResult TaskMessage(string numbers, string message)
+        public ActionResult TaskMessage()
         {
-            SendWPMessage("9110036432", "Demo message");
-            return Content("Done");
+            var scheduler = new MessageSchedulerService();
+            scheduler.CheckAndSendScheduledMessages();
+            return Content("Scheduler Executed Done");
         }
 
-        private void SendWPMessage(string numbers, string message)
+        private void SendWPMessage(string number, string message)
         {
-            if (string.IsNullOrEmpty(numbers))
+            if (string.IsNullOrEmpty(number))
             {
                 TempData["responseError"] = $"Numbers Not Found to sent message.";
                 return;
@@ -257,7 +266,7 @@ namespace PoliceProjectMVC.Controllers
                     {
                         messaging_product = "whatsapp",
                         recipient_type = "individual",
-                        to = numbers,
+                        to = number,
                         type = "text",
                         text = new { preview_url = false, body = message }
                     };
