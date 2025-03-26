@@ -79,12 +79,14 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult About()
         {
-            return View();
+            ApiAndWebContent webContent = db.ApiAndWebContents.FirstOrDefault();
+            return View(webContent);
         }
 
         public ActionResult MessageFromSP()
         {
-            return View();
+            ApiAndWebContent webContent = db.ApiAndWebContents.FirstOrDefault();
+            return View(webContent);
         }
 
         public ActionResult OurTeam()

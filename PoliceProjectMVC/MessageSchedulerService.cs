@@ -72,6 +72,7 @@ namespace PoliceProjectMVC
         }
         private void SendWPMessage(string numbers, string message)
         {
+            ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
             if (string.IsNullOrEmpty(numbers))
             {
                 return;
@@ -81,8 +82,8 @@ namespace PoliceProjectMVC
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Post, $"https://cloudapi.wbbox.in/api/v1.0/messages/send-text/919580204974");
-                    request.Headers.Add("Authorization", "Bearer APcNHjzB406q7a0ln6NrKQ");
+                    var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
+                    request.Headers.Add("Authorization", apidetails.ApiHeader);
 
                     var jsonPayload = new
                     {

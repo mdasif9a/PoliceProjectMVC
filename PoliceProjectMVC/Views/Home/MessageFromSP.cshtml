@@ -1,4 +1,4 @@
-﻿
+﻿@model PoliceProjectMVC.Models.ApiAndWebContent
 @{
     ViewBag.Title = "Message From SP";
 }
@@ -26,18 +26,8 @@
     <div class="row g-3">
         <div class="col-md-5">
             <pre style="width: 100%; white-space: pre-line; text-align: justify; font-size: 17px; padding-right: 20px; margin-right: 20px;">Greetings!
-
-Welcome to the official website of Bettiah Police.
-
-Fellow citizen,
-We look forward to serve you 24 hours a day.
-Our aim is to make Bettiah a peaceful and crime free place. Entire team of Bettiah Police shall ensure the Rule of Law, enforce the law of the land impartially and firmly without fear or favor, and strive to create a fear free environment that is conducive to growth and development. We solicit your cooperation in making the district a better place.
-Thank you for your support and cooperation.
-
-Jai Hind
-Yours
-Shri Chandra Prakash
-Superintendent of Police</pre>
+@Model.WebMessageSP
+</pre>
         </div>
 
         <div class="col-md-7 text-center">

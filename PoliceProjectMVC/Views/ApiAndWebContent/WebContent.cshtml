@@ -1,0 +1,44 @@
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.ApiAndWebContent
+
+@{
+    ViewBag.PageTitle = "Edit ApiAndWebContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Edit ApiAndWebContent</h3>
+            </div>
+            <div class="card-body">
+                <form action="/ApiAndWebContent/Edit" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='WebAbout'>Web About Us</label>
+                            @Html.TextAreaFor(m => m.WebAbout, new { rows = 5, @class = "form-control form-control-sm" })
+                        </div>
+
+                        <div class="col-sm-6 col-md-4">
+                            <label for='WebAbout'>Web Message SP</label>
+                            @Html.TextAreaFor(m => m.WebMessageSP, new { rows = 5, @class = "form-control form-control-sm" })
+                        </div>
+
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ApiUrl, "Enter Url", "text")</div>
+                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.ApiHeader, "Enter Header", "text")</div>
+
+                    </div>
+                    <hr />
+                    <div class="row justify-content-center align-content-center mt-3">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

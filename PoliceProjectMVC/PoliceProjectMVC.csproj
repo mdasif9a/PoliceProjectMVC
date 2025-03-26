@@ -309,10 +309,13 @@
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiAndWebContentController.cs" />
     <Compile Include="Controllers\ComplaintController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\MissingMobileController.cs" />
     <Compile Include="MessageSchedulerService.cs" />
     <Compile Include="Models\Accused.cs" />
+    <Compile Include="Models\ApiAndWebContent.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\MissingMobile.cs" />
@@ -637,6 +640,10 @@
     <Content Include="Views\Complaint\Create.cshtml" />
     <Content Include="Views\Complaint\Edit.cshtml" />
     <Content Include="Views\Complaint\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
+    <Content Include="Views\ApiAndWebContent\WebContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

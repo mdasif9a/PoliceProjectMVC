@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 100px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #721c24;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            a:hover {
+                background-color: #501416;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>500</h1>
+        <p>Sorry, something went wrong..</p>
+        <a href="@Url.Action("Index", "Home")">Go Home</a>
+    </div>
+</body>
+</html>
+

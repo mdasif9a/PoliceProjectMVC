@@ -57,6 +57,7 @@ namespace PoliceProjectMVC.Models
         public virtual DbSet<Accused> Accuseds { get; set; }
         public virtual DbSet<Complaint> Complaints { get; set; }
         public virtual DbSet<MissingMobile> MissingMobiles { get; set; }
+        public virtual DbSet<ApiAndWebContent> ApiAndWebContents { get; set; }
     }
 
 }

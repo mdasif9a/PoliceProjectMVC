@@ -249,6 +249,7 @@ namespace PoliceProjectMVC.Controllers
 
         private void SendWPMessage(string number, string message)
         {
+            ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
             if (string.IsNullOrEmpty(number))
             {
                 TempData["responseError"] = $"Numbers Not Found to sent message.";
@@ -259,8 +260,8 @@ namespace PoliceProjectMVC.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Post, $"https://cloudapi.wbbox.in/api/v1.0/messages/send-text/919580204974");
-                    request.Headers.Add("Authorization", "Bearer APcNHjzB406q7a0ln6NrKQ");
+                    var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
+                    request.Headers.Add("Authorization", apidetails.ApiHeader);
 
                     var jsonPayload = new
                     {
