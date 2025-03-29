@@ -1,4 +1,5 @@
-﻿using PoliceProjectMVC.Models;
+﻿using Microsoft.Ajax.Utilities;
+using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Web;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PoliceProjectMVC
 {
@@ -43,13 +45,14 @@ namespace PoliceProjectMVC
                 string accusedsname = string.Join(", ", result.Select(s => s.Name));
                 string accusedsaddress = string.Join(", ", result.Select(s => s.Address));
 
-                string message = $"Section : {item.Section} Case-No : {item.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {accusedsname}\nAddress : {accusedsaddress}\nDate of Arrest : {item.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {item.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
+                //string message = $"Section : {item.Section} Case-No : {item.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {accusedsname}\nAddress : {accusedsaddress}\nDate of Arrest : {item.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {item.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
 
                 if (!item.SecondWPMessageSent && today == secondReminderDate)
                 {
                     foreach (var number in validNumbers)
                     {
-                        SendWPMessage(number, message);
+                        SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
+                            item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
                     }
                 }
 
@@ -57,7 +60,8 @@ namespace PoliceProjectMVC
                 {
                     foreach (var number in validNumbers)
                     {
-                        SendWPMessage(number, message);
+                        SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
+                            item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
                     }
                 }
 
@@ -65,15 +69,17 @@ namespace PoliceProjectMVC
                 {
                     foreach (var number in validNumbers)
                     {
-                        SendWPMessage(number, message);
+                        SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
+                            item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
                     }
                 }
             }
         }
-        private void SendWPMessage(string numbers, string message)
+        private void SendWPMessage(string number, string section, string CaseNo, string PoliceStation,
+            string AccusedName, string AccusedAddress, string ArrestDate, string LastDate, string LeftDays, string ioname)
         {
             ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
-            if (string.IsNullOrEmpty(numbers))
+            if (string.IsNullOrEmpty(number))
             {
                 return;
             }
@@ -82,17 +88,43 @@ namespace PoliceProjectMVC
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
-                    request.Headers.Add("Authorization", apidetails.ApiHeader);
+                    //var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
+                    //request.Headers.Add("Authorization", apidetails.ApiHeader);
+                    var request = new HttpRequestMessage(HttpMethod.Post, "https://cloudapi.wafortius.com/api/v1.0/messages/send-template/919450057501");
+                    request.Headers.Add("Authorization", "Bearer aJTcVeudaUaWamvQbfenLg");
 
                     var jsonPayload = new
                     {
                         messaging_product = "whatsapp",
                         recipient_type = "individual",
-                        to = numbers,
-                        type = "text",
-                        text = new { preview_url = false, body = message }
+                        to = number,
+                        type = "template",
+                        template = new
+                        {
+                            name = "bettiah_police123",
+                            language = new { code = "en" },
+                            components = new[]
+                            {
+                                new
+                                {
+                                    type = "body",
+                                    parameters = new[]
+                                    {
+                                        new { type = "text", text = section },
+                                        new { type = "text", text = CaseNo },
+                                        new { type = "text", text = PoliceStation },
+                                        new { type = "text", text = AccusedName },
+                                        new { type = "text", text = AccusedAddress },
+                                        new { type = "text", text = ArrestDate },
+                                        new { type = "text", text = LastDate },
+                                        new { type = "text", text = LeftDays },
+                                        new { type = "text", text = ioname }
+                                    }
+                                }
+                            }
+                        }
                     };
+
 
                     string jsonContent = JsonSerializer.Serialize(jsonPayload);
                     request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");

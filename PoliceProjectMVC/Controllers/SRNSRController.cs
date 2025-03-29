@@ -218,14 +218,14 @@ namespace PoliceProjectMVC.Controllers
 
                     int leftdays = (model.LastChargeSheetdate.Date - DateTime.Today).Days;
 
-                    string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
+                    //string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
 
                     foreach (var item in validNumbers)
                     {
-                        SendWPMessage(item, message);
+                        SendWPMessage(item, model.Section, model.SrNo, policestation.Name_En, model.AccusedName, model.AccusedAddress, model.JailDate.ToShortDateString(),
+                            model.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), model.IoName);
                     }
 
-                    //SendWPMessage("9110036432", "Demo message");
                 }
                 TempData["response"] = "Created successfully and message sent.";
                 return RedirectToAction("Index");
@@ -247,7 +247,8 @@ namespace PoliceProjectMVC.Controllers
             return Content("Scheduler Executed Done");
         }
 
-        private void SendWPMessage(string number, string message)
+        private void SendWPMessage(string number, string section, string CaseNo, string PoliceStation,
+            string AccusedName, string AccusedAddress, string ArrestDate, string LastDate, string LeftDays, string ioname)
         {
             ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
             if (string.IsNullOrEmpty(number))
@@ -260,17 +261,43 @@ namespace PoliceProjectMVC.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
-                    request.Headers.Add("Authorization", apidetails.ApiHeader);
+                    //var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
+                    //request.Headers.Add("Authorization", apidetails.ApiHeader);
+                    var request = new HttpRequestMessage(HttpMethod.Post, "https://cloudapi.wafortius.com/api/v1.0/messages/send-template/919450057501");
+                    request.Headers.Add("Authorization", "Bearer aJTcVeudaUaWamvQbfenLg");
 
                     var jsonPayload = new
                     {
                         messaging_product = "whatsapp",
                         recipient_type = "individual",
                         to = number,
-                        type = "text",
-                        text = new { preview_url = false, body = message }
+                        type = "template",
+                        template = new
+                        {
+                            name = "bettiah_police123",
+                            language = new { code = "en" },
+                            components = new[]
+                            {
+                                new
+                                {
+                                    type = "body",
+                                    parameters = new[]
+                                    {
+                                        new { type = "text", text = section },
+                                        new { type = "text", text = CaseNo },
+                                        new { type = "text", text = PoliceStation },
+                                        new { type = "text", text = AccusedName },
+                                        new { type = "text", text = AccusedAddress },
+                                        new { type = "text", text = ArrestDate },
+                                        new { type = "text", text = LastDate },
+                                        new { type = "text", text = LeftDays },
+                                        new { type = "text", text = ioname }
+                                    }
+                                }
+                            }
+                        }
                     };
+
 
                     string jsonContent = JsonSerializer.Serialize(jsonPayload);
                     request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
