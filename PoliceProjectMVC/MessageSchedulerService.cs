@@ -1,13 +1,10 @@
-﻿using Microsoft.Ajax.Utilities;
-using PoliceProjectMVC.Models;
+﻿using PoliceProjectMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
-using System.Web;
-using static System.Collections.Specialized.BitVector32;
 
 namespace PoliceProjectMVC
 {
@@ -45,7 +42,9 @@ namespace PoliceProjectMVC
                 string accusedsname = string.Join(", ", result.Select(s => s.Name));
                 string accusedsaddress = string.Join(", ", result.Select(s => s.Address));
 
-                //string message = $"Section : {item.Section} Case-No : {item.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {accusedsname}\nAddress : {accusedsaddress}\nDate of Arrest : {item.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {item.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
+                string message = $"Section : {item.Section} Case-No : {item.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {accusedsname}\nAddress : {accusedsaddress}\nDate of Arrest : {item.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {item.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days\nIO Name : {item.IoName}";
+
+                SRNSRCase rNSRCase = db.SRNSRCases.Find(item.Id);
 
                 if (!item.SecondWPMessageSent && today == secondReminderDate)
                 {
@@ -53,7 +52,9 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
+                        SendSMSMessage(number, message);
                     }
+                    rNSRCase.SecondWPMessageSent = true;
                 }
 
                 if (!item.ThirdWPMessageSent && today == thirdReminderDate)
@@ -62,7 +63,9 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
+                        SendSMSMessage(number, message);
                     }
+                    rNSRCase.ThirdWPMessageSent = true;
                 }
 
                 if (!item.FourthWPMessageSent && today == fourthReminderDate)
@@ -71,11 +74,16 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
+                        SendSMSMessage(number, message);
                     }
+                    rNSRCase.FourthWPMessageSent = true;
                 }
+                db.Entry(rNSRCase).State = EntityState.Modified;
+                db.SaveChanges();
             }
         }
-        private void SendWPMessage(string number, string section, string CaseNo, string PoliceStation,
+
+        public void SendWPMessage(string number, string section, string CaseNo, string PoliceStation,
             string AccusedName, string AccusedAddress, string ArrestDate, string LastDate, string LeftDays, string ioname)
         {
             ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
@@ -128,6 +136,40 @@ namespace PoliceProjectMVC
 
                     string jsonContent = JsonSerializer.Serialize(jsonPayload);
                     request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+
+                    var response = client.SendAsync(request).GetAwaiter().GetResult();
+                    response.EnsureSuccessStatusCode();
+
+                    string responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    Console.WriteLine(responseContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
+            }
+        }
+
+        public void SendSMSMessage(string number, string message1)
+        {
+            ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
+            if (string.IsNullOrEmpty(number))
+            {
+                return;
+            }
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    string url = "http://smsfortius.in/api/mt/SendSMS?user=fipldlfb2&password=123321&senderid=MCTSER&channel=2&DCS=0&flashsms=0&route=14&peid=1601336160567548927&DLTTemplateId=1707169477410107685&number=";
+                    url += number;
+                    url += "&text=";
+
+                    url += message1;
+                    //var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
+                    //request.Headers.Add("Authorization", apidetails.ApiHeader);
+                    var request = new HttpRequestMessage(HttpMethod.Post, url);
 
                     var response = client.SendAsync(request).GetAwaiter().GetResult();
                     response.EnsureSuccessStatusCode();

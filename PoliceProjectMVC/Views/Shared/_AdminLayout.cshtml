@@ -1,25 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using PoliceProjectMVC.Custome_Helpers
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bettiah Police Admin Panel</title>
-    <link href="/Images/faviconlogo.jpg" rel="icon" type="image/x-icon" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
-    <link href="/Content/normalize.css" rel="stylesheet" />
-    <link href="/Content/main.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/AdminLayout/css/adminlte.css">
-    <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="/AdminLayout/owlcarousel/assets/owl.theme.green.min.css">
-    <link rel="stylesheet" href="/AdminLayout/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="/AdminLayout/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="/AdminLayout/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="/AdminLayout/css/select2.min.css" />
-    <link href="/Content/jquery.steps.css" rel="stylesheet" />
-    <link href="/Content/Site.css" rel="stylesheet" />
-    <link href="/Content/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" integrity="sha384-OSxggXDzQMCArPekA3PUXKtvczRzYRuqVqI63p3pkxVcNhDmjMWiKtRGJbEBKS4x" crossorigin="anonymous">
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/fontawesome-free/css/all.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/normalize.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/main.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/css/adminlte.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/owlcarousel/assets/owl.carousel.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/owlcarousel/assets/owl.theme.green.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-bs4/css/dataTables.bootstrap4.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-responsive/css/responsive.bootstrap4.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/css/buttons.dataTables.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/css/select2.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/jquery.steps.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/Site.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/toastr.min.css"))
 </head>
 
 <body class="sidebar-mini layout-navbar-fixed layout-fixed">
@@ -105,21 +105,21 @@
 
     </div>
 
-    <script src="/Scripts/jquery.min.js"></script>
-    <script src="/Scripts/jquery.validate.min.js"></script>
-    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="/Scripts/toastr.min.js"></script>
-    <script src="/AdminLayout/js/bootstrap.bundle.min.js"></script>
-    <script src="/AdminLayout/js/adminlte.min.js"></script>
-    <script src="/AdminLayout/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/AdminLayout/datatables/jquery.dataTables.min.js"></script>
-    <script src="/AdminLayout/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/AdminLayout/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/AdminLayout/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/AdminLayout/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/AdminLayout/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="/AdminLayout/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="/Scripts/select2.min.js"></script>
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.unobtrusive.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/toastr.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/js/bootstrap.bundle.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/js/adminlte.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/owlcarousel/owl.carousel.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables/jquery.dataTables.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-bs4/js/dataTables.bootstrap4.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-responsive/js/dataTables.responsive.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-responsive/js/responsive.bootstrap4.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-buttons/js/dataTables.buttons.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-buttons/js/buttons.html5.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/datatables-buttons/js/buttons.print.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/select2.min.js"))
 
     <script type="text/javascript">
 

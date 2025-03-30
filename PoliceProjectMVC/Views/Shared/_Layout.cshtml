@@ -1,17 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using PoliceProjectMVC.Custome_Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Bettiah Police - @ViewBag.Title</title>
-    <link href="/Images/faviconlogo.jpg" rel="icon" />
-    <link href="/Images/faviconlogo.jpg" rel="apple-touch-icon" />
-    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/Content/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/Content/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <link href="/Content/css/mystyle.css" rel="stylesheet" />
-    <script src="/Scripts/jquery-3.6.3.min.js"></script>
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/css/bootstrap.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/bootstrap-icons/bootstrap-icons.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/swiper/swiper-bundle.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/fontawesome-free/css/all.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/css/mystyle.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery-3.6.3.min.js"))
     <style>
         .brd-red {
             border-bottom: 2px solid #f10101;
@@ -147,9 +146,9 @@
     <a href="" class="back-to-top d-flex align-items-center justify-content-center active">
         <i class="bi bi-arrow-up-short"></i>
     </a>
-    <script src="/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="/Content/swiper/swiper-bundle.min.js"></script>
-    <script src="/Scripts/mycustom.js"></script>
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/bootstrap.bundle.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/swiper/swiper-bundle.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/mycustom.js"))
     <script>
         $(function () {
             $("img").each(function () {

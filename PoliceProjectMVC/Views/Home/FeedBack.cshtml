@@ -25,6 +25,6 @@
 </section>
 
 @section Scripts{
-    <script src="/Scripts/jquery.validate.min.js"></script>
-    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.unobtrusive.min.js"))
 }

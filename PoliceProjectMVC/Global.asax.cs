@@ -23,6 +23,7 @@ namespace PoliceProjectMVC
 
         protected void Application_Start()
         {
+            MvcHandler.DisableMvcResponseHeader = false;
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

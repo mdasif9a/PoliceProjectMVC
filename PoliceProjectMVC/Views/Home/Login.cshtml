@@ -1,4 +1,5 @@
-﻿@model PoliceProjectMVC.Models.TblLogin
+﻿@using PoliceProjectMVC.Custome_Helpers
+@model PoliceProjectMVC.Models.TblLogin
 @{
     Layout = null;
 }
@@ -10,11 +11,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bettiah Police Login Panel</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="/AdminLayout/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="/AdminLayout/css/adminlte.min.css">
-    <link href="/Images/faviconlogo.jpg" rel="icon" type="image/x-icon" />
-    <link href="/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" integrity="sha384-OSxggXDzQMCArPekA3PUXKtvczRzYRuqVqI63p3pkxVcNhDmjMWiKtRGJbEBKS4x" crossorigin="anonymous">
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/fontawesome-free/css/all.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/css/adminlte.min.css"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Content/Site.css"))
+
 </head>
 
 <body class="hold-transition login-page">
@@ -60,11 +61,11 @@
         </div>
     </div>
 
-    <script src="/Scripts/jquery.min.js"></script>
-    <script src="/Scripts/jquery.validate.min.js"></script>
-    <script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="/AdminLayout/js/bootstrap.bundle.min.js"></script>
-    <script src="/AdminLayout/js/adminlte.min.js"></script>
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.unobtrusive.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/js/bootstrap.bundle.min.js"))
+    @Html.Raw(CustomHtmlHelpers.AddResource("/AdminLayout/js/adminlte.min.js"))
     <script type="text/javascript">
         $(function () {
             let a = "@TempData["response"]";

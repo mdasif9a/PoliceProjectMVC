@@ -208,6 +208,7 @@ namespace PoliceProjectMVC.Controllers
                 db.SaveChanges();
                 if (model.CaseType == "SR")
                 {
+                    MessageSchedulerService messageScheduler = new MessageSchedulerService();
                     int sdpo = db.SubDivisions.Where(x => x.Id == model.SubDivisionId).Select(x => x.SdpoId).FirstOrDefault();
                     string spnumber = db.DistrictDetails.Select(x => x.ContactNo).FirstOrDefault();
                     string sdponumber = db.SDPOs.Where(x => x.Id == sdpo).Select(x => x.MobileNo).FirstOrDefault();
@@ -218,12 +219,13 @@ namespace PoliceProjectMVC.Controllers
 
                     int leftdays = (model.LastChargeSheetdate.Date - DateTime.Today).Days;
 
-                    //string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days";
+                    string message = $"Section : {model.Section} Case-No : {model.SrNo} \nPolice Station : {policestation.Name_En}\nAccused Name : {model.AccusedName}\nAddress : {model.AccusedAddress}\nDate of Arrest : {model.JailDate.ToShortDateString()}\nLast Date of ChargeSheet : {model.LastChargeSheetdate.ToShortDateString()}\nDays Left : {leftdays} days\nIO Name : {model.IoName}";
 
                     foreach (var item in validNumbers)
                     {
-                        SendWPMessage(item, model.Section, model.SrNo, policestation.Name_En, model.AccusedName, model.AccusedAddress, model.JailDate.ToShortDateString(),
+                        messageScheduler.SendWPMessage(item, model.Section, model.SrNo, policestation.Name_En, model.AccusedName, model.AccusedAddress, model.JailDate.ToShortDateString(),
                             model.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), model.IoName);
+                        messageScheduler.SendSMSMessage(item, message);
                     }
 
                 }
@@ -246,75 +248,6 @@ namespace PoliceProjectMVC.Controllers
             scheduler.CheckAndSendScheduledMessages();
             return Content("Scheduler Executed Done");
         }
-
-        private void SendWPMessage(string number, string section, string CaseNo, string PoliceStation,
-            string AccusedName, string AccusedAddress, string ArrestDate, string LastDate, string LeftDays, string ioname)
-        {
-            ApiAndWebContent apidetails = db.ApiAndWebContents.FirstOrDefault();
-            if (string.IsNullOrEmpty(number))
-            {
-                TempData["responseError"] = $"Numbers Not Found to sent message.";
-                return;
-            }
-
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    //var request = new HttpRequestMessage(HttpMethod.Post, apidetails.ApiUrl);
-                    //request.Headers.Add("Authorization", apidetails.ApiHeader);
-                    var request = new HttpRequestMessage(HttpMethod.Post, "https://cloudapi.wafortius.com/api/v1.0/messages/send-template/919450057501");
-                    request.Headers.Add("Authorization", "Bearer aJTcVeudaUaWamvQbfenLg");
-
-                    var jsonPayload = new
-                    {
-                        messaging_product = "whatsapp",
-                        recipient_type = "individual",
-                        to = number,
-                        type = "template",
-                        template = new
-                        {
-                            name = "bettiah_police123",
-                            language = new { code = "en" },
-                            components = new[]
-                            {
-                                new
-                                {
-                                    type = "body",
-                                    parameters = new[]
-                                    {
-                                        new { type = "text", text = section },
-                                        new { type = "text", text = CaseNo },
-                                        new { type = "text", text = PoliceStation },
-                                        new { type = "text", text = AccusedName },
-                                        new { type = "text", text = AccusedAddress },
-                                        new { type = "text", text = ArrestDate },
-                                        new { type = "text", text = LastDate },
-                                        new { type = "text", text = LeftDays },
-                                        new { type = "text", text = ioname }
-                                    }
-                                }
-                            }
-                        }
-                    };
-
-
-                    string jsonContent = JsonSerializer.Serialize(jsonPayload);
-                    request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
-
-                    var response = client.SendAsync(request).GetAwaiter().GetResult();
-                    response.EnsureSuccessStatusCode();
-
-                    string responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                    Console.WriteLine(responseContent);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
-            }
-        }
-
 
         public ActionResult Edit(int? id)
         {

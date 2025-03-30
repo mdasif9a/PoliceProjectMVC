@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -127,6 +129,31 @@ namespace PoliceProjectMVC.Custome_Helpers
             return MvcHtmlString.Create(result);
         }
 
+        public static MvcHtmlString AddResource(string path)
+        {
+            string filePath = System.Web.Hosting.HostingEnvironment.MapPath(path);
+            if (filePath == null || !File.Exists(filePath))
+            {
+                return new MvcHtmlString($"<!-- File not found: {path} -->");
+            }
+
+            string hash = ComputeSRI(filePath);
+            string tag = path.EndsWith(".css", StringComparison.OrdinalIgnoreCase)
+                ? $"<link rel=\"stylesheet\" href=\"{path}\" integrity=\"{hash}\" crossorigin=\"anonymous\" />"
+                : $"<script src=\"{path}\" integrity=\"{hash}\" crossorigin=\"anonymous\"></script>";
+
+            return new MvcHtmlString(tag);
+        }
+
+        private static string ComputeSRI(string filePath)
+        {
+            using (var sha = SHA384.Create()) // You can also use SHA256 or SHA512
+            {
+                byte[] hashBytes = sha.ComputeHash(File.ReadAllBytes(filePath));
+                string base64Hash = Convert.ToBase64String(hashBytes);
+                return $"sha384-{base64Hash}"; // Change sha384 to sha256 or sha512 if needed
+            }
+        }
 
     }
 }
