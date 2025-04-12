@@ -24,13 +24,13 @@
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-envelope"></i><a href="mailto:sp-bettiah-bih@nic.in">sp-bettiah-bih@nic.in</a>
-                <i class="bi bi-telephone phone-icon"></i>06345-222301
+                <i class="bi bi-telephone phone-icon"></i><a href="tel:06254232563">06254-232563</a>
             </div>
             <div class="social-links d-none d-md-block">
                 <a target="_blank" href="https://www.facebook.com/BettiahPolice" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a target="_blank" href="https://twitter.com/bettiahpolice?lang=en" class="twitter"><i class="bi bi-twitter"></i></a>
                 <form action="@Url.Action("SetLanguage", "Home")" method="post" style="display: inline;">
-                    <button type="submit" name="culture" value="hi" style="color:#fff;" class="btn btn-link">Hindi</button>
+                    <button type="submit" name="culture" value="hi-IN" style="color:#fff;" class="btn btn-link">Hindi</button>
                     <button type="submit" name="culture" value="en-IN" style="color:#fff;" class="btn btn-link">English</button>
                 </form>
             </div>
@@ -47,8 +47,14 @@
                 <h4><b>Shri Vinay Kumar</b></h4>
                 <h5>@Resources.Resources.title_dgp_bihar</h5>
             </div>
+
+            <div class="col-md-auto logo me-2 dgpstyle">
+                <img src="/Images/digsir.jpeg" alt="" class="img-fluid" />
+                <h4><b>Shri Har Kishore Ray</b></h4>
+                <h5>@Resources.Resources.title_dig</h5>
+            </div>
             <div class="col-auto logo dgpstyle2">
-                <img src="/Images/anotherpolice.jpg" alt="" style="width: 120px; height: 130px;" />
+                <img src="/Images/spsir.jpg" alt="" class="img-fluid" />
                 <h4><b>Shri Dr Shaurya Suman</b></h4>
                 <h5>@Resources.Resources.title_superintendent_of_police</h5>
             </div>
@@ -90,7 +96,7 @@
                         Office of the Superintendent of Police,<br>
                         Collectorate Building, Bettiah, Bihar 811307.
                     </p>
-                    <span>Phone: 06345-222301</span><br>
+                    <span>Phone: <a href="tel:06254232563">06254-232563</a></span><br>
                     <span>Email: sp-bettiah-bih@nic.in</span>
                 </div>
                 <div class="q-link">

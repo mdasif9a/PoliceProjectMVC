@@ -14,7 +14,10 @@ namespace PoliceProjectMVC.Models
         public string IMEINumber { get; set; }
         [Required]
         public string MobileNumber { get; set; }
-
+        [Required]
+        public string PoliceStation { get; set; }
+        public string ComplainID { get; set; }
+        public string Status { get; set; }
         public string AlternateNumber { get; set; }
         [Required]
         public DateTime DateOfMissing { get; set; }

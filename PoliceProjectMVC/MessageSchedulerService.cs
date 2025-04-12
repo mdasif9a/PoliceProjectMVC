@@ -52,7 +52,7 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
-                        SendSMSMessage(number, message);
+                        //SendSMSMessage(number, message);
                     }
                     rNSRCase.SecondWPMessageSent = true;
                 }
@@ -63,7 +63,7 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
-                        SendSMSMessage(number, message);
+                        //SendSMSMessage(number, message);
                     }
                     rNSRCase.ThirdWPMessageSent = true;
                 }
@@ -74,7 +74,7 @@ namespace PoliceProjectMVC
                     {
                         SendWPMessage(number, item.Section, item.SrNo, policestation.Name_En, item.AccusedName, item.AccusedAddress, item.JailDate.ToShortDateString(),
                             item.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), item.IoName);
-                        SendSMSMessage(number, message);
+                        //SendSMSMessage(number, message);
                     }
                     rNSRCase.FourthWPMessageSent = true;
                 }

@@ -12,6 +12,7 @@
         </div>
 
         <div class="row my-3 g-3">
+            <div class="col-md-4 col-sm-6">@Html.GenerateDropDown(m => m.PoliceStation, "Police Station", "Select Police Station", (SelectList)ViewBag.Police)</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.IMEINumber, "IMEI Number", "text")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MobileNumber, "Mobile Number", "number")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.AlternateNumber, "Alternate Contact No", "number")</div>
@@ -31,4 +32,8 @@
 @section Scripts{
     @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.min.js"))
     @Html.Raw(CustomHtmlHelpers.AddResource("/Scripts/jquery.validate.unobtrusive.min.js"))
+
+    <script>
+        $("#DateOfMissing").attr("min","@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")");
+    </script>
 }

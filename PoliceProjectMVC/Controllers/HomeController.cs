@@ -388,6 +388,7 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult MissingMobile()
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Name_En", "Name_En");
             return View();
         }
 
@@ -411,6 +412,7 @@ namespace PoliceProjectMVC.Controllers
 
             // Set audit fields
             missingMobile.IsActive = true;
+            missingMobile.Status = "Pending";
             missingMobile.CreatedBy = "Web";
             missingMobile.CreatedDate = DateTime.Now;
 
@@ -418,6 +420,8 @@ namespace PoliceProjectMVC.Controllers
             db.MissingMobiles.Add(missingMobile);
             db.SaveChanges();
 
+            missingMobile.ComplainID = DateTime.Now.ToString("ddMMyyyy") + missingMobile.Id.ToString("00000");
+            db.SaveChanges();
             TempData["alert"] = "submitted successfully.";
             return RedirectToAction("MissingMobile");
         }

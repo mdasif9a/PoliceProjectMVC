@@ -225,7 +225,7 @@ namespace PoliceProjectMVC.Controllers
                     {
                         messageScheduler.SendWPMessage(item, model.Section, model.SrNo, policestation.Name_En, model.AccusedName, model.AccusedAddress, model.JailDate.ToShortDateString(),
                             model.LastChargeSheetdate.ToShortDateString(), leftdays.ToString(), model.IoName);
-                        messageScheduler.SendSMSMessage(item, message);
+                        //messageScheduler.SendSMSMessage(item, message);
                     }
 
                 }

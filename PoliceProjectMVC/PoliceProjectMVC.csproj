@@ -241,6 +241,7 @@
     <Content Include="Images\criminal2.jpeg" />
     <Content Include="Images\dgpbihar.jpg" />
     <Content Include="Images\dgpofbihar.jpg" />
+    <Content Include="Images\digsir.jpeg" />
     <Content Include="Images\DistrictDetailImages\638724043919290524.jpg" />
     <Content Include="Images\DistrictDetailImages\638724045352410752.jpg" />
     <Content Include="Images\DistrictDetailImages\638724045598837242.jpg" />
@@ -267,6 +268,7 @@
     <Content Include="Images\slider5.jpg" />
     <Content Include="Images\slider6.jpeg" />
     <Content Include="Images\slider7.jpeg" />
+    <Content Include="Images\spsir.jpg" />
     <Content Include="Images\SRNSRImages\AccusedFile\638725815006775391.png" />
     <Content Include="Images\SRNSRImages\AccusedFile\638725815121004051.png" />
     <Content Include="Images\SRNSRImages\AccusedFile\638725816173370662.png" />
