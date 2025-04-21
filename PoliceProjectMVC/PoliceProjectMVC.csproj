@@ -652,6 +652,7 @@
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\ApiAndWebContent\WebContent.cshtml" />
+    <Content Include="Views\MissingMobile\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

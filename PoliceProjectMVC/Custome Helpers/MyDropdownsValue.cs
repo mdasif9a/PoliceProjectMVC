@@ -121,5 +121,16 @@ namespace PoliceProjectMVC.Custome_Helpers
                                 new SelectListItem { Text = "Others", Value = "Others" }
                             }, "Value", "Text");
         }
+
+        public static SelectList GetMobileStatus()
+        {
+            return new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Pending", Value = "Pending" },
+                                new SelectListItem { Text = "Approved", Value = "Approved" },
+                                new SelectListItem { Text = "Rejected", Value = "Rejected" },
+                                new SelectListItem { Text = "Closed", Value = "Closed" }
+                            }, "Value", "Text");
+        }
     }
 }

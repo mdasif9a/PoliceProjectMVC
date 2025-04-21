@@ -17,7 +17,7 @@ namespace PoliceProjectMVC.Controllers
 
         public ActionResult Index()
         {
-            List<MissingMobile> missingMobiles = db.MissingMobiles.ToList();
+            List<MissingMobile> missingMobiles = db.MissingMobiles.OrderByDescending(x => x.CreatedDate).ToList();
             return View(missingMobiles);
         }
 
@@ -117,6 +117,19 @@ namespace PoliceProjectMVC.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult NewEdit(MissingMobile model)
+        {
+            MissingMobile mobile = db.MissingMobiles.Find(model.Id);
+            db.Entry(model).State = EntityState.Detached;
+            mobile.Status = model.Status;
+            mobile.UpdatedBy = User.Identity.Name;
+            mobile.UpdatedDate = DateTime.Now;
+            db.Entry(mobile).State = EntityState.Modified;
+            db.SaveChanges();
+            TempData["response"] = "Updated successfully.";
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,5 +146,19 @@ namespace PoliceProjectMVC.Controllers
             TempData["response"] = "Deleted successfully.";
             return RedirectToAction("Index");
         }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MissingMobile model = db.MissingMobiles.Find(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
     }
 }

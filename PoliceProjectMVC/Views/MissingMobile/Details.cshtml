@@ -1,0 +1,90 @@
+@model PoliceProjectMVC.Models.MissingMobile
+@{
+    ViewBag.PageTitle = "Missing Mobile Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    @@media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #printableArea, #printableArea * {
+            visibility: visible;
+        }
+
+        #printableArea {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        .card-tools {
+            display: none !important;
+        }
+    }
+
+    dl.row dt {
+        font-weight: 600;
+        border-bottom: 1px solid #dee2e6;
+        padding: 8px 0;
+        height: 40px;
+    }
+
+    dl.row dd {
+        border-bottom: 1px solid #dee2e6;
+        padding: 8px 0;
+        height: 40px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="card-title mb-0">Missing Mobile Details</h3>
+                <div class="card-tools ml-auto no-print">
+                    <a href="/MissingMobile" class="btn btn-primary">Back To List</a>
+                    <button class="btn btn-success ml-2" onclick="window.print()">Print</button>
+                </div>
+            </div>
+            <div class="card-body" id="printableArea">
+                <div class="row">
+                    <div class="col-12 p-0">
+                        <h3 class="font-weight-bold text-center border-dark border-bottom">Missing Mobile Details</h3>
+                    </div>
+                </div>
+                <dl class="row">
+                    <dt class="col-sm-4">Complain ID :</dt>
+                    <dd class="col-sm-8">@Model.ComplainID</dd>
+
+                    <dt class="col-sm-4">Police Station :</dt>
+                    <dd class="col-sm-8">@Model.PoliceStation</dd>
+
+                    <dt class="col-sm-4">IMEI Number :</dt>
+                    <dd class="col-sm-8">@Model.IMEINumber</dd>
+
+                    <dt class="col-sm-4">Mobile Number :</dt>
+                    <dd class="col-sm-8">@Model.MobileNumber</dd>
+
+                    <dt class="col-sm-4">Alternate Contact Number :</dt>
+                    <dd class="col-sm-8">@Model.AlternateNumber</dd>
+
+                    <dt class="col-sm-4">Date Of Missing :</dt>
+                    <dd class="col-sm-8">@Model.DateOfMissing.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-4">Aadhar Number :</dt>
+                    <dd class="col-sm-8">@Model.AadharNumber</dd>
+
+                    <dt class="col-sm-4">Status :</dt>
+                    <dd class="col-sm-8">@Model.Status</dd>
+
+                    <dt class="col-sm-4">Created Date :</dt>
+                    <dd class="col-sm-8">@Model.CreatedDate.Value.ToString("dd/MM/yyyy")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

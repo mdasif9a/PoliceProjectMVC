@@ -1,7 +1,7 @@
 @using PoliceProjectMVC.Custome_Helpers
-@model PoliceProjectMVC.Models.Act
+@model PoliceProjectMVC.Models.MissingMobile
 @{
-    ViewBag.PageTitle = "Edit Act";
+    ViewBag.PageTitle = "Edit MissingMobile";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,35 +9,23 @@
     <div class="col-md-12">
         <div class="card card-outline card-primary">
             <div class="card-header d-flex align-items-center">
-                <h3 class="card-title mb-0">Edit Act</h3>
+                <h3 class="card-title mb-0">Update Status</h3>
                 <div class="card-tools ml-auto">
-                    <a href="/Act" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
+                    <a href="/MissingMobile" class="btn btn-primary"><span class="fas fa-backward"></span>&nbsp;&nbsp;Back To List</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="/Act/Edit" method="post" enctype="multipart/form-data">
+                <form action="/MissingMobile/NewEdit" method="post">
                     <div class="row">
                         @Html.HiddenFor(m => m.Id)
-@Html.HiddenFor(m => m.ImageUrl)
-@Html.HiddenFor(m => m.IsActive)
-@Html.HiddenFor(m => m.CreatedBy)
-@Html.HiddenFor(m => m.CreatedDate)
+                        <div class="col-md-4 col-sm-6">
+                            <div class='form-group'>
+                                <label for='Status'>Change Status</label>
+                                @Html.DropDownListFor(m => m.Status, MyDropdownsValue.GetMobileStatus(), "Select Status", new { @class = "form-control select2 form-control-sm", data_val = "true", data_val_required = "this field is required" })
+                                @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                            </div>
 
-                        <div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Title, "Enter Title", "text")</div>
-<div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Link, "Enter Link", "text")</div>
-<div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Description, "Enter Description", "text")</div>
-<div class="col-sm-6 col-md-4">@Html.GenerateField(m => m.Priority, "Enter Priority", "text")</div>
-<div class="col-sm-6 col-md-4">@Html.GenerateFileField(m => m.MyImage, "Upload Images", "file", "image/*", "#profileImage")</div>
-<div class="col-sm-6 col-md-4">
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-    {
-        <img src="@Model.ImageUrl" id="profileImage" style="min-height:156px" alt="Uploaded Photo" class="border border-dark mb-3" width="130" height="156">
-    }
-    else
-    {
-        <img src="/Images/noimage.png" id="profileImage" style="min-height:156px" alt="Upload Photo" class="border border-dark mb-3" width="130" height="156">
-    }
-</div>
+                        </div>
                     </div>
                     <hr />
                     <div class="row justify-content-center align-content-center mt-3">

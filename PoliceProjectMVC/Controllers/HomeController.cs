@@ -395,6 +395,19 @@ namespace PoliceProjectMVC.Controllers
         [HttpPost]
         public ActionResult MissingMobile(MissingMobile missingMobile)
         {
+            ViewBag.Police = new SelectList(db.PoliceStations.ToList(), "Name_En", "Name_En");
+            if (db.MissingMobiles.Any(x => x.IMEINumber == missingMobile.IMEINumber))
+            {
+                TempData["alert"] = "This IMEI Number Already Exist.";
+                return View(missingMobile);
+            }
+
+            if (missingMobile.MyImage.ContentLength > 50 * 1024 * 1024)
+            {
+                TempData["alert"] = "File size not greater than 50mb.";
+                return View(missingMobile);
+            }
+
             if (missingMobile.MyImage != null && missingMobile.MyImage.ContentLength > 0)
             {
                 string imagePath = Path.Combine(Server.MapPath("~/Images/MissingMobileImages/"));

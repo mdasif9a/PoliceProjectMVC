@@ -18,7 +18,13 @@
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.AlternateNumber, "Alternate Contact No", "number")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.DateOfMissing, "Date of Missing", "date")</div>
             <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.AadharNumber, "Aadhar Number", "text")</div>
-            <div class="col-md-4 col-sm-6">@Html.GenerateField(m => m.MyImage, "Upload Document", "file")</div>
+            <div class="col-md-4 col-sm-6">
+                <div class='form-group'>
+                    <label for='Status'>Upload Document(Only Image and Pdf)</label>
+                    @Html.TextBoxFor(m => m.MyImage, new { @class = "form-control select2 form-control-sm", data_val = "true", data_val_required = "this field is required", @type = "file", accept = ".pdf,image/*" })
+                    @Html.ValidationMessageFor(m => m.MyImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
 
         <div class="row mt-3 justify-content-center">
